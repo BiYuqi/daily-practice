@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            const uniqueStr = function(str){
+                var s = str.split('').sort().join(''),
+                    max = 0,
+                    res = {},
+                    result = {},
+                    reg = /(.)\1*/g;
+                while (m = reg.exec(s)){
+                    if(m[0].length > max){
+                        max = m[0].length
+                        result.code = m[1]
+                        result.len = m[0].length
+                    }
+                }
+                return result
+            }
+
+            const uniqueStr2 = function(str){
+                if(str.length === 1){
+                    return
+                }
+                var res = {};
+                for(var i=0;i<str.length;i++){
+                    if(!res[str.charAt(i)]){
+                        res[str.charAt(i)] = 1
+                    }else{
+                        res[str.charAt(i)]++
+                    }
+                }
+                var s = {},
+                    max = 0;
+                for(k in res){
+                    if(res.hasOwnProperty(k)){
+                        if(res[k] > max){
+                            max = res[k]
+                            s.code = k
+                            s.len = res[k]
+                        }
+                    }
+                }
+                return s
+            }
+
+            var ss = 'qwre333rrrrertyertrrsdffdghtuymnb';
+            console.log(uniqueStr(ss))
+            console.log(uniqueStr2(ss))
+        </script>
+    </body>
+</html>
