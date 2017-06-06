@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>第一课</title>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            {{message}}
+        </div>
+        <div id="app2">
+            <span v-bind:title="message">
+                hello world sb
+                {{message}}
+            </span>
+        </div>
+        <script>
+            var app = new Vue({
+                el:'#app',
+                data:{
+                    message:"hello world"
+                }
+            });
+
+            var app2 = new Vue({
+                el:'#app2',
+                data:{
+                    message:"我里个去"+new Date()
+                }
+            })
+
+            // console.log()
+            // var UA = window.navigator.userAgent.toLowerCase();
+            // console.log(/msie 9\.0/.test(UA))
+            // var isIE9 = UA && UA.indexOf('msie 9.0') > -1 ? true : false;
+            // console.log(isIE9)
+            //
+            // console.log([].slice(0))
+        </script>
+    </body>
+</html>

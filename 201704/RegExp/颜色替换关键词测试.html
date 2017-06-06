@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="box"></div>
+        <script>
+            var str = 'var function () var this function return ';
+            var reg = /(var|function)/g;
+            var box = document.querySelector('.box');
+
+            box.innerHTML = str.replace(reg,function(m){
+                return '<span style="color:#9E70DD">'+m.replace(/\s+/g,'')+'</span>'
+            });
+        </script>
+    </body>
+</html>

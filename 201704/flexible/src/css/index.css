@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.list{
+    width: 100%;
+}
+.items{
+    height: 180px;
+    padding: 0 15px;
+    margin: 20px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+.items .filgure img{
+    width: 180px;
+    height: 180px;
+    padding: 4px 0;
+    display: block;
+}
+.it-text{
+    width: 100%;
+    margin-left: 15px;
+}

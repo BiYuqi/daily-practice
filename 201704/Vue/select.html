@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <select v-model="selected">
+                <option disabled value="">请选择</option>
+                <option value="1">A</option>
+                <option value="2">B</option>
+            </select>
+            <span>选的是:{{ selected }}</span>
+        </div>
+        <div id="app2">
+            <select v-model="selected">
+                <option v-for="opt in options" :value="opt.value">
+                    {{ opt.text }}
+                </option>
+            </select>
+            <span>{{ selected }}</span>
+            <input
+              type="checkbox"
+              v-model="toggle"
+            >
+            {{toggle}}
+        </div>
+        <script>
+            new Vue({
+                el:'#app',
+                data () {
+                    return {
+                        selected:''
+                    }
+                }
+            })
+            new Vue({
+                el:'#app2',
+                data () {
+                    return {
+                        selected:'',
+                        options:[
+                            {text:"测试",value:"1"},
+                            {text:"测试2",value:"2"},
+                            {text:"测试3",value:"3"},
+                            {text:"测试4",value:"4"}
+                        ],
+                        toggle:false
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

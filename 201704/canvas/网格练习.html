@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>canvas 网格练习</title>
+    </head>
+    <body>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <script>
+            (function(){
+                var canvas = document.querySelector('#canvas'),
+                    ctx = canvas.getContext('2d');
+                function drawScreen(){
+                    //定义线条的间距
+                    var dx = 50,
+                        dy = 50;
+
+                    //初始化
+                    var x = 0,
+                        y = 0,
+                        w = canvas.width,
+                        h = canvas.height;
+                    //
+                    var xy = 10;
+                    ctx.lineWidth = 0.5
+
+                    //
+                    while (y < h){
+                        y = y + dy;
+                        ctx.moveTo(x,y);//原点
+                        ctx.lineTo(w,y);//宽度不变 y累加
+                        ctx.stroke();
+
+                        ctx.font = '1px Arial';
+                        ctx.fillText(xy,x,y);
+                        xy += 10;
+                    }
+
+                    //归零
+                    y = 0;
+                    xy = 10;
+                    //
+                    while(x < w){
+                        x += dx;
+                        ctx.moveTo(x,y);
+                        ctx.lineTo(x,h);//高度不变 宽度累加
+                        ctx.stroke();
+
+                        ctx.font = '1px Arial';
+                        ctx.fillText(xy,x,10);
+                        xy += 10;
+                    }
+
+                }
+                drawScreen()
+
+            })()
+        </script>
+    </body>
+</html>

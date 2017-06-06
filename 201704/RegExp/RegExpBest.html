@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <input type="text" class="target">
+        <script>
+            var str = `<!DOCTYPE html>
+                        <html xmlns="http://www.w3.org/1999/xhtml">
+                        <head>
+                            <title>匹配html中的meta charset - Zjmainstay</title>
+                            <meta http-equiv="Content-Type" content="text/html; charset="utf-8" />
+                            <meta http-equiv="Content-Language" content="zh-CN" />
+                        </head>
+                        <body>
+                        </body>
+                        </html>`;
+            var reg = /<meta [^>]*?charset="([^"]+?)"[^>]*?>/;
+            console.log(str.match(reg));
+
+
+            var str2 = '10001';
+            var reg2 = /10*/;
+            console.log(reg2.exec(str2)[0]);
+
+
+            var str3 = `<a href="http://www.zjmainstay.cn/my-regexp1"
+                        target="_blank" title="我眼里的正则表达式（入门1）">我眼里的正则表达式（入门1）</a>
+                        <a title="我眼里的正则表达式（入门）" href="http://www.zjmainstay.cn/my-regexp2"
+                        target="_blank">我眼里的正则表达式（入门2）</a>`
+
+            var reg4 = /<a [^>]*?href="([^"]*?)"[^>]*?>([^<]*?)<\/a>/g;
+            //console.log(reg4.exec(str3));
+            //console.log(reg4.exec(str3));
+            while (m = reg4.exec(str3)){
+                console.log(m[2]);
+            }
+
+            var str5 = 'sdfasfasfs';
+            var str6 = '35325255';
+            var str7 = 'fsd6767hh42';
+            // var re1 = /^[a-zA-Z0-9]{6,16}$/;
+            // var re2 = /?!^[a-zA-Z]+$/;
+            // var re3 = /?!^[0-9]+$/;
+
+            var reg8 = /(?!^[a-zA-Z]+$)(?!^[0-9]+$)((^[a-zA-Z0-9]{6,16}$)|(^[a-zA-Z0-9%&@#.*?-]{6,16}$))/;
+            // var reg9 = /(^[a-zA-Z]{6,16}$)|(^[0-9]{6,16}$)/;//弱
+            // console.log(reg9.test('rwrwrwrwr0'))
+
+
+            var tar = document.querySelector('.target');
+            tar.onblur = function(){
+                var val = tar.value;
+                if(!reg8.test(val)){
+                    console.log("密码至少有字母数字两种组合以上组成");
+                }
+            }
+
+
+            var strr = '源数据：标题：深入正则表达式应用，作者:Zjmainstay';
+            var reg9 = /作者:(.*)/;
+            console.log(strr.match(reg9));
+
+            var strr2 = '<a href="http://www.zjmainstay.cn/my-regexp" class="demo8" title="正则三段论应用举例">正则表达式入门教程</a>';
+            var reg10 = /<a href="(.*?)".*?title="(.*?)">(.*?)<\/a>/;
+            console.log(strr2.match(reg10));
+        </script>
+    </body>
+</html>

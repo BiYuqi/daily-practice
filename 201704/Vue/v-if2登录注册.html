@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="vue.js"></script>
+        <script src="checkinput.js"></script>
+        <style>
+            .inner{
+                width: 400px;
+                height: 350px;
+                margin:  0 auto;
+                box-sizing: border-box;
+                padding: 40px;
+                border: 1px solid #eee;
+            }
+            .box{
+                width: 400px;
+                height: 50px;
+                margin:  0 auto;
+                font-size: 20px;
+                line-height: 50px;
+                cursor: pointer;
+            }
+            .box span{
+                display: inline-block;
+                width: 50%;
+                height: 50px;
+                text-align: center;
+            }
+            .box span:nth-child(1){
+                color: green;
+                float: left;
+            }
+            .box span:nth-child(2){
+                color: #c33;
+                float: right;
+            }
+            .box span:nth-child(1):hover{
+                background: limegreen;
+                color: #fff;
+            }
+            .box span:nth-child(2):hover{
+                background: #c00;
+                color: #fff;
+            }
+            .inner div{
+                margin: 15px 0;
+            }
+            .inner input{
+                height: 30px;
+                outline: none;
+            }
+            .tips{
+                height: 20px;
+                line-height: 20px;
+                color: #c33;
+                font-size: 14px;
+            }
+            .resiger div{
+                padding-left: 100px;
+                position: relative;
+            }
+            .resiger label{
+                position: absolute;
+                left: 0;
+                top:10px;
+            }
+            .resiger .sure{
+                width: 100px;
+                height: 40px;
+                text-align: center;
+                padding-left: 0;
+                background-color: #18A15F;
+                color: #fff;
+                line-height: 40px;
+                cursor: pointer;
+                opacity: .8;
+            }
+            .resiger .sure:hover{
+                opacity: 1;
+            }
+            .box span.active{
+                background-color: #17A05E;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="box">
+                <span @click="login" v-bind:class="{ active: isBackColor }">登录</span>
+                <span @click="resger" v-bind:class="{ active: BackColor }">注册</span>
+            </div>
+            <template v-if="loginType">
+              <div class="inner">
+                  <div>
+                      <label>昵称</label>
+                      <input placeholder="Enter your username">
+                  </div>
+                  <div>
+                      <label>密码</label>
+                      <input placeholder="Enter your username">
+                  </div>
+                  <div>登录</div>
+              </div>
+            </template>
+            <template v-else>
+              <div class="inner resiger">
+                  <div>
+                      <label>手机号</label>
+                      <input type="text" class="phone" v-on:blur="phoneCheck" v-on:focus="allfocus" placeholder="Enter your username">
+                  </div>
+                  <div>
+                      <label>密码</label>
+                      <input type="text" class="pass" v-on:focus="allfocus" placeholder="Enter your username">
+                  </div>
+                  <div>
+                      <label>确认密码</label>
+                      <input type="text" v-on:focus="allfocus" placeholder="Enter your username">
+                  </div>
+                  <div>
+                      <p class="tips"></p>
+                      <div class="sure">确定</div>
+                  </div>
+              </div>
+            </template>
+        </div>
+        <script>
+            var vm = new Vue({
+                el:'#app',
+                data:{
+                    loginType:true,
+                    isBackColor:true,
+                    BackColor:false
+                },
+                methods:{
+                    login:function(){
+                        this.loginType = true;
+                        this.BackColor = false;
+                        this.isBackColor = true;
+                    },
+                    resger:function (){
+                        this.loginType = false;
+                        this.BackColor = true;
+                        this.isBackColor = false;
+                    },
+                    phoneCheck:function (){
+                        var  phone = document.querySelector('.phone').value;
+                        var tips = document.querySelector('.tips');
+                        var reg = /^1[358]\d{9}$/;
+                        if(!reg.test(phone)){
+                            tips.innerHTML = "手机号码有误";
+                        }
+
+                    },
+                    allfocus:function (){
+                        var tips = document.querySelector('.tips');
+                        tips.innerHTML = ""
+
+                    }
+                }
+            });
+
+
+        </script>
+    </body>
+</html>

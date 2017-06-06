@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function foo(){
+                var a = 0;
+                return function(){
+                    console.log(a++)
+                }
+            }
+            var baz = foo();
+            baz();
+            baz();
+            baz();
+            baz();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div class="app">
+            <!-- .lazy 类似于blur事件 同步数据 -->
+            <input type="text" v-model.lazy="msg">
+            <p>{{ msg }}</p>
+            <input type="text" v-model="age">
+        </div>
+
+        <script>
+            new Vue({
+                el:'.app',
+                data () {
+                    return {
+                        msg:null,
+                        age:null
+                    }
+                },
+                watch:{
+                    age () {
+                        this.age = this.age.replace(/\D+/,'');
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>trim</title>
+    </head>
+    <body>
+        <script>
+            function trim(el){
+                var reg = /(^\s*)|(\s*$)/g;
+                return el.replace(reg,'');
+            }
+            var str = ' sdfsf                           ';
+            console.log(trim(str).length)
+        </script>
+    </body>
+</html>

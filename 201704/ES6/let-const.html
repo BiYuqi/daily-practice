@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>作用域</title>
+    </head>
+    <body>
+        <p class="box">sdffsfsf</p>
+        <p class="box">sdffsfsf</p>
+        <p class="box">sdffsfsf</p>
+        <p class="box">sdffsfsf</p>
+        <p class="box">sdffsfsf</p>
+        <p class="box">sdffsfsf</p>
+        <p class="box">sdffsfsf</p>
+        <script>
+            function fn(){
+                let n = 5;
+                if(true){
+                    let n = 10;
+                    console.log(n);
+                }
+                console.log(n);
+            }
+            fn()
+            // const foo; //const一旦声明变量，就必须立即初始化，不能留到以后赋值。
+            // console.log(foo); 报错
+
+            let bar;
+            console.log(bar);//undefinedt
+            var p = document.querySelectorAll('p');
+            var m = [].slice.call(p);
+            console.log(p)
+            console.log(m)
+
+            p.forEach(function(k,v){
+                console.log(k,v)
+            })
+
+            function forEach(el,callback){
+                for (var i = 0; i < el.length; i++) {
+                    callback.call(this,el[i],i)
+                }
+            }
+            forEach(m,function(v,k){
+                console.log(v)
+            })
+
+            var ss = document.getElementsByTagName('p');
+            console.log(Array.from(ss))
+
+        </script>
+    </body>
+</html>

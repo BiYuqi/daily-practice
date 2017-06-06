@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .csshub-loader{
+                width: 100%;
+                height: 100%;
+                /*background-color: #000;*/
+                background: #D1D1D1;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 888;
+            }
+            .csshub-loader .center{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+            .csshub-loader h1{
+                font-family: 'Actor', sans-serif;
+                color:#FFF;
+                font-size:16px;
+                letter-spacing:1px;
+                font-weight:200;
+                text-align:center;
+            }
+            .csshub-loader span{
+                width:16px;
+                height:16px;
+                border-radius:50%;
+                display:inline-block;
+                position:absolute;
+                left:50%;
+                margin-left:-10px;
+                animation:3s infinite linear;
+                -webkit-animation:3s infinite linear;
+            }
+            .csshub-loader span:nth-child(2){
+                background:#E84C3D;
+                animation: csshub-kiri 1.2s infinite linear;
+                -webkit-animation:csshub-kiri 1.2s infinite linear;
+            }
+
+            .csshub-loader span:nth-child(3){
+                background:#F1C40F;
+                z-index:100;
+            }
+
+            .csshub-loader span:nth-child(4){
+                background:#2FCC71;
+                animation:csshub-kanan 1.2s infinite linear;
+                -webkit-animation:csshub-kanan 1.2s infinite linear;
+            }
+            @-webkit-keyframes csshub-kanan {
+                0% {-webkit-transform:translateX(20px);
+                }
+
+                50%{-webkit-transform:translateX(-20px);
+                }
+
+                100%{-webkit-transform:translateX(20px);
+                z-index:200;
+                }
+            }
+            @keyframes csshub-kanan {
+                0% {transform:translateX(20px);
+                }
+
+                50%{transform:translateX(-20px);
+                }
+
+                100%{transform:translateX(20px);
+                z-index:200;
+                }
+            }
+
+            @-webkit-keyframes csshub-kiri {
+                 0% {-webkit-transform:translateX(-20px);
+                z-index:200;
+                }
+                50%{-webkit-transform:translateX(20px);
+                }
+                100%{-webkit-transform:translateX(-20px);
+                }
+            }
+
+            @keyframes csshub-kiri {
+                0%{ transform:translateX(-20px);
+                z-index:200;
+                }
+                50%{transform:translateX(20px);
+                }
+                100%{transform:translateX(-20px);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="csshub-loader">
+            <div class="center">
+                <h1>LOADING</h1>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </body>
+</html>

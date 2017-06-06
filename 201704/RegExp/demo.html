@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>入门</title>
+    </head>
+    <body>
+
+        <script>
+            var str = '<div>a</div><div>b</div>';
+            var reg = /<div>(.*?)<\/div>/;
+            var m;
+            // while ( m = reg.exec(str)){
+                console.log(reg.exec(str))
+            // }
+
+
+            var http = 'http://loadingmore.com';
+            var reg2 = /(?:http):\/\/([^/]+)/;
+            console.log(http.match(reg2))
+
+
+            var num = '4141115566689777';
+            var reg3 = /(\d)\1\1/g;// \1引用分组中的内容（规则）
+            console.log(num.match(reg3))
+
+            var name = 'biyuqi=xiaobai&caicai=dabai';
+            var reg4 = /(biyuqi)/;
+            console.log(name.match(reg4))
+
+            var html = '<div id="module_1">'
+                        +    '<div class="content">'
+                        +              'content 1'
+                        +    '</div>'
+                        +'</div>'
+                        +'<div id="module_2">'
+                        +    '<div class="content">'
+                        +             ' content 2'
+                        +    '</div>'
+                        +'</div>'
+            //匹配第一个class= content的内容
+            var regs = /<div id="module_1">(.*?)<\/div>\s*<div id="module_2">/;
+            var regs2 = /<div class="content">(.*?)<\/div>/;
+            console.log(regs2.exec(html))
+
+
+            var html2 = '<meta content="text/html; charset=utf-8" http-equiv="content-type">';
+            var regs3 = /<meta.*?charset=([^"]+)"/;
+
+            console.log(regs3.exec(html2))
+        </script>
+    </body>
+</html>

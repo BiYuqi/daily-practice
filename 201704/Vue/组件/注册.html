@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="../vue.js"></script>
+    </head>
+    <body>
+        <div class="app">
+            <my-input :message="now"></my-input>
+        </div>
+        <div class="app2">
+            <my-input2></my-input>
+        </div>
+        <script>
+            //全局组件
+            Vue.component('my-input',{
+                props:['message'],
+                template:'<p>{{message}}</p>',
+                data () {
+                    return {
+
+                    }
+                }
+            })
+            new Vue({
+                el:'.app',
+                data () {
+                    return {
+                        now:"我里个去"
+                    }
+                }
+            })
+            //局部
+            var Child = {
+                template:'<p>我是局部末班</p>'
+            }
+            new Vue({
+                el:'.app2',
+                data () {
+                    return {
+
+                    }
+                },
+                components: {
+                    'my-input2':Child
+                }
+
+            })
+            
+        </script>
+    </body>
+</html>

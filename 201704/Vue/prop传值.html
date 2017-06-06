@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div class="sdfsf">
+                {{ total }}
+            </div>
+            <to-do @addNum="increate"></to-do>
+            <to-do @addNum="increate"></to-do>
+        </div>
+        <script>
+            Vue.component('to-do',{
+                template: `<button v-on:click='addNum'>{{ counter }}</button>`,
+                data () {
+                    return {
+                        counter:0
+                    }
+                },
+                methods: {
+                    addNum () {
+                        this.counter += 1;
+                        this.$emit('addNum');
+                    }
+                }
+            })
+            var app =new Vue({
+                el:'#app',
+                data () {
+                    return {
+                        total:0
+                    }
+                },
+                methods: {
+                    increate () {
+                        this.total++;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

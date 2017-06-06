@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .int{
+                width: 800px;
+                height: 40px;
+                margin: 0 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" class="int">
+        <script>
+            // var str = '320';
+            // var reg = /^((3[0-6][0-5])|([12]\d{2})|([1-9]\d?))$/;
+            var input = document.querySelector('.int');
+            input.oninput = function(){
+                var reg = /\s/;
+                if(reg.test(this.value)){
+                    input.value = this.value.replace(/\s/,'');
+                    return;
+                }
+            }
+            var str = 'translate3d(12,2,5)';
+            str = str.toLowerCase();
+            var reg = /translate3d\((\d+)/;
+            console.log(str.match(reg)[1]) //12
+
+            var regs = /^(?!9999)([1-9]\d{3}|[1-5]\d{4}|6[0-5]{2}[0-3][0-5])$/;
+            console.log(regs.test(9001))
+
+        </script>
+    </body>
+</html>

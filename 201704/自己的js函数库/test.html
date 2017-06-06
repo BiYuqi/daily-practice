@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .box{
+                width: 100px;
+                height: 100px;
+                background: green;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box" data-index="测试">
+            <span>sdfsfsf</span>
+        </div>
+        <script src="my-js.js"></script>
+        <script>
+            $('.box span').on('click',function(e){
+                console.log(e.target.nodeName)
+            })
+        </script>
+    </body>
+</html>

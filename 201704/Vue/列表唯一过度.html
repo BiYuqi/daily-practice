@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .flip-list-move {
+                transition: all 0.8s;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="list-demo">
+            <button @click="shuffle">点击</button>
+            <transition-group tag="ul" name="flip-list">
+                <li v-for="item in items" :key="item">
+                    {{item}}
+                </li>
+            </transition-group>
+        </div>
+        <script src="vue.js"></script>
+        <script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
+        <script>
+            new Vue({
+                el:'#list-demo',
+                data:function(){
+                    return {
+                        items: [1,2,3,4,5,6,7,8,9]
+                    }
+                },
+                methods:{
+                    shuffle:function(){
+                        this.items = _.shuffle(this.items)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

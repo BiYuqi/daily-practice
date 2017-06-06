@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            var str = `http://localhost:3000/html/onlineBooking.html?queryStr=小明&type=小明`;
+            var reg = /(\w+)=([\w%]+|[\u4e00-\u9fa5]+)/g;
+            var m,res = {};
+            while (m = reg.exec(str)){
+                res[m[1]] = m[2];
+            }
+            console.log(res)
+
+
+            var str4 = 'function getbeauty(m,n){'+
+                        '    return m+n'+
+                        '}';
+            var reg4 = /function\s(\w+)/g;
+            console.log(reg4.exec(str4)[1])
+
+            function getUrlPart(url){
+                url = url == null ? window.location.href : url;
+                var data = url.substring(url.indexOf('?')+1);
+                var reg = /([^?&=]+)=([^?&=]+)/gi;
+                var m,res = {};
+                while (m = reg.exec(data)){
+                    res[m[1]] = m[2];
+                }
+                return res;
+            }
+            console.log(getUrlPart('https://www.baidu.com/s?wd=%E5%8F%91%E5%A3%B0%E7%9A%84%E6%96%B9%E6%B3%95&rsv_spt=1&rsv_iqid=0x9eccc5060000467f&issp=1&f=3&rsv_bp=0&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_sug3=6&rsv_sug1=4&rsv_sug7=100&rsv_sug2=1&prefixsug=fsdff&rsp=0&inputT=1198&rsv_sug4=1255'))
+        </script>
+    </body>
+</html>

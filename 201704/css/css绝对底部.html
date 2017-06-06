@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <title>纯css实现绝对底部</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html,body{
+                height: 100%;
+                width: 100%;
+            }
+            .wrapper{
+                height: 100%;
+                /* 必须使用和footer相同的高度 */
+                padding-bottom: 150px;
+                /*box-sizing: border-box;*/
+            }
+            .header{
+                width:100%;
+                height: 100px;
+                background-color: green;
+                opacity: 0.4;
+                text-align: center;
+                line-height: 100px;
+            }
+            .footer{
+                position: relative;
+                height: 150px;
+                width: 100%;
+                text-align: center;
+                line-height: 150px;
+                background: limegreen;
+                /* footer高度的负值 */
+                /* 必须使用和footer相同的高度 */
+                margin-top: -150px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">我是header，我就待在这</div>
+            <p>我是内容区域</p>
+        </div>
+        <div class="footer">我是底部,我不会跑上去</div>
+    </body>
+</html>

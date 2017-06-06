@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            canvas{
+                border: 1px solid #c33;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="300" height="300">
+            <p>您的浏览器太老旧了，请升级现代化的浏览器chrome</p>
+        </canvas>
+        <script>
+            (function(){
+                function draw() {
+                     var canvas = document.getElementById("canvas");
+                     if (canvas.getContext) {
+                       var ctx = canvas.getContext("2d");
+
+                       ctx.fillStyle = "rgb(200,0,0)";
+                       ctx.fillRect (10, 10, 55, 50);
+
+                       ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+                       ctx.fillRect (30, 30, 55, 50);
+                     }
+               }
+               draw();
+            })()
+        </script>
+    </body>
+</html>

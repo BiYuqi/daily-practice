@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .active{
+                color:#c33;
+            }
+        </style>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div class="static" v-bind:class="{active:isActive}">
+            测试
+        </div>
+        <script>
+            var app = new Vue({
+                el:'.static',
+                data:{
+                    isActive:true
+                }
+            })
+        </script>
+    </body>
+</html>

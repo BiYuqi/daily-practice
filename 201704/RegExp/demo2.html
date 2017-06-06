@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            var str = 'ABCAD';
+            var reg = /(?=A)[A-Z]/g;
+            console.log(reg.test(str))
+            console.log(str.match(reg))
+            // console.log(reg.exec(str))
+
+            while (m = reg.exec(str)){
+                console.log(m[0])
+            }
+
+
+            var str2 = `ABCAD`;
+            var reg2 = /A[A-Z]/g;
+            console.log(str2.match(reg2))
+            while (m = reg2.exec(str)){
+                console.log(m[0])
+            }
+
+            var str3 = 'fasdf';
+            var reg3 = /[a-z]+(?!;)$/
+            console.log(reg3.test(str3))
+
+
+
+            var regg = /^(?=.*?\d)(?=.*?[a-z])(?!^[a-z\d]+$).+$/;
+            // var regg = /^(?=.*?[a-z])(?=.*?\d)(?![a-z\d]+$).+$/;
+            var st1 = 'sadfsfsdf';//false
+            var st2 = '156456465';//false
+            var st3 = 'asdfs41654';//false
+            var st4 = 'asdfaf2123&%$';//true
+            var st5 = '%&dgf1546465';//true
+            console.log(regg.test(st1),regg.test(st2),regg.test(st3),regg.test(st4),regg.test(st5))
+        </script>
+    </body>
+</html>

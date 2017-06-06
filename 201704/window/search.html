@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            var reg = /(?!^\d+$)(?!^[a-zA-Z]+$)^[\da-zA-Z]+$/;
+            var str = 'sdf234';
+            var str2 = 'sdfsfsdf';
+            var str3 = '2345l2344';
+            console.log(reg.test(str));
+            console.log(reg.test(str2));
+            console.log(reg.test(str3));
+        </script>
+    </body>
+</html>

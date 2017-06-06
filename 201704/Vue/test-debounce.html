@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function debounce(fn,delay){
+                var timer = null;
+                return function(){
+                    var args = arguments,
+                        that = this;
+                    clearTimeout(timer);
+                    timer = setTimeout(function(){
+                        fn.apply(that,args);
+                    },delay)
+                }
+            }
+            window.addEventListener('click',debounce(function(){
+                console.log("测试卷")
+            },500))
+        </script>
+    </body>
+</html>
