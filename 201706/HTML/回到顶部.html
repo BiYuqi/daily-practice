@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .test{
+                height: 9000px;
+                background: -webkit-linear-gradient(top,#4fc08d,#086caf);
+            }
+            .back-top{
+                position: fixed;
+                bottom: 50px;
+                right: 50px;
+                cursor: pointer;
+                background-color: #eee;
+                color: green;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="test">
+
+        </div>
+        <div class="back-top">点我</div>
+        <script>
+            function backTop(rate){
+                var doc = document.body.scrollTop ? document.body : document.documentElement,
+                    scrollTop = doc.scrollTop;
+
+                var timer = setInterval(function(){
+                    scrollTop = scrollTop - scrollTop/(rate || 4)
+                    if(scrollTop < 1){
+                        clearInterval(timer)
+                        doc.scrollTop =0
+                    }
+                    doc.scrollTop = scrollTop
+                },17)
+            }
+            /**
+            *  数据类型
+            *  @param {Number} rate 数值越大越缓慢回到顶部 反之越快
+            */
+            document.querySelector('.back-top').onclick = function(){
+                backTop()
+            }
+
+        </script>
+    </body>
+</html>
