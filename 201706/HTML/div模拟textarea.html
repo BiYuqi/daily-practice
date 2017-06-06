@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            div{
+                width: 400px;
+                min-height: 50px;
+                padding: 4px;
+                border: 1px solid #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <div contenteditable="true"></div>
+
+
+        <script>
+            // 返回小于数字 N 的所有 3 或者 5 的倍数的和，N 是函数的参数。
+            var sum2 = function(n){
+                  var sum = 0;
+                  for (var i=0; i<n ;i++) {
+                    (i%3==0||i%5==0) ? sum += i : null;
+                  }
+                  return sum;
+            }
+            console.log(sum2(8000000))
+        </script>
+    </body>
+</html>

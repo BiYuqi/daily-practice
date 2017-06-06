@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            ul,li{
+                list-style: none;
+            }
+            .container{
+                width: 800px;
+                margin: 0 auto;
+            }
+            .my_own_select{
+                width: 200px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+                color: #666;
+                cursor: pointer;
+                position: relative;
+            }
+            .my_own_select_title{
+                border: 1px solid #eee;
+                padding-left: 4px;
+            }
+            .my_own_select_options{
+                position: absolute;
+                width: 100%;
+                top: 30px;
+                left: 0;
+                z-index: 9999;
+                display: none;
+            }
+            .my_own_select_options .my_own_select_item{
+                border: 1px solid #eee;
+                border-top: none;
+                padding-left: 4px;
+                cursor: pointer;
+            }
+            .my_own_select_options .my_own_select_item:hover{
+                background-color: #f2f2f2;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="my_own_select">
+                <div class="my_own_select_title">请选择</div>
+                <ul class="my_own_select_options">
+                    <!-- <li class="my_own_select_item">sdfsdf</li> -->
+                </ul>
+            </div>
+        </div>
+        <script>
+
+        </script>
+        <script>
+            (function(){
+                var my_select = function (obj) {
+                    var _el = function(el){
+                        return document.querySelector(el)
+                    }
+                    var _elAll = function(el){
+                        return document.querySelector(el)
+                    }
+                    return {
+                        titleBtn:_el(obj.titleBtn),
+                        listWrap:_el(obj.listWrap),
+                        init:function(){
+                            this.renderData(obj.data)
+                            this.eventMethod()
+                        },
+                        renderData:function(data){
+                            if(data.length <= 0){
+                                return;
+                            }
+                            var len = data.length,
+                                tpl = '';
+                            if(typeof data[0] == 'object'){
+                                for(k in data){
+                                    if(data.hasOwnProperty(k)){
+                                        tpl += '<li class="my_own_select_item" data-val="'+data[k].sid+'">'+data[k].sname+'</li>'
+                                    }
+                                }
+                            }else{
+                                for(var i=0;i<len;i++){
+                                    tpl += '<li class="my_own_select_item">'+data[i]+'</li>'
+                                }
+                            }
+
+                            this.listWrap.innerHTML = tpl
+                        },
+                        eventMethod:function(){
+                            var that = this;
+                            this.titleBtn.addEventListener('click',function(){
+                                that.listWrap.style.display = 'block'
+                            },false)
+
+                            document.addEventListener('click',function(e){
+                                if(e.target.nodeName.toLowerCase() == 'li'){
+                                    if(e.target.className === obj.listItem.replace(/\./,'')){
+                                        that.titleBtn.innerHTML = e.target.innerHTML
+                                        if(e.target.getAttribute('data-val')){
+                                            that.titleBtn.setAttribute('data-val',e.target.getAttribute('data-val'))
+                                        }
+                                        that.listWrap.style.display = 'none'
+                                    }
+                                }
+                            },false)
+
+                            document.addEventListener('click',function(e){
+                                if(e.target.className !== obj.titleBtn.replace(/\./,'')
+                                    && e.target.className !== obj.listWrap.replace(/\./,'')){
+                                    that.listWrap.style.display = 'none'
+                                }
+                            },false)
+                        }
+                    }.init()
+                }
+
+                /**
+                *    HTML结构固定  类名、样式根据开发需要自定义
+                *    <div class="my_own_select">
+                *        <div class="my_own_select_title">请选择</div>
+                *        <ul class="my_own_select_options">
+                *            <!-- <li class="my_own_select_item">sdfsdf</li> -->
+                *        </ul>
+                *    </div>
+                */
+
+                /**
+                *  数据类型
+                *  @param {data} 数据源
+                *  @param {Array}  纯数组
+                *  @param {ArrayObject} 数组嵌套对象(包含值和value)
+                */
+
+                var listData = ["测试1","测试2","测试3","测试4","测试5","测试6"]
+                var listObj = [
+                    {
+                        sid:"0",
+                        sname:"榕榕兔胜多负少"
+                    },
+                    {
+                        sid:"1",
+                        sname:"榕榕兔胜多负少2"
+                    }
+                ]
+                /**
+                *     @param {string} titleBtn 默认显示字段 className
+                *     @param {string} listWrap 下拉框盒子 className
+                *     @param {string} listItem 选项 className
+                *     @param {Arraylike} data 数据源
+                */
+
+                //调用方式
+                my_select({
+                    titleBtn:'.my_own_select_title',
+                    listWrap:'.my_own_select_options',
+                    listItem:'.my_own_select_item',
+                    data:listObj
+                })
+            })()
+        </script>
+    </body>
+</html>
