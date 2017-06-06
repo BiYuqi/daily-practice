@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .loading{
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 2px;
+                width: 0;
+                z-index: 99999;
+                background-color: #c33;
+            }
+        </style>
+    </head>
+    <body>
+        <span class="loading"></span>
+        <script>
+            function times(fn){
+                var n = 1
+                var timer = setInterval(function(){
+                    n +=n/13
+                    document.querySelector('.loading').style.width = n +'%'
+                    if(n >= 85){
+                        clearInterval(timer)
+                        document.querySelector('.loading').style.width ='85%'
+                        fn && fn(n)
+                    }
+                },17)
+            }
+            times(function(n){
+                var timer2 = setInterval(function(){
+                    n += n/1300
+                    document.querySelector('.loading').style.width = n +'%'
+                    if(n >= 100){
+                        clearInterval(timer2)
+                        document.querySelector('.loading').style.width ='100%'
+                        document.querySelector('.loading').style.display = 'none'
+                    }
+                },13)
+            })
+
+        </script>
+    </body>
+</html>
