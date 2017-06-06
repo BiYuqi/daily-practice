@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            var _once = function(fn){
+                var isOnce = false;
+                return function(){
+                    if(!isOnce){
+                        isOnce = true;
+                        fn.apply(this,arguments);
+                    };
+                }
+            };
+
+
+            window.addEventListener('click',_once(function(){
+                console.log("我只会执行一次")
+            }),false)
+        </script>
+    </body>
+</html>

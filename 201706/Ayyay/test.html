@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function log(){
+                console.log.apply(null,arguments)
+            }
+            var test1 = Array(8)
+            if(!Array.of){
+                Array.of = function(){
+                    return Array.prototype.slice.call(arguments)
+                }
+            }
+            log(test1)
+
+            let o = {0: 'a', 1: 'b', 2:'c', length: 3};
+            log(Array.from(o))
+
+            log(Array.from({length: 10}, function(k,v){
+                return v
+            }))
+
+
+            if(!Array.isArray){
+                Array.isArray = function(obj){
+                    return Object.prototype.toString.call(obj) == '[object Array]'
+                }
+            }
+
+            const arrs = [[5,6],[7,8,9]]
+            console.log(arrs.join(',').split(','))
+            log([1,2,3,4,5,6,77].indexOf(7))
+
+            var indexOfO = function(source,searchEle){
+                if(typeof source == 'string'){
+                    source = source.split('')
+                }
+                var len = source.length;
+                var k = 0;
+                while(k < len){
+                    if(source[k] == searchEle){
+                        return k
+                    }
+                    k++
+                }
+                return -1
+            }
+
+            log(indexOfO([2,3,4,5,7,78],7))
+        </script>
+    </body>
+</html>

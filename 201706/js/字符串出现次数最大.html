@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function getS(s){
+                var s = s.split('');
+                var res = {};
+                var max = s[0];
+                for(var i=0;i<s.length;i++){
+                    if(!res[s[i]]){
+                        res[s[i]] = 1
+                    }else {
+                        res[s[i]]++;
+                    }
+                    if(res[s[i]] > res[max]){
+                        max = s[i];
+                    }
+                }
+                return max;
+            }
+            var str = 'sdfsh328648222246234897234238473274234sadfqwrfasdf';
+
+            console.log(str.split('').sort().join(''))
+
+            var getMax = function(s){
+                var s = s.split('').sort().join(''),
+                    rs = /(.)\1*/g,
+                    m,
+                    max = 0,
+                    res = {},
+                    result={};
+                while (m = rs.exec(s)){
+                    res[m[1]] = m[0].length
+                }
+                for(i in res){
+                    if(res[i] > max){
+                        max = res[i]
+                        result.len = res[i]
+                        result.code = i
+                    }
+                }
+                return result
+            }
+            console.log(getMax(str))
+        </script>
+    </body>
+</html>

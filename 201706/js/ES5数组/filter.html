@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>过滤器</title>
+    </head>
+    <body>
+        <div class="box">sdfsfdf</div>
+        <script>
+            var arr = [0,1,0,1,0,1,0,1,0,1,0];
+            var a = arr.filter(function(v,i){
+                return !v
+            })
+            console.log(a)
+
+            var b = arr.map(function(v,i){
+                return v*2
+            })
+            console.log(b)
+
+
+            //map实现原理
+            function map(el,fn){
+                var res = [];
+                for(var i=0;i<el.length;i++){
+                    res[i] = fn.call(this,el[i],i,el)
+                }
+                return res;
+            }
+            var sb = map(arr,function(v,k){
+                return v+5
+            })
+            console.log(sb)
+
+            //尝试下filter
+            function filter(el,fn){
+                var res = [];
+                var thisp = arguments[1];
+                for(var i=0;i<el.length;i++){
+                    var val = el[i];
+                    if(fn.call(thisp,val,i,this)){
+                        res.push(val)
+                    }
+
+                }
+                return res;
+            }
+            var sd = filter(arr,function(v,k){
+                return !v
+            })
+            console.log(sd)
+
+        </script>
+        <script>
+            document.querySelector('.box').onclick = function(){
+                var a = edit(function(v){
+                    var s = v;
+                    console.log(s)
+                })
+                a()
+            }
+            function edit(fn){
+                var that = this;
+                return function(){
+                    var a = 'adshfasfhsafiuk'
+                    fn.call(that,a)
+                }
+            }
+        </script>
+    </body>
+</html>

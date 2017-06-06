@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>after before</title>
+    </head>
+    <body>
+        <script>
+            //创建一个函数，该函数运行若干次后，再次尝试运行该函数，都是执行传入的回调
+            /*
+            *@param nums 即将回调条件 比如点击nums 次后 执行5次回调函数
+            *@param times(可选) 最多回调几次 即最终回调次数
+            *@param fun 回调函数
+            */
+            // --------------------DIY改进版
+            var after = function(nums,times,fun){
+                return function(){
+                    nums--;
+                    if(nums < times && nums >= 0){//指定调用次数
+                        return fun.apply(this,arguments)
+                    }
+                }
+            };
+            //在我们限定的条件之后,才执行最终的回调：
+            var a = 5;
+            window.addEventListener('click',after(a,2,function(){
+                a--;
+                console.log("傻逼1")
+            }),false);
+
+
+            //----------------------Underscore原版
+            var _after = function(num,func){
+                return function(){
+                    num--;
+                    if(num < 1){
+                        return func.apply(this,arguments)
+                    }
+                }
+            }
+
+            var b = 5;
+            // window.addEventListener('click',_after(b,function(){
+            //     b--;
+            //     // console.log("傻逼")
+            // }),false);
+        </script>
+    </body>
+</html>

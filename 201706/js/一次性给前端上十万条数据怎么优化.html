@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            span{
+                width: 200px;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box" contenteditable="true"></div>
+        <script>
+            (function(){
+                var box = document.querySelector('.box');
+                function outputData(){
+                    var res = [];
+                    for(var i=0;i<100000;i++){
+                        res.push("我是测试数据"+i)
+                    }
+                    return res;
+                }
+                function group(res){
+                    var result = [];
+                    var groupItem = [];
+                    for(var i=1;i<=res.length;i++){
+                        if(i % 500 == 0){
+                            groupItem != null && result.push(groupItem);
+                            groupItem = [];
+                        }
+                        groupItem.push(res[i]);
+                    }
+                    return result;
+                }
+                function loadPart(group,index){
+                    var html = "";
+                    for (var i = 0; i < group.length; i++) {
+                       var item = group[i];
+                       html += '<span>'+item+'</span>';
+                    }
+                    var div = document.createElement('div');
+                    div.innerHTML = html;
+                    box.appendChild(div);
+                }
+                function loadAll(data){
+                    var groupData = group(data);
+                    // console.log(groupData)
+                    for(var i=0;i<groupData.length;i++){
+                        setTimeout((function(i){
+                            var group = groupData[i];
+                            var index = i + 1;
+                            return function(){
+                                loadPart(group,index)
+                            }
+                        })(i),1)
+                    }
+                }
+
+                loadAll(outputData())
+
+            })()
+        </script>
+    </body>
+</html>

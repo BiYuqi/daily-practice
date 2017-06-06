@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function reduce(){
+                var val = Array.prototype.slice.call(arguments);
+                return val.reduce(function(p,c,i,a){
+                    return p+c;
+                })
+            }
+            var v = reduce(1,2,3,4,5);
+            console.log(v);
+
+
+            var person = {
+                name:"毕宇旗",
+                eat:function(){
+                    console.log("吃饭")
+                }
+            }
+            var student = {
+                name:"sc",
+                learn:function(){
+                    console.log("源码")
+                }
+            }
+            student.__proto__ = person;
+            student.eat();
+        </script>
+    </body>
+</html>

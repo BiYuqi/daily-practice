@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>模拟创建对象</title>
+    </head>
+    <body>
+        <script>
+            var baseCreate  = function(proto){
+                if(Object.create){
+                    return Object.create(proto)
+                }
+                var Temp = function(){}
+                Temp.prototype = proto;
+                var obj = new Temp();
+                Temp.prototype = null;
+
+                return obj;
+            };
+            function Person(name) {
+              this.name = name;
+            }
+
+            Person.prototype.eat = function() {
+              console.log(this.name+"在吃饭");
+            }
+
+            var student = baseCreate(Person.prototype);
+            student.name = 'wxj';
+            student.eat(); // "wxj在吃饭"
+        </script>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            Array.prototype.shuffle = function() {
+                var len = this.length;
+                for (var i = 0;i<len; i++) {
+                    var randomIndex = Math.floor(Math.random()*len);
+                    var item = this[randomIndex];//随机数
+
+                    this[randomIndex] = this[i];//交换值
+                    this[i] = item;//
+
+                    // console.log(i)
+                }
+                return this;
+            }
+            function shuffle(arr){
+              var len = arr.length;
+              for(var i = 0; i < len - 1; i++){
+                var idx = Math.floor(Math.random() * (len - i));
+                var temp = arr[idx];
+                arr[idx] = arr[len - i - 1];
+                arr[len - i -1] = temp;
+              }
+              return arr;
+            }
+            // Array.prototype.sorts = function() {
+            //     return this.sort(function(){
+            //         return Math.random() - 0.5;
+            //     });
+            // }
+            var arr = [0,1,2,3,4,5,6,7,8,9];
+            var res = [0,0,0,0,0,0,0,0,0,0];
+            // console.log(arr.shuffle())
+            var t = 100000;
+            for(var i=0;i<t;i++){
+                var sb = arr.shuffle();
+                sb.forEach(function(v,k){
+                    res[k] += v;
+                })
+            }
+            res = res.map(function(v,k){
+                return v/t
+            })
+            console.log(res)
+        </script>
+    </body>
+</html>

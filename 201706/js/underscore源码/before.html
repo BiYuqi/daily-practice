@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            //创建一个函数，该函数运行若干次后，再次尝试运行该函数，都是执行传入的回调
+            /*
+            *
+            *@param times(可选) 最多回调几次 即最终回调次数
+            *@param fun 回调函数
+            */
+
+            var before = function(times,fun){
+                return function(){
+                    times--;
+                    if(times >= 0 ){
+                        return fun.apply(this,arguments)
+                    }
+                }
+            }
+
+            var a = 5;
+            window.addEventListener('click',before(a,function(){
+                a--;
+                console.log("傻逼") //5次
+            }),false);
+        </script>
+    </body>
+</html>

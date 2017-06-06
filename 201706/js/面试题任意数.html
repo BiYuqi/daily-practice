@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /*
+            * 根据nums 输出给定范围内,随机且不重复的数组
+            * @param nums 输出数组的数量
+            * @param n 随机数的初始值
+            * @param m 随机数的最大值
+            */
+            function outPut(nums,n,m){
+                function isNumber(x){
+                    if(typeof x === 'number'){
+                        return true;
+                    }
+                    return false;
+                }
+                if(!isNumber(nums) || !isNumber(n) || !isNumber(m)){
+                    console.log("不是数字类型")
+                    return;
+                }
+                if(nums < n && nums >m){
+                    console.log("超出数字范围")
+                    return;
+                }
+                if(m < nums+n){
+                    console.log("范围不合理")
+                    return;
+                }
+                function checkArr(arr,is){
+                    if(arr.indexOf(is) > -1){
+                        return false;
+                    }
+                    return true;
+                }
+                function outRandom(){
+                    var index = Math.floor(Math.random()*(m-n+1)+n);
+                    return index;
+                }
+                var res = [];
+                for(var i=0;i<nums;i++){
+                    var range = outRandom();
+                    if(checkArr(res,range)){
+                        res.push(range);
+                    }else{
+                        i--;
+                    }
+                }
+                return res;
+            }
+            console.log(outPut(10,1,134))
+        </script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>map迭代</title>
+    </head>
+    <body>
+        <script>
+            function _map(arr,fn){
+                var a = [];
+                for(var i=0;i<arr.length;i++){
+                    a[i] = fn(arr[i],i);
+                }
+                return a;
+            }
+            var abc = [1,2,3];
+
+            var sb = _map(abc,function(v,k){
+                return v*2
+            })
+            console.log(sb)
+
+            console.log([0,1,2,3].map(parseInt))
+        </script>
+    </body>
+</html>

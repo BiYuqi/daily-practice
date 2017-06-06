@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            //(10).add(10).reduce(2).add(10)
+            Number.prototype.add= function(n){
+                return this + n
+            };
+            Number.prototype.reduce = function(m){
+                return this - m
+            };
+            console.log((10).add(10).reduce(2).add(10))
+        </script>
+    </body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            #app{
+                width: 600px;
+                margin: 0 auto;
+            }
+            #app textarea{
+                width: 600px;
+                height: 200px;
+                outline: none;
+                resize: none;
+                padding: 10px;
+                border: 1px solid #eee;
+            }
+            button{
+                width: 100px;
+                height: 40px;
+                line-height: 40px;
+                outline: none;
+                border: 1px solid #eee;
+                cursor: pointer;
+                text-align: center;
+                background-color:#09f;;
+                color: #fff;
+                transition: all .3s;
+            }
+            /*button:hover{
+                background-color:#09f;;
+                color: #fff;
+            }*/
+            button[disabled]:hover{
+                background-color: #5bc0de;
+                color: #fff;
+            }
+            button[disabled] {
+                cursor: not-allowed;
+                opacity: .8;
+            }
+            span{
+                color: #666;
+                font-size: 14px;
+            }
+            [v-cloak]{
+                display: none;
+            }
+            .dark-red{
+                color: #c33;
+            }
+            .light-red{
+                color: red;
+            }
+            label{
+                width: 100px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                display: block;
+                background-color: #eee;
+                color: #c33;
+                cursor: pointer;
+            }
+            #upload{
+                display: none;
+            }
+            .prev-img{
+                width: 120px;
+                height: 120px;
+                display: inline-block;
+            }
+            .prev-box{
+                display: inline-block;
+                margin-right:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <textarea v-model="weiText"></textarea>
+            <button :disabled="tweetIsOutOfRange" @click="send_data_range">发送</button>
+            <span>还可以输入：</span>
+            <span v-bind:class="{ 'dark-red': underTwentyMark, 'light-red': underTenMark }" v-cloak>{{leaveText}}</span>
+            <div class="photos">
+                <label for="upload">
+                    上传图片
+                    <input type="file" id="upload" @change="hasUploadPic" multiple>
+                </label>
+            </div>
+            <div v-if="photoHasOk">
+                <div class="prev-box" v-for="(item,index) in photos">
+                    <img v-bind:src="item" alt="" class="prev-img">
+                    <span class="remove" @click="remove(index)">X</span>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.bootcss.com/vue/2.3.3/vue.min.js"></script>
+        <script src="https://cdn.bootcss.com/axios/0.16.1/axios.min.js"></script>
+        <script>
+            new Vue({
+                el:'#app',
+                data () {
+                    return {
+                        weiText:'',
+                        MAX_TWEET_LENGTH:140,
+                        photos:[],
+                        pic_data:'',
+                        num:0
+                    }
+                },
+                methods:{
+                    hasUploadPic:function(e){
+                        var self = this;
+                        var files = e.target.files;
+                        // 单张图片
+                        // console.log(this.num)
+                        // var reader = new FileReader();
+                        // reader.onload = function(ev){
+                        //     self.photo = (ev.target.result)
+                        // }
+                        // reader.readAsDataURL(e.target.files[0])
+
+                        // 多图上传
+                        var formdata = new FormData();
+                        for(let i=0;i<files.length;i++){
+                            this.num++;
+                            if(files[i].size/(1024*1024) > 2){
+                                alert("大小超过限制")
+                                break
+                            }
+                            if(this.num > 3){
+                                alert('最多上传三张图片')
+                                break
+                            }
+                            let reader = new FileReader()
+                            reader.onloadend = function(ev){
+                                self.photos.push(ev.target.result)
+                            }
+                            reader.readAsDataURL(files[i])
+                            // 交互
+                            formdata.append(i,files[i])
+                            // 取值 通过
+                            //console.log(formdata.get(i))
+                        }
+                        //
+                        this.pic_data = formdata
+                    },
+                    send_message_to_server:function(data){
+                        /**
+                        * @param 原生版
+                        */
+                        // const baseURL = 'text.php'
+                        // const xhr = new XMLHttpRequest()
+                        // xhr.open("POST",baseURL,true)
+                        // xhr.onload = function(d){
+                        //     if(xhr.status == 200){
+                        //         console.log("提交成功")
+                        //     }
+                        // }
+                        // xhr.send(data)
+                        /**
+                        * @param JQuery版
+                        */
+                        // $.ajax({
+                        //   url: "stash.php",
+                        //   type: "POST",
+                        //   data: data,
+                        //   processData: false,  // 不处理数据
+                        //   contentType: false,   // 不设置内容类型
+                        //   success:function(d){
+                        //
+                        //   },
+                        //   error:function(err){
+                        //
+                        //   }
+                        // });
+                        /**
+                        * @param axios
+                        */
+                        //axios({
+                            //url:'test.php',
+                            //method:'POST'
+                            //data:this.pic_data
+                            //processData: false,  // 不处理数据
+                            //contentType: false,   // 不设置内容类型
+                        // }).then(function(res){
+                        //     console.log(res)
+                        // })
+                    },
+                    send_data_range:function(){
+                        // 上传图片
+                        if(this.pic_data != null){
+                            this.send_message_to_server(this.pic_data)
+                        }
+                    },
+                    remove:function(index){
+
+                    }
+                },
+                computed:{
+                    tweetIsOutOfRange:function(){
+                        return this.weiText.length > this.MAX_TWEET_LENGTH ||
+                                this.weiText.length <= 0
+                    },
+                    leaveText:function(){
+                        return this.MAX_TWEET_LENGTH - this.weiText.length
+                    },
+                    underTwentyMark:function(){
+                        return this.leaveText <= 20 && this.leaveText > 10
+                    },
+                    underTenMark:function(){
+                        return this.leaveText <= 10
+                    },
+                    photoHasOk:function(){
+                        return this.photos.length > 0
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

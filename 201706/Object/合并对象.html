@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            var obj1 = {
+                a:"测试1",
+                b:"测试2"
+            }
+            var obj2 = {
+                c:"测试3",
+                d:"测试4"
+            }
+            var obj3 = {
+                e:"测试5",
+                f:"测试6",
+                g:[
+                    {
+                        c:"测试3",
+                        d:"测试4"
+                    }
+                ]
+            }
+
+            var concatArr = function(o1,o2){
+                for(i in o2){
+                    if(o2.hasOwnProperty(i)){
+                        o1[i] = o2[i]
+                    }
+                }
+                return o1
+            }
+
+            console.log(concatArr(obj1,obj2))
+
+            var _mergeObj = function(){
+                var objs = [].slice.call(arguments),
+                    newObj = {};
+                for(var i=0;i<objs.length;i++){
+                    var sinObj = objs[i];
+                    if(sinObj !== false){
+                        for(k in sinObj){
+                            if(sinObj.hasOwnProperty(k) && !newObj.hasOwnProperty(k)){
+                                newObj[k] = sinObj[k]
+                            }
+                        }
+                    }
+                }
+                return newObj
+            }
+            console.log(_mergeObj(obj1,obj2,obj3))
+            Array.prototype.concats = function(newArr){
+                for(var i=0;i<newArr.length;i++){
+                    // length 不断被重写 所以用this.length
+                    this[this.length] = newArr[i]
+                }
+                return this
+            }
+            Array.prototype.pushs = function(){
+                return this.concats([].slice.call(arguments))
+            }
+            var arrs = [12]
+            console.log(arrs.pushs([1,2,3,4]))
+        </script>
+    </body>
+</html>

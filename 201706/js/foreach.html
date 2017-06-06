@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            (function() {
+                function _forEach(target,fn){
+                    var array = Object.prototype.toString.call(target) === '[object Array]',
+                        object = Object.prototype.toString.call(target) === '[object Object]',
+                        len = target.length,
+                        i;
+                    if(target == null){
+                        return;
+                    }
+                    if(array){
+                        for(i=0;i<len;i++){
+                            fn(target[i],i)
+                        }
+                    }
+                    if(object){
+                        for(i in target){
+                            if(target.hasOwnProperty(i)){
+                                fn(target[i],i)
+                            }
+                        }
+                    }
+                }
+
+
+                var arr = [1,2,3,4,5,6,7,89];
+                var obj = {
+                    name:"sb",
+                    age:'15'
+                }
+                _forEach(obj,function(v,k){
+                    console.log(v,k)
+                })
+            })()
+        </script>
+    </body>
+</html>

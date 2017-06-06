@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form class="forms">
+            <input type="text" name="userphone">
+        </form>
+        <button class="btn">点击测试</button>
+
+        <div class="err-tips"></div>
+    </body>
+    <script src="util.js"></script>
+    <script src="regexp.js"></script>
+    <script>
+        // 调用策略方法
+        var validator = _validator(_rules.rulelist);
+
+
+        // 开发代码
+        var forms = document.querySelector('.forms')
+        validator.add(forms.userphone,[
+            {
+                strategy:'isBlank',
+                msg:'身份证号码不能为空'
+            },
+            {
+                strategy:'isCard',
+                msg:'身份证号输入有误'
+            }
+        ])
+        document.querySelector('.btn').onclick = function(){
+            var msg = validator.start()
+            if(msg){
+                console.log(msg)
+            }else{
+                console.log("提交代码")
+            }
+        }
+        console.log(_getParam('http://localhost:8050/html/myConAppForm.html?id=115'))
+
+
+        var type2 = _is([2,3,4])('string')
+        console.log(type2)
+
+        const testarray = [1,2,3,'',4,5]
+        const testobj = {
+            a:'',
+            b:'测试2',
+            c:'测试三'
+        }
+        console.log(_filterData(testobj))
+        console.log(_filterData(testarray))
+        console.log(_getRandomFormArr(testarray))
+        _errTips('.err-tips','错误提示')
+
+        console.log(new Date().getTime())
+
+        window.onresize = _throttle(1000,200,function(){
+            console.log(111)
+        })
+
+    </script>
+</html>

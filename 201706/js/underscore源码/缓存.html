@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>缓存数据</title>
+    </head>
+    <body>
+        <script>
+            var fibonacciWithMemo = (function() {
+                var memo = {};
+                return function fibonacci(n) {
+                    // 如果尚未建立缓存
+                    if(!memo[n]) {
+                      memo[n] = n < 2 ? n : fibonacci(n-1) + fibonacci(n-2);
+                    }
+                    // console.log(memo)
+                    return memo[n];
+                }
+            }());
+
+            console.time("缓存优化的fibonacci");
+            fibonacciWithMemo(40);
+            console.timeEnd("缓存优化的fibonacci");
+
+            function fibonacci(n){
+                return n < 2 ? n : fibonacci(n-1) + fibonacci(n-2);
+            }
+            console.time("没有缓存优化的fibonacci");
+            fibonacci(40);
+            console.timeEnd("没有缓存优化的fibonacci");
+        </script>
+    </body>
+</html>

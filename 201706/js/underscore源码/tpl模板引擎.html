@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            const rules = {
+                interpolate:/{{([\s\S]+?)}}/,
+                check:/{([\s\S]+?)}/
+            }
+            const matcher = new RegExp([
+                rules.interpolate.source,
+                rules.check.source
+            ].join('|'),'g')
+
+            console.log(matcher)
+
+            function render(tpl,data){
+                return tpl.replace(matcher,(match,interpolate) =>{
+                    return data[interpolate];
+                })
+            }
+
+            var data = {name:"傻逼"};
+            var hello = 'hello,{{name}}'
+
+            const con = render(hello,data)
+            console.log(con);
+        </script>
+    </body>
+</html>

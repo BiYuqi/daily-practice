@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function merge(left,right){
+                var res = [];
+                while(left.length>0 && right.length>0){
+                    if(left[0] < right[0]){
+                        res.push(left.shift())
+                    }else{
+                        res.push(right.shift())
+                    }
+                }
+
+                return res.concat(left).concat(right);
+            };
+
+            function mergeAll(arr){
+                var len = arr.length;
+                if(len < 2) {
+                    return arr;
+                }
+                var mid = Math.floor(arr.length/2),
+                    left = arr.slice(0,mid),
+                    right = arr.slice(mid);
+                return merge(mergeAll(left),mergeAll(right))
+            }
+
+            var strr = [8,5,7,3,1,98,15,7885,21,5];
+
+            var resu = mergeAll(strr);
+
+            console.log(resu)
+        </script>
+    </body>
+</html>

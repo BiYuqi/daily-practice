@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+        var produts = [
+                    {
+                        name: 'xssg',
+                        price: 10,
+                    },
+                    {
+                        name: 'xssg',
+                        price: 20,
+                    },
+                    {
+                        name: 'xssg',
+                        price: 8,
+                    },
+                    {
+                        name: 'xssg',
+                        price: 4,
+                    },
+                    {
+                        name: 'xssg',
+                        price: 7,
+                    },
+                    {
+                        name: 'xssg',
+                        price: 1,
+                    }
+                ];
+                var a = produts.sort(function(cur, nex) {
+                    return cur.price - nex.price;
+                })
+                console.log(a)
+        </script>
+    </body>
+</html>

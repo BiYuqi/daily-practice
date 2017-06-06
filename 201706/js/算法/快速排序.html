@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            //定基准 中间值
+            //分割两边 left right
+            //递归分割
+            var quickSort = function(arr){
+                //出口 最后arr为空
+                if (arr.length <= 1) {
+                    return arr;
+                }
+                //开始
+                var midIndex = Math.floor(arr.length / 2),
+                    //取出(并删除)中间值 拿出来
+                    mid = arr.splice(midIndex,1)[0],
+                    left = [],
+                    right = [];
+
+                for(var i = 0;i < arr.length;i++){
+                    if(arr[i] < mid){
+                        left.push(arr[i]);
+                    }else{
+                        right.push(arr[i]);
+                    }
+                }
+                return quickSort(left).concat([mid], quickSort(right));
+            };
+            var strA = [1,85,1,96,25,45,16,3,14];
+            console.log(quickSort(strA));
+        </script>
+    </body>
+</html>

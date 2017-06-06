@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .container{
+                width: 600px;
+                margin: 0 auto;
+            }
+            input{
+                margin: 20px 0;
+            }
+            .err-tips{
+                height: 40px;
+                line-height: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <form class="forms">
+                <input type="text" name="userphone" placeholder="请输入手机号"> <br>
+                <input type="text" name="userpass" placeholder="请输入密码">
+            </form>
+            <button class="btn">点击测试</button>
+            <div class="err-tips"></div>
+        </div>
+        <script src="demo.js"></script>
+        <script src="regExp.js"></script>
+        <script>
+            // 调用策略方法
+            var validator = _validator(_rules.rulelist);//导入规则表
+
+
+            // 开发代码
+            var forms = document.querySelector('.forms') // 获取表单集合
+            // 添加方法
+            validator.add(forms.userphone,[
+                {
+                    strategy:'isBlank',
+                    msg:'手机号号码不能为空'
+                },
+                {
+                    strategy:'isPhone',
+                    msg:'手机号输入有误'
+                }
+            ])
+            validator.add(forms.userpass,[
+                {
+                    strategy:'isBlank',
+                    msg:'密码不能为空'
+                },
+                {
+                    strategy:'passCheck',
+                    msg:'密码必须为数字字母的组合'
+                }
+            ])
+
+            // 校验
+            document.querySelector('.btn').onclick = function(){
+                var input = document.querySelectorAll('input');
+                for(var i=0;i<input.length;i++){
+                    input[i].style.borderColor = '#eee'
+                }
+                // 调用 错误信息
+                var errMsg = validator.start(),
+                    errTips = document.querySelector('.err-tips');
+
+                // errMsg 此时是个包含了错误信息的对象
+                // 返回的dom对象用不用取决于业务需求,反正错误信息我们还是可以直接取到的
+                // 这样灵活了些
+                if(errMsg){
+                    errTips.innerHTML = errMsg.msg;
+                    errMsg.dom.style.borderColor = '#c33'
+                }else{
+                    errTips.innerHTML = '登陆成功';
+                }
+            }
+        </script>
+    </body>
+</html>

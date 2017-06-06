@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <button class="btn">点击</button>
+        <script>
+        var _throttle = function(delay,times,fn){
+            var startTime = new Date().getTime(),
+                timer = null;
+            return function(){
+                var currTime = new Date().getTime(),
+                    that = this,
+                    args = arguments;
+                clearTimeout(timer)
+                if(currTime - startTime > delay){
+                    fn.apply(that,args)
+                    startTime = currTime
+                }else{
+                    timer = setTimeout(function(){
+                        fn.apply(that,args)
+                    },times)
+                }
+            }
+        }
+
+        document.querySelector('.btn').onclick = _throttle(1000,500,function(){
+            console.log("测试")
+        })
+        </script>
+    </body>
+</html>

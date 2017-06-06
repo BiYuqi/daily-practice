@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- <div class="title">{{title}}</div> -->
+        </div>
+        <script>
+            var _log = function(){
+                return console.log.apply(null,arguments)
+            }
+            // 方法调用
+            var myObject = {
+                value:0,
+                increment:function(inc){
+                    this.value += typeof inc === 'number'?inc:1
+                }
+            }
+            myObject.increment()
+            _log(myObject.value)
+            myObject.increment(2)
+            _log(myObject.value)
+            myObject.increment(2)
+            _log(myObject.value)
+
+
+            // 函数调用模式
+            myObject.double = function(){
+                var that = this;
+                return function(){
+                    that.value = 999
+                }()
+            }
+            myObject.double()
+            _log(myObject.value)
+
+
+            // 参数
+            var args = function(){
+                return Array.prototype.slice.call(arguments)
+            }
+            _log(args(12,36,89,'85'))
+
+            var try_it = function(){
+                try {
+                    add('secg')
+                } catch(e){
+                    _log(e.name,e.message)
+                }
+            }
+            try_it()
+
+            var str = `<div class="title">{{title}}</div>`
+            var data = {
+                title:"测试数据"
+            }
+            var template = function(templ,options){
+                return templ.replace(/\{\{\s?(\w+)\s?\}\}/,(match,variable) => {
+                    _log(match,variable)
+                    return options[variable] || ''
+                })
+            }
+            document.querySelector('.wrapper').innerHTML = template(str,data)
+
+            // 模块
+
+            const methods = function(s){
+                const entry={
+                    lt:'<',
+                    gt:'>'
+                }
+                return s.replace(/&([^&]+);/g,(match,v) => {
+                    return entry[v]
+                })
+            }
+
+            var str = '&lt;&gt;'
+            _log(methods(str))
+
+            // 缓存的威力
+            var fiboncci = (function(){
+                var cache = {};
+                return function(n){
+                    if(!cache[n]){
+                        cache[n] = n < 2 ? n : fiboncci(n-1)+fiboncci(n-2)
+                    }
+                    return cache[n]
+                }
+            })()
+            console.time("缓存优化的fibonacci");
+            fiboncci(40)
+            console.timeEnd("缓存优化的fibonacci");
+
+
+        </script>
+    </body>
+</html>
