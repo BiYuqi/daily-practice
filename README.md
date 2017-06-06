@@ -1,8 +1,8 @@
-## 函数目录
+## DIY常用函数目录
 #### 表单构造器
 ```js
 /**
-*  @param _validator(rulelist)
+*  @param _validator(rulelist) 依赖正则表regexp.js 具体使用参见 表单优化文件
 *  @param {rulelist} 一系列正则方法表
 */
 
