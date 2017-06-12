@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            const findArrBig = (arr,n) => {
+                let res = arr.sort((a,b) => {
+                    return b - a
+                })
+                return res[n-1]
+            }
+
+            const arrTest = [1,8,3,2,89,5,7]
+            console.log(findArrBig(arrTest,3))
+        </script>
+    </body>
+</html>

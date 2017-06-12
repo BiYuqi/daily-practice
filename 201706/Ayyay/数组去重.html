@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            var arr = ["a","b","c","a","b","c"]
+            function filterRepeat(ar){
+                var ar = ar.join(','),
+                    reg = /\w+/g,
+                    m,
+                    res = [];
+                while(m = reg.exec(ar)){
+                    if(res.indexOf(m[0]) === -1){
+                        res.push(m[0])
+                    }
+                }
+                return res
+            }
+            console.log(filterRepeat(arr))
+        </script>
+    </body>
+</html>
