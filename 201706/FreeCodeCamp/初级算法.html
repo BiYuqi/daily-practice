@@ -138,9 +138,14 @@
             //chunk([1,2,3,4,5],2)=[[1,2],[3,4],[5]]
 
             const chunk = function (arr,size) {
-                let newArr = [];
-
-                return Math.floor(arr.length/size)
+                let result = [],
+                    groups = Math.ceil(arr.length/size);
+                for(let i=0;i<groups;i++){
+                    let start = i * size,
+                        end = start + size;
+                    result.push(arr.slice(start,end))
+                }
+                return result
             }
             console.log(chunk([1,24,3,4,5],3))
 

@@ -63,16 +63,103 @@
             console.log(sumAll([1,4]))
 
 
-            // 找出数组间差异算法挑战
+            // 查询替换算法挑战
             /**
-                比较两个数组，然后返回一个新数组，该数组的元素为两个给定数组中所有独有的数组元素。换言之，返回两个数组的差异。
-                [1, "calf", 3, "piglet"], [1, "calf", 3, 4] 应该返回 ["piglet", 4]。
-                [1, 2, 3, 5], [1, 2, 3, 4, 5] 应该返回 [4]。
-
+                第一个参数是将要对其执行查找和替换的句子。
+                第二个参数是将被替换掉的单词（替换前的单词）。
+                第三个参数用于替换第二个参数（替换后的单词）。
+                注意：替换时保持原单词的大小写。
+                例如，如果你想用单词 "dog" 替换单词 "Book" ，你应该替换成 "Dog"。
+                myReplace("Let us go to the store", "store", "mall") 应该返回 "Let us go to the mall"。
+                myReplace("He is Sleeping on the couch", "Sleeping", "sitting") 应该返回 "He is Sitting on the couch"。
+                myReplace("This has a spellngi error", "spellngi", "spelling") 应该返回 "This has a spelling error"。
             **/
-            
+            function myReplace(str, before, after) {
+                var reg = /^[A-Z]/;
+                if(reg.test(before)){
+                    after = after.charAt(0).toUpperCase() + after.substr(1)
+                }
+                return str.replace(before,after)
+            }
+
+            //字符串移动插入算法挑战
+            /**
+                translate("california") 应该返回 "aliforniacay"。
+                translate("paragraphs") 应该返回 "aragraphspay"。
+                translate("glove") 应该返回 "oveglay"。
+                translate("algorithm") 应该返回 "algorithmway"。
+                translate("eight") 应该返回 "eightway"。
+            **/
+            function translate(str) {
+                var reg = /^[aeiou]/,
+                    reg2 = /^[^aeiou]+/g,
+                    word = 'way',
+                    word2 = 'ay';
+                if(reg.test(str)){
+                    return str+word
+                }
+                if(!reg.test(str)){
+                    var res2 = str.match(reg2)[0];
+                    var res3 = str.replace(res2,'');
+                    return res3+res2+word2
+                }
+            }
+            console.log(translate("glove"))
 
 
+            //字符配对算法挑战
+            /**
+                DNA 链缺少配对的碱基。依据每一个碱基，为其找到配对的碱基，然后将结果作为第二个数组返回。
+                字母和与之配对的字母在一个数组内，然后所有数组再被组织起来封装进一个数组。
+                例如，对于输入的 GCG，相应地返回 [["G", "C"], ["C","G"],["G", "C"]]
+                pair("ATCGA") 应该返回 [["A","T"],["T","A"],["C","G"],["G","C"],["A","T"]]。
+                pair("TTGAG") 应该返回 [["T","A"],["T","A"],["G","C"],["A","T"],["G","C"]]。
+            **/
+            function pair(str) {
+                var res = [];
+                for(var i=0;i<str.length;i++){
+                    switch (str[i]) {
+                        case "A":
+                            res.push(["A","T"])
+                            break;
+                        case "T":
+                            res.push(["T","A"])
+                            break;
+                        case "C":
+                            res.push(["C","G"])
+                            break;
+                        case "G":
+                            res.push(["G","C"])
+                            break;
+                    }
+                }
+                return res;
+            }
+            console.log(pair("TTGAG"))
+
+
+            //字符串查询补充算法挑战
+            function fearNotLetter(str) {
+                function get(n){
+                    return n.charCodeAt()
+                }
+                var res = [];
+                for(var j=0;j<str.length;j++){
+                    res.push(get(str.charAt(j)))
+                }
+
+                for(var i=0;i<res.length;i++){
+                    if(res[i]+1 == res[i+1]){
+                        if(i == res.length-2){
+                          return undefined
+                        }
+                        continue
+                    }else{
+                        return String.fromCharCode(res[i]+1)
+                    }
+                }
+            }
+            console.log(fearNotLetter("bcd"))
         </script>
     </body>
 </html>
