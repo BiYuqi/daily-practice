@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div id="con">点击</div>
+        <script>
+            //一个常见的案例就是ROT13密码，字母会移位13个位置。由’A’ ↔ ‘N’, ‘B’ ↔’O’，以此类推。
+            // console.log(String.fromCharCode(65))
+
+            // const load = function(str){
+            //     var  str1 = [];
+            //     for (var i = 0; i < str.length; i++ ) {
+            //         var num = str[i].charCodeAt();
+            //         if (num >= 65 && num <= 77){
+            //             num = num + 13;
+            //         }else if (num > 77 && num < 91){
+            //             num = num - 13;
+            //             str1.push(String.fromCharCode(num));
+            //         }
+            //     }
+            //     return str1.join("");
+            // }
+            // console.log(load('SERR PBQR PNZC'))
+
+            var doms = document.getElementById('con');
+
+            // doms.addEventListener('click',function(){
+            //     console.log("测试")
+            // },false)
+
+            // var events = new MouseEvent("click",{
+            //     bubbles:true,
+            //     cancelable:true,
+            //     view:window
+            // })
+            // doms.dispatchEvent(events)
+
+            var UA = window.navigator.userAgent.toLowerCase();
+            var isIE = /msie/.test(UA)
+            if(isIE){
+                doms.attachEvent('onclick',function(){
+                    console.log("测试")
+                },false)
+
+                var eventie = document.createEventObject()
+                doms.fireEvent('onclick',event)
+            }else{
+                doms.addEventListener('click',function(){
+                    console.log("测试")
+                },false)
+
+                var events = new MouseEvent("click",{
+                    bubbles:true,
+                    cancelable:true,
+                    view:window
+                })
+                doms.dispatchEvent(events)
+            }
+        </script>
+    </body>
+</html>

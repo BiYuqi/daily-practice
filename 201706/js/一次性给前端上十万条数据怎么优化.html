@@ -22,17 +22,26 @@
                     }
                     return res;
                 }
-                function group(res){
+                // function group(res){
+                //     var result = [];
+                //     var groupItem = [];
+                //     for(var i=1;i<=res.length;i++){
+                //         if(i % 500 == 0){
+                //             groupItem != null && result.push(groupItem);
+                //             groupItem = [];
+                //         }
+                //         groupItem.push(res[i]);
+                //     }
+                //     return result;
+                // }
+                function group(data,size){
                     var result = [];
-                    var groupItem = [];
-                    for(var i=1;i<=res.length;i++){
-                        if(i % 500 == 0){
-                            groupItem != null && result.push(groupItem);
-                            groupItem = [];
-                        }
-                        groupItem.push(res[i]);
+                    for(var i=0;i<Math.ceil(data.length/size);i++){
+                        var start = i * size,
+                            end = start + size;
+                        result.push(data.slice(start,end))
                     }
-                    return result;
+                    return result
                 }
                 function loadPart(group,index){
                     var html = "";
@@ -45,7 +54,7 @@
                     box.appendChild(div);
                 }
                 function loadAll(data){
-                    var groupData = group(data);
+                    var groupData = group(data,500);
                     // console.log(groupData)
                     for(var i=0;i<groupData.length;i++){
                         setTimeout((function(i){

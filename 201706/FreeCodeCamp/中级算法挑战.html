@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            // 判断电话号码算法挑战
+            /**
+                用户可以在表单中填入一个任意有效美国电话号码. 下面是一些有效号码的例子(还有下面测试时用到的一些变体写法):
+                555-555-5555    (555)555-5555   (555) 555-5555  555 555 5555  5555555555  1 555 555 5555
+                test:
+                    telephoneCheck("555-555-5555") 应该返回一个布尔值.      ,telephoneCheck("1 555-555-5555") 应该返回 true.
+                    telephoneCheck("1 (555) 555-5555") 应该返回 true.      ,telephoneCheck("5555555555") 应该返回 true.
+                    telephoneCheck("555-555-5555") 应该返回 true.          ,telephoneCheck("(555)555-5555") 应该返回 true.
+                    telephoneCheck("1(555)555-5555") 应该返回 true.        ,telephoneCheck("1 555)555-5555") 应该返回 false.
+                    telephoneCheck("1 555 555 5555") 应该返回 true.        ,telephoneCheck("1 456 789 4444") 应该返回 true.
+                    telephoneCheck("123**&!!asdf#") 应该返回 false.        ,telephoneCheck("55555555") 应该返回 false.
+                    telephoneCheck("(6505552368)") 应该返回 false          ,telephoneCheck("2 (757) 622-7382") 应该返回 false.
+                    telephoneCheck("0 (757) 622-7382") 应该返回 false.     ,telephoneCheck("-1 (757) 622-7382") 应该返回 false
+                    telephoneCheck("2 757 622-7382") 应该返回 false.       ,telephoneCheck("10 (757) 622-7382") 应该返回 false.
+                    telephoneCheck("27576227382") 应该返回 false.         ,telephoneCheck("(275)76227382") 应该返回 false.
+                    telephoneCheck("2(757)6227382") 应该返回 false.       ,telephoneCheck("2(757)622-7382") 应该返回 false.
+                    telephoneCheck("555)-555-5555") 应该返回 false.       ,telephoneCheck("(555-555-5555") 应该返回 false.
+
+                看到这样的题目，没有什么可说的，正则首选，每一种正确的情况提取出来，进行组合
+                g 全局匹配
+                m 跨行
+                i 忽略大小写
+            **/
+            function telephoneCheck(str) {
+                var reg = /^1?\s?(\d{10}|(\d{3}(-|\s)){2}\d{4}|(\(\d{3})\)\s?\d{3}-\d{4})$/gmi;
+                    if(!reg.test(str)){
+                        return false;
+                    }
+                return true;
+            }
+
+            // 区间求值算法挑战
+            /**
+                我们会传递给你一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。
+                最小的数字并非总在最前面。
+                sumAll([1, 4]) 应该返回一个数字。
+                sumAll([1, 4]) 应该返回 10。
+                sumAll([4, 1]) 应该返回 10。
+                sumAll([5, 10]) 应该返回 45。
+                sumAll([10, 5]) 应该返回 45。
+
+            **/
+            function sumAll(arr) {
+                var sorts = arr.sort(function(a,b){
+                    return a - b
+                })
+                var sum = 0,
+                    start = sorts[0],
+                    end = sorts[1];
+                for(var i=start;i<=end;i++){
+                    sum += i
+                }
+                return sum
+            }
+            console.log(sumAll([1,4]))
+
+
+            // 找出数组间差异算法挑战
+            /**
+                比较两个数组，然后返回一个新数组，该数组的元素为两个给定数组中所有独有的数组元素。换言之，返回两个数组的差异。
+                [1, "calf", 3, "piglet"], [1, "calf", 3, 4] 应该返回 ["piglet", 4]。
+                [1, 2, 3, 5], [1, 2, 3, 4, 5] 应该返回 [4]。
+
+            **/
+            
+
+
+        </script>
+    </body>
+</html>
