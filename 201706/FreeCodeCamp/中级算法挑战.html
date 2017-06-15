@@ -160,6 +160,59 @@
                 }
             }
             console.log(fearNotLetter("bcd"))
+
+            // 输入检查算法挑战
+            /**
+            boo(true) 应该返回 true。               boo(false) 应该返回 true。
+            boo([1, 2, 3]) 应该返回 false。       boo([].slice) 应该返回 false。
+            boo({ "a": 1 }) 应该返回 false。       boo(1) 应该返回 false。
+            boo(NaN) 应该返回 false。               boo("a") 应该返回 false。
+            boo("true") 应该返回 false。           boo("false") 应该返回 false。
+            **/
+            function boo(bool) {
+                if(typeof bool === 'boolean'){
+                  return true;
+                }
+                return false;
+            }
+
+            function unite() {
+                var args = [].slice.call(arguments),
+                    // newArr = args.join(',').split(','),
+                    res = {},
+                    result = [],
+                    test = [];
+                // console.log(args.relpace())
+                // for(var i=0;i<newArr.length;i++){
+                //     if(!res[newArr[i]]){
+                //         test.push(newArr[i]*1)
+                //         res[newArr[i]] = 1
+                //     }else{
+                //         res[newArr[i]]++
+                //     }
+                // }
+
+                for(var i=0;i<args.length;i++){
+                    for(var j=0;j<args[i].length;j++){
+                        test.push(args[i][j])
+                    }
+                }
+                for(let i=0;i<test.length;i++){
+                    if(Array.isArray(test[i])){
+                        result.push(test[i])
+                    }else{
+                        if(!res[test[i]]){
+                            result.push(test[i]*1)
+                            res[test[i]] = 1
+                        }else{
+                            res[test[i]]++
+                        }
+                    }
+                }
+
+                return result
+            }
+            console.log(unite([1, 3, 2,[5]], [1, [5]], [2, [4]]))
         </script>
     </body>
 </html>
