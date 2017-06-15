@@ -1,0 +1,126 @@
+{
+    "news":[
+        {"text":"小米周报4.24-4.30一周新鲜事","link":"https://cdn.cnbj0.fds.api.mi-img.com/b2c-data-mishop/3bb7bfd4f105.html?2&needValidHost=false&zb_news_id=738"},
+        {"text":"小米商城本周热卖指南(5.1-5.7)","link":"https://cdn.cnbj0.fds.api.mi-img.com/b2c-data-mishop/979946a34fd0.html?2&needValidHost=false&zb_news_id=739"}
+    ],
+    "first_data":[
+      { "id": "1","img":"http://i8.mifile.cn/v1/a1/1bfb4e81-0bc6-cca8-ffeb-f164c0ce4c65.webp?width=358&heihgt=508"},
+      { "id": "2","img":"http://i8.mifile.cn/v1/a1/a3f8f6f4-5c2a-9654-9978-d4ee00287630.webp?width=358&heihgt=252"},
+      { "id": "3","img":"http://i8.mifile.cn/v1/a1/d411a289-a3e5-f5fa-6c7f-39b8c21a45ba.webp?width=358&heihgt=252"}
+    ],
+    "first_data_sub":[
+      { "id": "4","img":"http://i8.mifile.cn/v1/a1/2b117b01-2823-041c-7491-952adbf41919.webp?width=720&heihgt=280"}
+    ],
+    "second_data":[
+        {
+            "product_start":[
+                    {
+                        "id":"50",
+                        "img":"http://i8.mifile.cn/v1/a1/09099b3f-2a91-9d10-56c6-965956c8e00f.webp?width=720&heihgt=440"
+                    }
+            ],
+            "product_center":[
+                {
+                    "id":"6",
+                    "img":"http://i8.mifile.cn/v1/a1/5df19755-170a-8530-ded7-140c5bb125ac.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"7",
+                    "img":"http://i8.mifile.cn/v1/a1/97c2e91e-523e-3988-3abc-aacc824f2737.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"8",
+                    "img":"http://i8.mifile.cn/v1/a1/b886ebe9-055b-f2ee-765f-c8550f1e0e56.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"9",
+                    "img":"http://i8.mifile.cn/v1/a1/5df19755-170a-8530-ded7-140c5bb125ac.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"10",
+                    "img":"http://i8.mifile.cn/v1/a1/f093e0a8-e3d8-4fc8-deb7-af25ea3d8663.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"11",
+                    "img":"http://i8.mifile.cn/v1/a1/85a78a1a-ff71-dab4-8e7d-8119dfce798b.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                }
+            ],
+            "product_end":{
+                "id":"12",
+                "img":"http://i8.mifile.cn/v1/a1/97634e29-02b3-6926-2ce0-154ff6fae5c6.webp?width=720&heihgt=280"
+            }
+        },
+        {
+            "product_start":{
+                "id":"13",
+                "img":"http://i8.mifile.cn/v1/a1/09099b3f-2a91-9d10-56c6-965956c8e00f.webp?width=720&heihgt=440"
+            },
+            "product_center":[
+                {
+                    "id":"14",
+                    "img":"http://i8.mifile.cn/v1/a1/5df19755-170a-8530-ded7-140c5bb125ac.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"15",
+                    "img":"http://i8.mifile.cn/v1/a1/97c2e91e-523e-3988-3abc-aacc824f2737.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"16",
+                    "img":"http://i8.mifile.cn/v1/a1/b886ebe9-055b-f2ee-765f-c8550f1e0e56.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"17",
+                    "img":"http://i8.mifile.cn/v1/a1/5df19755-170a-8530-ded7-140c5bb125ac.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"18",
+                    "img":"http://i8.mifile.cn/v1/a1/f093e0a8-e3d8-4fc8-deb7-af25ea3d8663.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                },
+                {
+                    "id":"19",
+                    "img":"http://i8.mifile.cn/v1/a1/85a78a1a-ff71-dab4-8e7d-8119dfce798b.webp?width=360&height=360",
+                    "name":"小米5s 64GB版",
+                    "brief":"“暗夜之眼”超感光相机",
+                    "price":"1999"
+                }
+            ],
+            "product_end":{
+                "id":"20",
+                "img":"http://i8.mifile.cn/v1/a1/97634e29-02b3-6926-2ce0-154ff6fae5c6.webp?width=720&heihgt=280"
+            }
+        }
+    ]
+}
