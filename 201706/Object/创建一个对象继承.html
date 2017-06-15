@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            class Person {
+                constructor(name){
+                    this.name = name
+                }
+                getName () {
+                    console.log(this.name +"我是person")
+                }
+            }
+
+            class Student extends Person {
+                constructor (name){
+                    super(name)
+                }
+                learn () {
+                    console.log(this.name +"我是学生")
+                }
+            }
+
+            var test = new Student("我是毕宇旗")
+            test.getName()
+        </script>
+    </body>
+</html>
