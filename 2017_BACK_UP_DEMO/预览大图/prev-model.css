@@ -1,0 +1,50 @@
+#prev-model{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 9996;
+    display: none;
+}
+#prev-model .prev-corver{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 9997;
+    background-color: #000;
+    opacity: .4;
+}
+.prev-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 9999;
+}
+.prev-center .prev-show{
+    width: 100%;
+    height: 100%;
+}
+.prev-btn,
+.next-btn{
+    position: absolute;
+    top: 50%;
+    width: 80px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #80B3FF;
+    color: #fff;
+    cursor: pointer;
+    transform: translateY(-50%);
+    z-index: 9999;
+}
+.prev-btn{
+    left: -100px;
+}
+.next-btn{
+    right: -100px;
+}
