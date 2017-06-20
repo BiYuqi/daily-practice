@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            .page2 div{
+                width: 100px;
+                height: 40px;
+                line-height: 40px;
+                border: 1px solid green;
+                margin: 14px 0;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page2">
+            <input type="text" name="" class="opts" value="">
+            <div class="up-load">
+                提交数据
+            </div>
+            <div class="back">
+                <a href="page1.html" class="next-page">新增选项</a>
+            </div>
+        </div>
+        <script>
+            function $(el){
+                return document.querySelector(el)
+            }
+            function saveData(name,d){
+                localStorage.setItem(name,JSON.stringify(d))
+            }
+            function getData(name){
+                return JSON.parse(localStorage.getItem(name))
+            }
+            $('.up-load').onclick = function(){
+                if($('.opts').value === ''){
+                    return
+                }
+                var value = Date.now(),
+                    name = $('.opts').value;
+                var data = {
+                    name:name,
+                    value:value
+                }
+                var localData = getData('opts')
+                console.log(typeof localData)
+                localData.push(data)
+                localStorage.setItem('opts',JSON.stringify(localData))
+                $('.opts').value = ''
+            }
+            window.addEventListener("storage", function (e) {
+                console.log(e.key)
+            });
+        </script>
+    </body>
+</html>
