@@ -7,61 +7,54 @@
             select{
                 width: 100px;
             }
+            .page1{
+                width: 600px;
+                margin: 0 auto;
+            }
             .next-page{
                 width: 100px;
                 height: 40px;
                 line-height: 40px;
                 border: 1px solid green;
-                margin: 14px 0;
+                margin: 20px 0;
                 cursor: pointer;
+                display: block;
+                text-decoration: none;
+                text-align: center;
+            }
+            .render-range{
+                width: 100%;
+                height: 100px;
+                border: 1px solid #eee;
+                padding:10px;
+                -webkit-box-sizing: border-box;
+                   -moz-box-sizing: border-box;
+                        box-sizing: border-box;
             }
         </style>
     </head>
     <body>
-        <div class="page1">
-            <select class="select-range">
 
-            </select>
-            <div class="btn">
-                点击
+        <div class="page1">
+            <h3>测试localStorage(sessionStorage)同源不同页面下的变化监听</h3>
+            <p>需要在统一域名测试(本地测试需要起服务)</p>
+            <h4>数据展示</h4>
+            <div class="render-range">
+                旧值：<span class="old" style="color:#c33"></span> <br><br>
+                新值：<span class="new" style="color:green"></span>
             </div>
-            <a href="page2.html" class="next-page" target="_blank">新增选项</a>
+            <a href="page2.html" class="next-page" target="_blank">下一页</a>
         </div>
         <script>
-            var data = [
-                {name:"tag1",value:"1"},
-                {name:"tag2",value:"2"}
-            ]
-
             function $(el){
                 return document.querySelector(el)
             }
-            function addOptions(dom,data){
-                if(typeof getData('opts') === 'object'){
-                    data = getData('opts')
-                }
-                for(i in data){
-                    var opt = new Option(data[i].name,data[i].value)
-                    dom.add(opt)
-                }
-            }
-            addOptions($('.select-range'),data)
-
-            function saveData(name,d){
-                localStorage.setItem(name,JSON.stringify(d))
-            }
-            function getData(name){
-                return JSON.parse(localStorage.getItem(name))
-            }
-
-            saveData('opts',data)
-
-            // $('.btn').onclick = function(){
-            //     localStorage.setItem('k','atom')
-            // }
+            // 监听其他页面的变化 进行操作
             window.addEventListener("storage", function (e) {
+                console.log(e)
                 if(e.key === 'opts'){
-                    addOptions($('.select-range'),data)
+                    $('.new').innerHTML = e.newValue
+                    $('.old').innerHTML = e.oldValue
                 }
             });
         </script>

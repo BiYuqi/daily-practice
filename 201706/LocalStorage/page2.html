@@ -4,55 +4,46 @@
         <meta charset="utf-8">
         <title></title>
         <style media="screen">
-            .page2 div{
+            .page2{
+                width: 600px;
+                margin: 0 auto;
+            }
+            .page2 .up-load{
                 width: 100px;
                 height: 40px;
                 line-height: 40px;
                 border: 1px solid green;
                 margin: 14px 0;
                 cursor: pointer;
+                text-decoration: none;
+                text-align: center;
+            }
+            .page2 .back a{
+                width: 200px;
+                color: #999;
+                text-decoration: none;
             }
         </style>
     </head>
     <body>
         <div class="page2">
+            <h3>测试localStorage(sessionStorage)同源不同页面下的变化监听</h3>
             <input type="text" name="" class="opts" value="">
             <div class="up-load">
                 提交数据
             </div>
             <div class="back">
-                <a href="page1.html" class="next-page">新增选项</a>
+                <a href="javascript:;" target="_blank" class="next-page">可以查看上一页数据变化情况</a>
             </div>
         </div>
         <script>
             function $(el){
                 return document.querySelector(el)
             }
-            function saveData(name,d){
-                localStorage.setItem(name,JSON.stringify(d))
-            }
-            function getData(name){
-                return JSON.parse(localStorage.getItem(name))
-            }
             $('.up-load').onclick = function(){
-                if($('.opts').value === ''){
-                    return
-                }
-                var value = Date.now(),
-                    name = $('.opts').value;
-                var data = {
-                    name:name,
-                    value:value
-                }
-                var localData = getData('opts')
-                console.log(typeof localData)
-                localData.push(data)
-                localStorage.setItem('opts',JSON.stringify(localData))
+                localStorage.setItem('opts',$('.opts').value)
                 $('.opts').value = ''
             }
-            window.addEventListener("storage", function (e) {
-                console.log(e.key)
-            });
         </script>
     </body>
 </html>
