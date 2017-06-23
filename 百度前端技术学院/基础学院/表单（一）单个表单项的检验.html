@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            *{
+                margin: 0;
+                padding:0;
+                box-sizing: border-box;
+            }
+            .con{
+                padding: 30px;
+            }
+            .input{
+                border: 1px solid #666;
+                outline: none;
+                width: 400px;
+                height: 40px;
+                margin: 15px 0;
+                padding-left: 10px;
+            }
+            .check{
+                width: 50px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                border: 1px solid #666;
+                display: inline-block;
+                margin-left: 20px;
+                cursor: pointer;
+                vertical-align: sub;
+            }
+            ol{
+                margin-left: 15px;
+            }
+            .tips{
+                width: 400px;
+                height: 40px;
+                margin: 15px 0;
+                padding-left: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="con">
+            <h2>验证规则</h2>
+            <ol>
+                <li>1.字符数为4~16位</li>
+                <li>2.每个英文字母、数字、英文符号长度为1</li>
+                <li>3.每个汉字，中文符号长度为2</li>
+            </ol>
+            <input type="text" class="input" value=""><span class="check">验证</span>
+            <div class="tips">
+
+            </div>
+            <script src="util.js"></script>
+            <script type="text/javascript">
+                const regLen = /[\u0391-\uFFE5]/
+                function getNum(val){
+                    let n = 0;
+                    for(let i=0;i<val.length;i++){
+                        if(regLen.test(val.charAt(i))){
+                            n += 2
+                        }else{
+                            n++
+                        }
+                    }
+                    return n
+                }
+
+                _$('.check').onclick = function(){
+                    const val = _$('.input').value
+                    if(val.length <= 0){
+                        _$('.tips').innerHTML = '用户名不能为空'
+                        return
+                    }
+
+                    if(getNum(val) < 4 || getNum(val) > 16){
+                        _$('.tips').innerHTML = '字符数为4~16位'
+                        return
+                    }
+                    _$('.tips').innerHTML = '验证通过'
+                }
+            </script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            *{
+                margin:0;
+                padding: 0;
+                -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                         box-sizing: border-box;
+            }
+            .clearfix:after{
+                content: '';
+                display: block;
+                overflow: visible;
+                clear: both;
+            }
+            a{
+                text-decoration: none;
+            }
+            header{
+                height: 60px;
+                line-height: 60px;
+                background-color: #333333;
+            }
+            header h1{
+                float: left;
+                padding-left: 40px;
+                color: #fff;
+            }
+            header nav{
+                float: right;
+            }
+            nav li{
+                float: left;
+                margin: 0 10px;
+            }
+            nav li a{
+                color: #fff;
+                font-size: 12px;
+            }
+            .pages-home{
+                background-color: #DEDEDE;
+                position: relative;
+            }
+            .pages-home .content{
+                padding: 20px 15px;
+                margin-right: 340px;
+            }
+            section{
+                background-color: #fff;
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+            section h2{
+                margin: 15px 0;
+            }
+            section h3{
+                margin: 15px 0;
+                color: #666;
+            }
+            .author-info span{
+                font-size: 12px;
+                display: inline-block;
+                color: #666;
+                margin-right: 10px;
+            }
+            .art-content p{
+                text-indent: 2em;
+                font-size: 14px;
+                color: #333;
+                line-height: 1.8;
+            }
+            .art-content img{
+                width: 100px;
+                height: 100px;
+                display: block;
+            }
+            .show-display{
+                text-align: center;
+                width: 120px;
+                height: 120px;
+                border: 1px solid #eee;
+                margin: 15px 0;
+            }
+            .show-display img{
+                width: 80px;
+                height: 80px;
+                display: inline-block;
+            }
+            .show-display h5{
+                margin: 4px auto;
+            }
+            ol{
+                margin-left: 50px;
+            }
+            table{
+                width: 100%;
+                border-collapse: collapse;
+                border-spacing: 0;
+                border: 1px solid #eee;
+            }
+            tr{
+                border: 1px solid #999;
+            }
+            th{
+                text-align: left;
+                background-color: #333;
+                color: #fff;
+                padding-left: .2em;
+            }
+            td{
+                padding-left: .2em;
+            }
+            .slide-title{
+                margin: 10px 0;
+                font-weight: bold;
+                font-size: 14px;
+                position: relative;
+                height: 30px;
+                line-height: 30px;
+                padding-left: 4px;
+            }
+            .slide-title:after{
+                content: '';
+                display: block;
+                width: 4px;
+                height: 30px;
+                position: absolute;
+                left: -2px;
+                top: 0;
+                background-color: #ccc;
+            }
+            .form-part{
+                /*margin-left: 400px;*/
+            }
+            .mail-tips{
+                font-size: 12px;
+                margin: 15px 0;
+                color: #666;
+            }
+            .users_item{
+                position: relative;
+                padding-left: 120px;
+                min-height: 60px;
+            }
+            .form-part label{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 120px;
+                font-size: 12px;
+                /*height: 50px;*/
+                /*line-height: 50px;*/
+                text-align: right;
+            }
+            textarea{
+                width: 160px;
+                height: 60px;
+            }
+            .up-load{
+                width: 100%;
+                margin: 0 auto;
+                height: 40px;
+                line-height: 40px;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                cursor: pointer;
+                margin: 15px 0 ;
+                background-color: #3355D0;
+            }
+            .footer{
+                height: 80px;
+                line-height: 80px;
+                width: 100%;
+                text-align: center;
+                background-color: #000;
+                color: #fff;
+            }
+            aside{
+                width: 340px;
+                position: absolute;
+                top: 20px;
+                right: 0;
+                background-color: #fff;
+                padding: 15px;
+            }
+            .imgs-range .show-display{
+                float: left;
+                margin: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--
+            完成一个HTML页面代码编写 Css编写
+            示例图仅为参考，不需要完全实现一致，其中的图片、文案均可自行设定
+            图片地址 http://7xrp04.com1.z0.glb.clouddn.com/task_1_2_1.jpg
+         -->
+         <header class="clearfix">
+             <h1>我是百度LOGO</h1>
+             <nav>
+                 <ul>
+                     <li><a href="javascript">导航卡链接</a></li>
+                     <li><a href="javascript">导航卡链接</a></li>
+                     <li><a href="javascript">导航卡链接</a></li>
+                     <li><a href="javascript">导航卡链接</a></li>
+                 </ul>
+             </nav>
+         </header>
+         <div class="pages-home">
+             <div class="main-page">
+                 <div class="content">
+                     <section>
+                         <div class="title">
+                             <h2>文章一级标题</h2>
+                             <h3>文章二级标题</h3>
+                             <div class="author-info">
+                                 <span>毕宇旗</span>
+                                 <span>2017-06-23 16:15</span>
+                             </div>
+                         </div>
+                         <div class="art-content">
+                             <p>
+                                 这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一
+                                 <a href="http://loadingmore.com" target="_blank">这是个链接</a>，它将带我完成我的技术梦这是一条通的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成往内心深度的一条路，它将带我完成我的技术梦
+                             </p>
+                            <img src="http://tb.himg.baidu.com/sys/portraitn/item/cc235375707373796d657034" alt="">
+                            <p>
+                                这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦
+                                <a href="http://loadingmore.com" target="_blank">这是个链接</a>，它将带我完成我的这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它
+
+                            </p>
+                         </div>
+                     </section>
+                     <section>
+                         <div class="title">
+                             <h2>另一篇文章一级标题</h2>
+                             <h3>文章二级标题</h3>
+                             <div class="author-info">
+                                 <span>毕宇旗</span>
+                                 <span>2017-06-23 16:15</span>
+                             </div>
+                         </div>
+                         <div class="art-content">
+                             <p>
+                                 这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一
+                                 <a href="http://loadingmore.com" target="_blank">这是个链接</a>，它将带我完成我的技术梦这是一条通的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成往内心深度的一条路，它将带我完成我的技术梦
+                             </p>
+                            <img src="http://tb.himg.baidu.com/sys/portraitn/item/cc235375707373796d657034" alt="">
+                            <p>
+                                这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦
+                                <a href="http://loadingmore.com" target="_blank">这是个链接</a>，它将带我完成我的这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一条通往内心深度的一条路，它将带我完成我的技术梦这是一技术梦这是一条通往内心深度的一条路，它
+
+                            </p>
+                         </div>
+                     </section>
+                     <section class="imgs-range clearfix">
+                         <h2>图片</h2>
+                         <div class="show-display">
+                             <h5>好看的图片</h5>
+                             <img src="http://tb.himg.baidu.com/sys/portraitn/item/cc235375707373796d657034" alt="">
+                         </div>
+                         <div class="show-display">
+                             <h5>好看的图片</h5>
+                             <img src="http://tb.himg.baidu.com/sys/portraitn/item/cc235375707373796d657034" alt="">
+                         </div>
+                         <div class="show-display">
+                             <h5>好看的图片</h5>
+                             <img src="http://tb.himg.baidu.com/sys/portraitn/item/cc235375707373796d657034" alt="">
+                         </div>
+                         <div class="show-display">
+                             <h5>好看的图片</h5>
+                             <img src="http://tb.himg.baidu.com/sys/portraitn/item/cc235375707373796d657034" alt="">
+                         </div>
+                         <div class="show-display">
+                             <h5>好看的图片</h5>
+                             <img src="http://tb.himg.baidu.com/sys/portraitn/item/cc235375707373796d657034" alt="">
+                         </div>
+                     </section>
+                     <section>
+                         <div class="title">
+                             <h2>文章一级标题</h2>
+                             <h3>文章二级标题</h3>
+                             <div class="author-info">
+                                 <span>毕宇旗</span>
+                                 <span>2017-06-23 16:15</span>
+                             </div>
+                         </div>
+                         <ol>
+                             <li>排名1</li>
+                             <li>排名2</li>
+                             <li>排名3</li>
+                         </ol>
+                         <h3>下面是一个表格，给表格加一个border='1'，好容易辨认出是一个表格</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>表头</th>
+                                    <th>表头</th>
+                                    <th>表头</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>表内表内容容</td>
+                                    <td>表内表内容容</td>
+                                    <td>操作</td>
+                                </tr>
+                                <tr>
+                                    <td>表表内容内容</td>
+                                    <td>表表内容内容</td>
+                                    <td>操作</td>
+                                </tr>
+                                <tr>
+                                    <td>表内容</td>
+                                    <td>表内容</td>
+                                    <td>操作</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                     </section>
+                 </div>
+                 <aside>
+                     <div class="slide-title">这里以后是一个侧边栏，这是侧边栏的标题</div>
+                     <div class="form-part">
+                         <div class="users_item">
+                             <label for="">请输入邮箱地址：</label>
+                             <div class="inner">
+                                 <input type="text" placeholder="这是一个文本输入框">
+                                 <p class="mail-tips">邮箱地址请按要求格式输入</p>
+                             </div>
+                         </div>
+                         <div class="users_item">
+                             <label for="">请输入密码：</label>
+                             <div class="inner">
+                                 <input type="text" placeholder="这是一个文本输入框">
+                                 <p class="mail-tips">密码为6~16位数字</p>
+                             </div>
+                         </div>
+                         <div class="users_item">
+                             <label for="">请重复输入密码：</label>
+                             <div class="inner">
+                                 <input type="text" placeholder="这是一个文本输入框">
+                             </div>
+                         </div>
+                         <div class="users_item">
+                             <label for="">性别：</label>
+                            <div class="inner">
+                                <input type="radio" name="u" checked>男
+                                <input type="radio" name="u" >女
+                            </div>
+                         </div>
+                         <div class="users_item">
+                             <label for="">城市：</label>
+                             <div class="inner">
+                                 <select name="" id="">
+                                     <option value="">北京</option>
+                                 </select>
+                             </div>
+                        </div>
+                        <div class="users_item">
+                            <label for="">爱好：</label>
+                            <div class="inner">
+                                <input type="checkbox" name="hobby">运动
+                                <input type="checkbox" name="hobby">艺术
+                                <input type="checkbox" name="hobby">科学
+                            </div>
+                        </div>
+                        <div class="users_item">
+                            <label for="">个人描述：</label>
+                            <div class="inner">
+                                <textarea name="" id="" cols="20" rows="3" placeholder="这是一个多行文本"></textarea>
+                            </div>
+                         </div>
+                     </div>
+                     <div class="up-load">提交表数据</div>
+                 </aside>
+             </div>
+         </div>
+         <div class="footer">版权所有©</div>
+    </body>
+</html>
