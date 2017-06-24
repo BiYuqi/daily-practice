@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="form2.css">
+    </head>
+    <body>
+        <div class="form">
+            <div class="form-item">
+                <label for="">名称</label>
+                <div class="item-wrap">
+                    <input type="text" class="user-name">
+                </div>
+                <div class="tips"></div>
+            </div>
+            <div class="form-item">
+                <label for="">密码</label>
+                <div class="item-wrap">
+                    <input type="password" class="user-pass">
+                </div>
+                <div class="tips"></div>
+            </div>
+            <div class="form-item">
+                <label for="">确认密码</label>
+                <div class="item-wrap">
+                    <input type="password" class="user-pass-check">
+                </div>
+                <div class="tips"></div>
+            </div>
+            <div class="form-item">
+                <label for="">邮箱</label>
+                <div class="item-wrap">
+                    <input type="text" class="user-mail">
+                </div>
+                <div class="tips"></div>
+            </div>
+            <div class="form-item">
+                <label for="">手机</label>
+                <div class="item-wrap">
+                    <input type="text" class="user-phone">
+                </div>
+                <div class="tips"></div>
+            </div>
+            <div class="commit-form">
+                提交表单
+            </div>
+        </div>
+        <script src="../util.js"></script>
+        <script>
+            const lists = Array.from(_$$('.item-wrap input'))
+            const tips = Array.from(_$$('.form-item .tips'))
+            const btnCommit = _$('.commit-form')
+            // 配置聚焦提示字段
+            const baseInfo = [
+                '必填,4~16个字符',
+                '必填,请输入密码',
+                '必填,请再次输入密码',
+                '必填,请输入您的邮箱',
+                '必填,请输入您的手机号'
+            ]
+            // 配置失去焦点的校验提示规则
+            const baseReg = [
+                [
+                    {
+                        stragy:/^[^\s].*$/,
+                        msg:'用户名不能为空'
+                    },
+                    {
+                        stragy:/^[\w]{4,16}$/,
+                        msg:'用户名长度在4~16位,不包含中文'
+                    }
+                ],
+                [
+                    {
+                        stragy:/^[^\s].*$/,
+                        msg:'密码不能为空'
+                    },
+                    {
+                        stragy:/^(?=.*\d+)(?=.*[a-zA-Z]+)[\w]{6,16}$/,
+                        msg:'密码长度在6~16位,必须是数字字母两者的组合'
+                    }
+                ],
+                [
+                    {
+                        stragy:/^[^\s].*$/,
+                        msg:'确认密码不能为空'
+                    }
+                ],
+                [
+                    {
+                        stragy:/^[^\s].*$/,
+                        msg:'邮箱不能为空'
+                    },
+                    {
+                        stragy:/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
+                        msg:'您的电子邮箱输入有误,请重新输入'
+                    }
+                ],
+                [
+                    {
+                        stragy:/^[^\s].*$/,
+                        msg:'手机号码不能为空'
+                    },
+                    {
+                        stragy:/^(13\d|14[57]|15[012356789]|18\d|17[013678])\d{8}$/,
+                        msg:'手机号码格式不正确'
+                    }
+                ]
+            ]
+
+            // 聚焦提示
+            const fouceTips = function(){
+                lists.forEach((item,i) => {
+                    item.addEventListener('focus',function(){
+                        tips[i].innerHTML = baseInfo[i]
+                        tips[i].classList.remove('error')
+                        tips[i].classList.remove('isok')
+                    },false)
+                })
+            }
+            fouceTips()
+
+            // 失去焦点校验 并返回提示
+            const blurTips = function(){
+                lists.forEach((item,k) => {
+                    // 监听失去焦点事件
+                    item.addEventListener('blur',function(){
+                        for(let i=0;i<baseReg[k].length;i++){
+                            if(!baseReg[k][i].stragy.test(item.value)){
+                                // 检测错误 并返给提示
+                                tips[k].innerHTML = baseReg[k][i].msg
+                                tips[k].classList.add('error')
+                                return
+                            }
+                        }
+                        // 这里额外处理一下 确认两次输入密码是否一致
+                        if(k === 2){
+                            if(item.value !== lists[k-1].value){
+                                tips[k].innerHTML = '两次输入密码不一致，请重新输入'
+                                tips[k].classList.add('error')
+                                return
+                            }
+                        }
+                        // 正确时修改文字，增加颜色
+                        tips[k].innerHTML = '正确'
+                        tips[k].classList.add('isok')
+                    },false)
+                })
+            }
+            blurTips()
+
+            // 提交表单 这里直接把上面的失去焦点代码（就是把blur事件去掉了）拷贝下来了用了，说明代码还不够简练，
+            // 后期封装一个通用的以供点击事件  失焦事件复用
+            // （提示：只需要传一个变量，清楚是什么事件调用的即可）
+            btnCommit.addEventListener('click',function(){
+                let count = 0 // 用来统计正确的个数
+                lists.forEach((item,k) => {
+                    // 监听失去焦点事件
+                    // item.addEventListener('blur',function(){
+                        for(let i=0;i<baseReg[k].length;i++){
+                            if(!baseReg[k][i].stragy.test(item.value)){
+                                // 检测错误 并返给提示
+                                tips[k].innerHTML = baseReg[k][i].msg
+                                tips[k].classList.add('error')
+                                return
+                            }
+                        }
+                        // 这里额外处理一下 确认两次输入密码是否一致
+                        if(k === 2){
+                            if(item.value !== lists[k-1].value){
+                                tips[k].innerHTML = '两次输入密码不一致，请重新输入'
+                                tips[k].classList.add('error')
+                                return
+                            }
+                        }
+                        count++
+                        // 正确时修改文字，增加颜色
+                        tips[k].innerHTML = '正确'
+                        tips[k].classList.add('isok')
+                    // },false)
+                })
+                if(lists.length === count){
+                    alert("恭喜你全部通过")
+                }
+                console.log(count)
+
+            },false)
+        </script>
+    </body>
+</html>

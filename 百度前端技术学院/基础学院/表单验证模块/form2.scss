@@ -1,0 +1,58 @@
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+$itemHeight:40px; /* 输入框盒子高度*/
+$wrapPaddingLeft:100px; /* 布局，label的剩余空间*/
+.form{
+    width: 600px;
+    margin: 50px auto;
+    border: 1px solid #eee;
+    padding: 20px;
+    .form-item{
+        position: relative;
+        padding-left: $wrapPaddingLeft;
+        height: $itemHeight*2;
+        label{
+            position: absolute;
+            height: $itemHeight;
+            line-height: $itemHeight;
+            left: 0;
+            width: 100px;
+        }
+        .item-wrap{
+            height: $itemHeight;
+            border: 1px solid #eee;
+            padding-left: 4px;
+            input{
+                border: none;
+                outline: none;
+                width: 400px;
+                height: $itemHeight - 2px;
+            }
+        }
+        .tips{
+            height: 30px;
+            line-height: 30px;
+            color: #666;
+            &.error{
+                color: #c33;
+            }
+            &.isok{
+                color: #38ba72;
+            }
+        }
+    }
+    .commit-form{
+        width: 100%;
+        height: $itemHeight;
+        line-height: $itemHeight;
+        text-align: center;
+        color: #fff;
+        background-color: #38ba72;
+        cursor: pointer;
+    }
+}
