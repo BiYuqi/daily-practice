@@ -1,0 +1,59 @@
+header {
+  width: 1280px;
+  height: 56px;
+  margin: 0 auto;
+  line-height: 56px;
+  position: relative;
+  padding-left: 60px;
+  padding-right: 20px;
+}
+
+.logo {
+  display: inline-block;
+}
+.logo img {
+  vertical-align: middle;
+}
+
+.nav {
+  float: right;
+  margin-right: 40px;
+  list-style: none;
+}
+.nav li {
+  display: inline-block;
+}
+.nav li a {
+  color: #666;
+  text-decoration: none;
+  padding: 0 23px;
+  display: block;
+}
+.nav li a:hover {
+  color: #e74f4d;
+}
+.nav li a.active {
+  border-bottom: 2px solid #e74f4d;
+}
+
+.login-box {
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+.login-box .login-btn {
+  position: relative;
+}
+.login-box:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 19px;
+  left: -20px;
+  width: 16px;
+  height: 16px;
+  background: url("../imgs/login-icon.png") no-repeat;
+  background-size: cover;
+}
+
+/*# sourceMappingURL=header.css.map */

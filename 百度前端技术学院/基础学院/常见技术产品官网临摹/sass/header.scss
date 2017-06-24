@@ -1,0 +1,56 @@
+@import "_config.scss";
+
+header{
+    width: 1280px;
+    height: 56px;
+    margin: 0 auto;
+    line-height: 56px;
+    position: relative;
+    padding-left: 60px;
+    padding-right: 20px;
+}
+.logo{
+    display: inline-block;
+    img{
+        vertical-align: middle;
+    }
+}
+.nav{
+    float: right;
+    margin-right: 40px;
+    list-style: none;
+    li{
+        display: inline-block;
+        a{
+            color: $baseFontColor;
+            text-decoration: none;
+            padding: 0 23px;
+            display: block;
+            &:hover{
+                color: $baseColor;
+            }
+            &.active{
+                border-bottom: 2px solid $baseColor;
+            }
+        }
+    }
+}
+.login-box{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    .login-btn{
+        position: relative;
+    }
+    &:after{
+        content: '';
+        display: block;
+        position: absolute;
+        top: 19px;
+        left: -20px;
+        width: 16px;
+        height: 16px;
+        background: url('../imgs/login-icon.png') no-repeat;
+        background-size: cover;
+    }
+}

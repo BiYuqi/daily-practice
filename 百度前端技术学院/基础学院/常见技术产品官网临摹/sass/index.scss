@@ -1,0 +1,80 @@
+@import "_config.scss";
+
+.wrapper-home{
+    width: 1280px;
+    margin: 0 auto;
+    .slide{
+        background: url('../imgs/slide-img.png') no-repeat;
+        background-size: cover;
+        height: 690px;
+        padding: 160px 0 0 110px;
+    }
+    .text-box{
+        p{
+            font-size: 16px;
+            color: #fff;
+            line-height: 1.8;
+        }
+        .text-new-time{
+            font-size: 40px;
+            margin: 15px 0;
+        }
+        .start{
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            background: $baseColor;
+            color: #f2f2f2;
+            cursor: pointer;
+            margin: 30px 0;
+            text-align: center;
+        }
+    }
+    .our-part{
+        height: 250px;
+        ul{
+            height: 250px;
+        }
+        li{
+            width: 25%;
+            height: 100%;
+            text-align: center;
+            float: left;
+            position: relative;
+            &:after{
+                content: '';
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                height: 50px;
+                width: 1px;
+                background: #999;
+            }
+            &:nth-child(4):after{
+                display: none;
+            }
+            img{
+                margin: 40px 0;
+            }
+        }
+    }
+    .about-new-word{
+        height: 360px;
+        background-color: #edecec;
+        text-align: center;
+        img{
+            margin: 90px 0 50px 0;
+        }
+        p{
+            font-size: 30px;
+            color: #8f8f8f;
+        }
+    }
+    .search-map{
+        height: 340px;
+        background: url('../imgs/map-bg.jpg') no-repeat;
+        background-size: cover;
+    }
+}

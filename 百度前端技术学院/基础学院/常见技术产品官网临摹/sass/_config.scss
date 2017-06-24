@@ -1,0 +1,15 @@
+// 主色调
+$baseColor:#e74f4d;
+// 整体颜色
+$baseFontColor:#666;
+
+// 混合器的使用 复用代码 使用 @include minxinName
+@mixin base-button-style{
+    height: 40px;
+    line-height: 40px;
+}
+//也可以动态的传参数
+@mixin base-button-style2($h){
+    height: $h;
+    line-height: $h;
+}
