@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .box{
+                width: 800px;
+                margin: 30px auto;
+                text-align: center;
+
+            }
+            input{
+                height: 30px;
+                border: 1px solid #eee;
+                outline: none;
+                width: 400px;
+            }
+            .clearfix::after{
+                content: '';
+                display: block;
+                height: 0;
+                overflow: hidden;
+                clear: both;
+            }
+            .btns li{
+                float: left;
+                list-style: none;
+                height: 30px;
+                line-height: 30px;
+                width: 20%;
+                margin: 10px 1%;
+                border: 1px solid #999;
+                cursor: pointer;
+                text-align: center;
+            }
+            .show {
+                height:200px;
+                padding: 0 10px;
+                margin: 30px 0 0 0;
+                position: relative;
+            }
+            .show span{
+                display: inline-block;
+                width: 30px;
+                height: 5px;
+                font-size: 12px;
+                text-align: center;
+                border: 1px solid #eee;
+                background: #c33;
+                color: #fff;
+                float: left;
+                padding: 4px;
+                cursor: pointer;
+                position: absolute;
+                bottom: 0;
+            }
+            .sorts{
+                width: 100px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                background-color: rgb(31, 196, 71);
+                color: #fff;
+                cursor: pointer;
+                margin: 40px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <input type="text" name="" value="" placeholder="请输入纯数字，不然会被拦截哦">
+            <ul class="btns clearfix">
+                <li class="left-in">左侧入</li>
+                <li class="right-in">右侧入</li>
+                <li class="left-out">左侧出</li>
+                <li class="right-out">右侧出</li>
+            </ul>
+            <div class="show clearfix">
+
+            </div>
+            <div class="sorts">
+                排序
+            </div>
+        </div>
+        <script type="text/javascript">
+            /**
+                模拟一个队列，队列的每个元素是一个数字，初始队列为空
+                有一个input输入框，以及4个操作按钮
+                点击"左侧入"，将input中输入的数字从左侧插入队列中；
+                点击"右侧入"，将input中输入的数字从右侧插入队列中；
+                点击"左侧出"，读取并删除队列左侧第一个元素，并弹窗显示元素中数值；
+                点击"右侧出"，读取并删除队列又侧第一个元素，并弹窗显示元素中数值；
+                点击队列中任何一个元素，则该元素会被从队列中删除
+            **/
+            const $ = function(el){
+                return document.querySelector(el)
+            }
+            const $$ = function(el){
+                return document.querySelectorAll(el)
+            }
+            //
+            const baseIn = ['.left-in','.right-in']
+            const baseOut = ['.left-out','.right-out']
+            let result = []
+            const inputVal = $('input')
+            // 拿到索引
+            const getIndex = function(lists,search){
+                const list = Array.from(lists);
+                for(let i=0;i<list.length;i++){
+                    if(list[i] === search){
+                        return i
+                    }
+                }
+            }
+            // 渲染
+            const render = function(data){
+                let tpl = ''
+                for(let i=0;i<data.length;i++){
+                    tpl += `<span style="height:${data[i]*2}px;line-height:${data[i]*2}px;left:${i*40}px">${data[i]}</span>`
+                }
+                $('.show').innerHTML = tpl
+
+                // 由于是动态生成的结构
+                deletePara()
+
+            }
+            // 删除
+            const deletePara = function(){
+                $('.show').addEventListener('click',function(e){
+                    if(e.target.nodeName === 'SPAN'){
+                        const NUM = getIndex($$('.show span'),e.target)
+                        result.splice(NUM,1)
+                        //
+                        render(result)
+                    }
+                },false)
+            }
+            // 添加
+            baseIn.forEach((item,i) => {
+                $(item).addEventListener('click',function(){
+                    if(!inputVal.value){
+                        return
+                    }
+                    if(!/^([1-9][0-9]|100)$/.test(inputVal.value)){
+                        alert("请输入数字,范围10~100之间")
+                        return
+                    }
+                    if(result.length > 18){
+                        alert('由于屏幕所限，暂时就支持输入那么多')
+                        return
+                    }
+                    switch ($(item).innerText) {
+                        case '左侧入':
+                            result.unshift(parseInt(inputVal.value))
+                            break;
+                        case '右侧入':
+                            result.push(parseInt(inputVal.value))
+                            break;
+                        default:
+                    }
+                    render(result)
+                    inputVal.value = ''
+                },false)
+            })
+            baseOut.forEach((item,i) => {
+                $(item).addEventListener('click',function(){
+                    if(result.length > 0){
+                        switch ($(item).innerText) {
+                            case '左侧出':
+                                alert(result.shift(inputVal.value))
+                                break;
+                            case '右侧出':
+                                alert(result.pop(inputVal.value))
+                                break;
+                            default:
+                        }
+                        render(result)
+                    }
+                },false)
+            })
+            // 冒泡排序
+            const bubbleSorts = function(arr){
+                var len = arr.length;
+                for(var i=0;i<len-1;i++){
+                    for(var j=0;j<len - 1 - i;j++){
+                        if(arr[j] > arr[j+1]){
+                            var temp = arr[j+1];
+                            arr[j+1] = arr[j];
+                            arr[j] = temp;
+                        }
+                    }
+                }
+                return arr
+            }
+            $('.sorts').addEventListener('click',function(){
+                console.log(result)
+                let res = bubbleSorts(result)
+                console.log(res)
+                render(res)
+            },false)
+
+        </script>
+    </body>
+</html>
