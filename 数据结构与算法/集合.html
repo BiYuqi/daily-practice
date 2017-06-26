@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+                集合是由一组无序且唯一（不能重复）的项组成的。
+                这个数据结构使用了与有限集合相同的数学概念，但应用在计算机科学的数据结构中。
+                目前 ES6 中已内置了 Set 类型的实现，出于学习目的，下面我们依旧使用Javascript创建一个集合类：
+            */
+            class Sets {
+                constructor() {
+                    this.items = {}
+                }
+
+                has(value) {
+                    return this.items.hasOwnProperty(value)
+                }
+
+                add(value) {
+                    if(!this.has(value)){
+                        this.items[value] = value
+                        return true
+                    }
+                    return false
+                }
+
+                remove(value) {
+                    if(this.has(value)){
+                        delete this.items[value]
+                        return true
+                    }
+                    return false
+                }
+
+                get size() {
+                    return Object.keys(this.items).length
+                }
+
+                get values(){
+                    return Object.keys(this.items)
+                }
+            }
+            const set = new Sets()
+            set.add(1)
+            set.add(1)
+            set.add(2)
+            console.log(set.size)
+            console.log(set.values)
+        </script>
+        <script>
+            const arr = [1,1,2,2,3,6,9]
+            console.log([...new Set(arr)])
+        </script>
+    </body>
+</html>

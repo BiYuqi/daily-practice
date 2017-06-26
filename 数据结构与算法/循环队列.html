@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+                为充分利用向量空间，克服"假溢出"现象的方法是：
+                将向量空间想象为一个首尾相接的圆环，并称这种向量为循环向量。
+                存储在其中的队列称为循环队列（Circular Queue）。
+                这种循环队列可以以单链表、队列的方式来在实际编程应用中来实现。
+            */
+            class Queue {
+                constructor(items) {
+                    this.items = items || []
+                }
+
+                enQueue(el){
+                    this.items.push(el)
+                }
+
+                deQueue(){
+                    return this.items.shift()
+                }
+                //与 ES5 一样，在“类”的内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。
+                get size(){
+                    return this.items.length
+                }
+
+                get isEmpty() {
+                    return !this.items.length
+                }
+
+                print() {
+                    console.log(this.items)
+                }
+            }
+
+            class LoopQueue extends Queue {
+                constructor(items){
+                    super(items)
+                }
+
+                getIndex(index) {
+                    const len = this.items.length
+                    return index > len ? (index % len) : index
+                }
+
+                findIndex(index) {
+                    return !this.getIsEmpty ? this.items[this.getIndex(index)] : null
+                }
+            }
+
+            const loop = new LoopQueue(['Surmon'])
+            loop.enQueue('SkyRover')
+            loop.enQueue('Even')
+            loop.enQueue('Alice')
+            console.log(loop.findIndex(666))
+            console.log(loop.findIndex(654321))
+        </script>
+    </body>
+</html>

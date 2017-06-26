@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+                集合、字典、散列表都可以存储不重复的数据。
+                字典和我们上面实现的集合很像，上面的集合中我们以{ value: value }的形式存储数据，
+                而字典是以{ key: value }的形式存储数据，字典也称作映射。
+
+                简单说：Object 对象便是字典在 Javascript 中的实现。
+
+                reduce:
+
+                arr.reduce(callback,[initialValue])
+                callback
+                执行数组中每个值的函数，包含四个参数
+                    accumulator
+                        上一次调用回调返回的值，或者是提供的初始值（initialValue）
+                    currentValue
+                        数组中正在处理的元素
+                    currentIndex
+                        数据中正在处理的元素索引，如果提供了 initialValue ，从0开始；否则从1开始
+                    array
+                        调用 reduce 的数组
+                    initialValue
+                        可选项，其值用于第一次调用 callback 的第一个参数。
+            */
+            class Dictionary {
+                constructor() {
+                    this.items = {}
+                }
+
+                set(key,val) {
+                    this.items[key] = val
+                }
+
+                get(key) {
+                    return this.items[key]
+                }
+
+                remove(key) {
+                    delete this.items[key]
+                }
+
+                get keys() {
+                    return Object.keys(this.items)
+                }
+
+                get values() {
+                    return Object.keys(this.items).reduce((r,c, i,arr) => {
+                        r.push(this.items[c])
+                        return r
+                    },[])
+                }
+            }
+
+            const dic = new Dictionary()
+            dic.set('byq','25')
+            dic.set('cyj','24')
+            console.log(dic.keys)
+            console.log(dic.values)
+            console.log(dic.get('byq'))
+        </script>
+    </body>
+</html>

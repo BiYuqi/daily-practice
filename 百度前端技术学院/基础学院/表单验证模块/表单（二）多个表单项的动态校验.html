@@ -48,6 +48,7 @@
         </div>
         <script src="../util.js"></script>
         <script>
+            // 转化成数组
             const lists = Array.from(_$$('.item-wrap input'))
             const tips = Array.from(_$$('.form-item .tips'))
             const btnCommit = _$('.commit-form')
@@ -77,7 +78,7 @@
                         msg:'密码不能为空'
                     },
                     {
-                        stragy:/^(?=.*\d+)(?=.*[a-zA-Z]+)[\w]{6,16}$/,
+                        stragy:/^(?=.*\d+)(?=.*[a-zA-Z]+)[\da-zA-Z]{6,16}$/,
                         msg:'密码长度在6~16位,数字字母两者的组合'
                     }
                 ],

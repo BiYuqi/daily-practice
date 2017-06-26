@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+                栈是一种遵从先进后出 (LIFO) 原则的有序集合；
+                新添加的或待删除的元素都保存在栈的末尾，称作栈顶，
+                另一端为栈底。在栈里，新元素都靠近栈顶，旧元素都接近栈底。
+
+                通俗来讲，一摞叠起来的书或盘子都可以看做一个栈，
+                我们想要拿出最底下的书或盘子，一定要现将上面的移走才可以。
+            */
+            class Stack {
+                constructor() {
+                    this.item = []
+                }
+
+                push(element) {
+                    this.item.push(element)
+                }
+
+                pop() {
+                    return this.item.pop()
+                }
+
+                getIsEmpty() {
+                    return !this.item.length
+                }
+
+                getSize() {
+                    return this.item.length
+                }
+
+                clear() {
+                    this.item = []
+                }
+            }
+
+            const stack = new Stack()
+            stack.push(5)
+            stack.push(6)
+            stack.push(7)
+            stack.push(8)
+            console.log(stack.item)
+            stack.pop()
+            stack.pop()
+            console.log(stack.item)
+            console.log(stack.getIsEmpty())
+            console.log(stack.getSize())
+        </script>
+    </body>
+</html>
