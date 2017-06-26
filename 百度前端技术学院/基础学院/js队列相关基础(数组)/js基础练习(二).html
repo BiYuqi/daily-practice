@@ -134,10 +134,13 @@
             const deletePara = function(){
                 $('.show').addEventListener('click',function(e){
                     if(e.target.nodeName === 'SPAN'){
-                        const NUM = getIndex($$('.show span'),e.target)
-                        result.splice(NUM,1)
-                        //
-                        render(result)
+                        let index = getIndex($$('.show span'),e.target)
+                        console.log(index)
+                        if(index !== undefined){
+                            result.splice(index,1)
+                            //
+                            render(result)
+                        }
                     }
                 },false)
             }
