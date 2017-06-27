@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue-TimeLine</title>
+        <link rel="stylesheet" href="dist/index.css">
+        <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    </head>
+    <body>
+        <div id="app">
+            <div class="t_content">
+                <div class="t_main">
+                    <h1 class="title">个人大事记</h1>
+                    <div class="t_year" v-for="(item,index) in lists">
+                        <h2>
+                            <a href="javascript:;" @click="toggle(index)" v-bind:class="{close:item.active == 1}" v-cloak>{{item.year}}</a>
+                        </h2>
+                        <div class="t_list" v-bind:class="{slideup:item.active == 1}">
+                            <ul v-for="(items,k) in item.content">
+                                <li class="cls clearfix">
+                                    <p class="date" v-cloak>{{items.date}}</p>
+                                    <p class="intro" v-cloak>{{items.title}}</p>
+                                    <p class="version" v-cloak>{{items.version}}</p>
+                                    <div class="more">
+                                        <p v-cloak>{{items.con}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="edit-model">
+                <div class="t_corver"></div>
+                <div class="t_common form">
+                    <div class="form-item">
+                        <label for="">年</label>
+                        <div class="item-wrap">
+                            <input type="text" class="user-name" placeholder="必填,只支持数字" v-model="year">
+                        </div>
+                        <div class="tips"></div>
+                    </div>
+                    <div class="form-item">
+                        <label for="">月</label>
+                        <div class="item-wrap">
+                            <input type="text" class="user-name" placeholder="(可选)只支持数字" v-model="month">
+                        </div>
+                        <div class="tips"></div>
+                    </div>
+                    <div class="form-item">
+                        <label for="">日</label>
+                        <div class="item-wrap">
+                            <input type="text" class="user-name" placeholder="(可选)只支持数字" v-model="day">
+                        </div>
+                        <div class="tips"></div>
+                    </div>
+                    <div class="form-item">
+                        <label for="">标题</label>
+                        <div class="item-wrap">
+                            <input type="text" class="user-name" placeholder="不能为空" v-model="title">
+                        </div>
+                        <div class="tips"></div>
+                    </div>
+                    <div class="form-item t_textarea">
+                        <label for="">内容</label>
+                        <div class="item-wrap">
+                            <textarea name="name" v-model="uCon"></textarea>
+                        </div>
+                        <div class="tips"></div>
+                    </div>
+                    <div class="up-load" @click="upLoad">提交</div>
+                </div>
+            </div>
+        </div>
+        <script src="dist/bundle.js"></script>
+    </body>
+</html>
