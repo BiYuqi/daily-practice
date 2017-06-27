@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="edit-model">
+            <div class="edit-model" v-show="isModel" v-cloak>
                 <div class="t_corver"></div>
                 <div class="t_common form">
                     <div class="form-item">
@@ -43,11 +43,11 @@
                     <div class="form-item">
                         <label for="">月</label>
                         <div class="item-wrap">
-                            <input type="text" class="user-name" placeholder="(可选)只支持数字" v-model="month">
+                            <input type="text" class="user-name" placeholder="必填,只支持数字" v-model="month">
                         </div>
                         <div class="tips"></div>
                     </div>
-                    <div class="form-item">
+                    <div class="form-item" style="display:none">
                         <label for="">日</label>
                         <div class="item-wrap">
                             <input type="text" class="user-name" placeholder="(可选)只支持数字" v-model="day">
@@ -57,20 +57,23 @@
                     <div class="form-item">
                         <label for="">标题</label>
                         <div class="item-wrap">
-                            <input type="text" class="user-name" placeholder="不能为空" v-model="title">
+                            <input type="text" class="user-name" placeholder="必填" v-model="title">
                         </div>
                         <div class="tips"></div>
                     </div>
                     <div class="form-item t_textarea">
                         <label for="">内容</label>
                         <div class="item-wrap">
-                            <textarea name="name" v-model="uCon"></textarea>
+                            <textarea name="name" v-model="uCon" placeholder="必填"></textarea>
                         </div>
                         <div class="tips"></div>
                     </div>
+                    <div class="err-tips" v-show="errorShow" v-cloak>{{errorTip}}</div>
+                    <div class="up-close" @click="cancel">&times;</div>
                     <div class="up-load" @click="upLoad">提交</div>
                 </div>
             </div>
+            <div class="new-add-btn" @click="modelBtn">新增</div>
         </div>
         <script src="dist/bundle.js"></script>
     </body>

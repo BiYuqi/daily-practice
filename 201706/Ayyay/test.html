@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            let demo = [
+                {
+                    "date":"7月4日",
+                    "title":"新环境",
+                    "mood":"",
+                    "version":"",
+                    "con":"开始学习jsascript"
+                },
+                {
+                    "date":"3月2日",
+                    "title":"新环境",
+                    "mood":"",
+                    "version":"",
+                    "con":"开始学习jsascript"
+                },
+                {
+                    "date":"6月4日",
+                    "title":"新环境",
+                    "mood":"",
+                    "version":"",
+                    "con":"开始学习jsascript"
+                }
+            ]
+            const reg3 = /(\d+)月/
+            function newSort(arr){
+                return arr.sort(function(a,b){
+                    return reg3.exec(b.date)[1] - reg3.exec(a.date)[1]
+                })
+            }
+            console.log(newSort(demo))
+            function test(arr,cp) {
+                const res = arr.sort(function(a,b){
+                    return a - b
+                })
+                for(let i=0;i<res.length;i++){
+                    if(arr[i] >= cp){
+                        return i
+                    }
+                }
+            }
+            const result = [2,4,6]
+            console.log(test(result,3))
+        </script>
+    </body>
+</html>

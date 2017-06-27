@@ -20,12 +20,9 @@ ul,
 li {
   list-style: none;
 }
-body,
-html {
-  height: 100%;
-}
 body {
   font-size: 14px;
+  font-family: sans-serif;
 }
 [v-cloak] {
   display: none;
@@ -105,7 +102,7 @@ body {
   transition: height 1s cubic-bezier(0.025, 0.025, 0, 1.115), opacity 1s;
 }
 .t_content .t_list .cls {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAA51BMVEU4O0c5PEc4O0Y7Pko6PUk4OkY5PEg6PUg7QE46P0w7Pkk7RkRQizlcti9izCpctS9OhzhHbT9fxCtSkTdEXkM6QkU8REdBXEBRkTZgxSxHbD1Gaz1fwSxDWkRDWURewCw8R0VgxCxAV0FBV0I+S0dQjzY7QEhRkDZgxitQkDY5P0ZPijhbtS9RkDdj0ClPizdcti46P0ZgxSs8Qkk5P0VhySpQjDdEXkJbtS5OhzdRkTc9SURgxCtAVkFAVUE8SERDWUNHbT5GbD07QkY8Q0g8SEZPiTdizSphyipbtC9PiDg7R0Q7P0xb0atTAAAB4klEQVQoz33S23aUVRBF4VVrVtWWHW1QA93Sagwa0xD4IQ0iqIgHlIO8//N4kQxu4vAJvjWqphQmVWl6yB9dUzcZKEg5RU7jwCQaljwCZ1l0hEYVZDiUAcbDndhSdZbUUAkq0zlR5BiBjWTLobDcAjooWXbT9lCGJnIMUNk0jkpCKFUDybPwDIc0UzGt6o5M3LhERAPDsp1AN+ExsaZCHo3UYA4+/mS1un7jgJ5ytZxSRakCm08/+/zw5q315ovbCE9N5bg4C+Dtl19BE/H10dbDnTYtJGd2fHN8Rxm2Qt8efxdtMmcrY+JAN06s7093u7v36JMzjYFwKnQx/P7afrAsy/KQWD+6HI4E2Z29Ord3y7Is+6jHqyQrY4aUZE2zelK1X5Zl2U/f+iFT6copu1qE7q/F6bIsy9PWj89wJsrQ5Rvq+YZ+cne3++ncuTkDQbc+2D//8sK0k4pfj19esbU9eiEg9NvR77pih/7Ynx7++Wq92W+nr9hu/vr70es3b9/9k9Ef7EBz2DaOGhVq6AzTTJCrm0Q4aMvd6SZgmCoV/xejlFlhz+z/Kl4xs8dFs0LRPVK0hYUkE/KIcoCL6GIGqENBC8L0tCZ2Vw+JHs7pJFrTSLRNpHj/fiqHU4VSzn8BDdcdCeAuSjkAAAAASUVORK5CYII=) no-repeat 235px 31px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAA51BMVEU4O0c5PEc4O0Y7Pko6PUk4OkY5PEg6PUg7QE46P0w7Pkk7RkRQizlcti9izCpctS9OhzhHbT9fxCtSkTdEXkM6QkU8REdBXEBRkTZgxSxHbD1Gaz1fwSxDWkRDWURewCw8R0VgxCxAV0FBV0I+S0dQjzY7QEhRkDZgxitQkDY5P0ZPijhbtS9RkDdj0ClPizdcti46P0ZgxSs8Qkk5P0VhySpQjDdEXkJbtS5OhzdRkTc9SURgxCtAVkFAVUE8SERDWUNHbT5GbD07QkY8Q0g8SEZPiTdizSphyipbtC9PiDg7R0Q7P0xb0atTAAAB4klEQVQoz33S23aUVRBF4VVrVtWWHW1QA93Sagwa0xD4IQ0iqIgHlIO8//N4kQxu4vAJvjWqphQmVWl6yB9dUzcZKEg5RU7jwCQaljwCZ1l0hEYVZDiUAcbDndhSdZbUUAkq0zlR5BiBjWTLobDcAjooWXbT9lCGJnIMUNk0jkpCKFUDybPwDIc0UzGt6o5M3LhERAPDsp1AN+ExsaZCHo3UYA4+/mS1un7jgJ5ytZxSRakCm08/+/zw5q315ovbCE9N5bg4C+Dtl19BE/H10dbDnTYtJGd2fHN8Rxm2Qt8efxdtMmcrY+JAN06s7093u7v36JMzjYFwKnQx/P7afrAsy/KQWD+6HI4E2Z29Ord3y7Is+6jHqyQrY4aUZE2zelK1X5Zl2U/f+iFT6copu1qE7q/F6bIsy9PWj89wJsrQ5Rvq+YZ+cne3++ncuTkDQbc+2D//8sK0k4pfj19esbU9eiEg9NvR77pih/7Ynx7++Wq92W+nr9hu/vr70es3b9/9k9Ef7EBz2DaOGhVq6AzTTJCrm0Q4aMvd6SZgmCoV/xejlFlhz+z/Kl4xs8dFs0LRPVK0hYUkE/KIcoCL6GIGqENBC8L0tCZ2Vw+JHs7pJFrTSLRNpHj/fiqHU4VSzn8BDdcdCeAuSjkAAAAASUVORK5CYII=) no-repeat 235px 29px;
   padding: 30px 0;
   color: #a1a4b8;
 }
@@ -173,8 +170,8 @@ body {
   opacity: .3;
 }
 .edit-model .t_common {
-  width: 800px;
-  height: 600px;
+  width: 600px;
+  height: 500px;
   background-color: #fff;
   position: absolute;
   top: 50%;
@@ -185,11 +182,14 @@ body {
 .edit-model .form {
   border: 1px solid #eee;
   padding: 20px;
+  position: relative;
+  border-radius: 5px;
+  padding-right: 40px;
 }
 .edit-model .form .form-item {
   position: relative;
   padding-left: 80px;
-  height: 80px;
+  height: 60px;
 }
 .edit-model .form .form-item label {
   position: absolute;
@@ -200,11 +200,11 @@ body {
   text-align: center;
 }
 .edit-model .form .form-item.t_textarea {
-  height: 150px;
+  height: 80px;
 }
 .edit-model .form .form-item.t_textarea .item-wrap {
-  height: 150px;
-  padding: 15px;
+  height: 80px;
+  padding: 10px;
   font-size: 16px;
 }
 .edit-model .form .form-item textarea {
@@ -213,28 +213,28 @@ body {
   height: 100%;
   width: 100%;
   resize: none;
+  font-size: 14px;
 }
 .edit-model .form .form-item .item-wrap {
   height: 40px;
   border: 1px solid #eee;
-  padding-left: 4px;
+  padding-left: 10px;
 }
 .edit-model .form .form-item .item-wrap input {
   border: none;
   outline: none;
   width: 400px;
   height: 38px;
-  font-size: 16px;
 }
-.edit-model .form .form-item .tips {
+.edit-model .form .form-item .t-ips {
   height: 30px;
   line-height: 30px;
   color: #666;
 }
-.edit-model .form .form-item .tips.error {
+.edit-model .form .form-item .t-ips.error {
   color: #c33;
 }
-.edit-model .form .form-item .tips.isok {
+.edit-model .form .form-item .t-ips.isok {
   color: #38ba72;
 }
 .edit-model .form .commit-form {
@@ -251,7 +251,48 @@ body {
   line-height: 40px;
   text-align: center;
   color: #fff;
-  margin-top: 50px;
+  margin-top: 10px;
   cursor: pointer;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  width: 100px;
+  margin-left: -50px;
+  border-radius: 5px;
   background-color: #117c99;
+}
+.edit-model .up-close {
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
+  margin-top: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 20px;
+  border-radius: 5px;
+  background-color: #fa1646;
+}
+.new-add-btn {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  color: #fff;
+  background-color: #30a7c1;
+  border-radius: 4px;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.err-tips {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #c33;
+  margin: 10px 0 0 0;
 }

@@ -22,10 +22,11 @@ ul,li{
     list-style: none;
 }
 body,html{
-    height: 100%;
+    // height: 100%;
 }
 body{
     font-size: 14px;
+    font-family: sans-serif;
 }
 [v-cloak] {
   display: none;
@@ -106,7 +107,7 @@ body{
         -o-transition: height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
         transition: height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
         .cls{
-            background: url(../img/circle.png) no-repeat 235px 31px;
+            background: url(../img/circle.png) no-repeat 235px 29px;
             padding: 30px 0;
             color: #a1a4b8;
         }
@@ -141,12 +142,6 @@ body{
         &.slideup{
             height: 0!important;
             opacity: 0;
-            // transition: all 1s;
-            // -webkit-transition: height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
-            // -moz-transition: height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
-            // -ms-transition: height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
-            // -o-transition: height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
-            // transition: height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
         }
     }
 }
@@ -176,8 +171,8 @@ body{
         opacity: .3;
     }
     .t_common{
-        width: 800px;
-        height: 600px;
+        width: 600px;
+        height: 500px;
         background-color: #fff;
         .abso_common;
         .z_index(888);
@@ -185,10 +180,13 @@ body{
     .form{
         border: 1px solid #eee;
         padding: 20px;
+        position: relative;
+        border-radius: 5px;
+        padding-right: 40px;
         .form-item{
             position: relative;
             padding-left: @wrapPaddingLeft;
-            height: @itemHeight*2;
+            height: @itemHeight+20px;
             label{
                 position: absolute;
                 height: @itemHeight;
@@ -198,10 +196,10 @@ body{
                 text-align: center;
             }
             &.t_textarea{
-                height: 150px;
+                height: 80px;
                 .item-wrap{
-                    height: 150px;
-                    padding: 15px;
+                    height: 80px;
+                    padding: 10px;
                     font-size: 16px;
                 }
             }
@@ -211,20 +209,20 @@ body{
                 height: 100%;
                 width: 100%;
                 resize: none;
+                font-size: 14px;
             }
             .item-wrap{
                 height: @itemHeight;
                 border: 1px solid #eee;
-                padding-left: 4px;
+                padding-left: 10px;
                 input{
                     border: none;
                     outline: none;
                     width: 400px;
                     height: @itemHeight - 2px;
-                    font-size: 16px;
                 }
             }
-            .tips{
+            .t-ips{
                 height: 30px;
                 line-height: 30px;
                 color: #666;
@@ -251,8 +249,52 @@ body{
         line-height: 40px;
         text-align: center;
         color: #fff;
-        margin-top:50px;
+        margin-top:10px;
         cursor: pointer;
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        width: 100px;
+        margin-left: -50px;
+        border-radius: 5px;
         background-color: rgb(17, 124, 153);
     }
+    .up-close{
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        color: #fff;
+        margin-top:10px;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        width: 20px;
+        // margin-left: -10px;
+        border-radius: 5px;
+        background-color: rgb(250, 22, 70);
+    }
+}
+.new-add-btn{
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    background-color: rgb(48, 167, 193);
+    border-radius: 4px;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.err-tips{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    text-align: center;
+    color: #c33;
+    margin: 10px 0 0 0;
+
 }
