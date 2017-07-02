@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            const isEque = function(str1,str2){
+                let arr1 = str1.split('').sort('').join(''),
+                    arr2 = str2.split('').sort('').join('');
+                if(arr1.length !== arr2.length){
+                    return false
+                }
+                return (arr1 == arr2)
+            }
+            console.log(isEque('aaa','rty'))
+            console.log(isEque('aaa','aaa'))
+            console.log(isEque('frg','grf'))
+            console.log(isEque('vbsb','svba'))
+            console.log('..............................')
+
+            const isEque2 = function(str1,str2){
+                const arr1 = [...str1]
+                const arr2 = [...str2]
+                arr1.sort()
+                arr2.sort()
+                if(arr1.length !== arr2.length){
+                    return false
+                }
+                for(let i=0;i<arr1.length;i++){
+                    if(arr2[i] !== arr1[i]){
+                        return false
+                    }
+                }
+                return true
+            }
+            console.log(isEque2('aaa','rty'))
+            console.log(isEque2('aaa','aaa'))
+            console.log(isEque2('frg','grf'))
+            console.log(isEque2('vbsb','svba'))
+        </script>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+            *    Given a non-negative integer num,
+            *    repeatedly add all its digits until the result has only one digit.
+            *    Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2.
+            *    Since 2 has only one digit, return it.
+            *    中文翻译：给定一个正数，将其所有位数上的数字进行相加得到一个新的数。不断反复，直到得到的数是一位数的。
+            *
+            */
+            const addDigits = function(num){
+                while(num.toString().length>1){
+                    let arr = num.toString().split('');
+                    let sum = 0;
+                    arr.forEach((item) => {
+                        sum += parseInt(item)
+                    })
+                    num = sum
+                }
+                return num
+            }
+            console.log(addDigits(18))
+        </script>
+    </body>
+</html>

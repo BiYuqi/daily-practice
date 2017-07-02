@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+             * 实现一个算法，确定一个字符串的所有字符是否全部不同，假设不允许使用额外的数据结构，又该如何处理。
+             */
+             const uniqueOrNot2 = function(str){
+                 const reg = /(.).*\1/g;
+                 if(reg.test(str)){
+                     return true
+                 }
+                 return false
+             }
+             console.log(uniqueOrNot2('123456712'))
+             console.log(uniqueOrNot2('12345'))
+        </script>
+    </body>
+</html>

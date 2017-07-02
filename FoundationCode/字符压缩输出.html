@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+             * 实现基本的字符串压缩功能：aabcccccaaa => a2b1c5a3，如果压缩后字符串没有变短，则返回源字符
+             */
+             const rarTest = function(str){
+                 const reg = /"([^"]+)":(\d+)/g
+                 const res = {}
+
+                 for(let i=0;i<str.length;i++){
+                     if(!res[str[i]]){
+                         res[str[i]] = 1
+                     }else{
+                         res[str[i]]++
+                     }
+                 }
+                 let data = JSON.stringify(res),
+                     tpl = '',
+                     m;
+                 while (m = reg.exec(data)) {
+                    tpl += `${m[1]}${m[2].replace(/1/g,'')}`
+                 }
+                 return tpl === str.length ? str : tpl
+             }
+             console.log(rarTest('sdfghhhjjkll'))
+             console.log(rarTest('abcde'))
+        </script>
+    </body>
+</html>
