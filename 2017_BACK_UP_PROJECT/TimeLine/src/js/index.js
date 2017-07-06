@@ -108,8 +108,8 @@ new Vue({
                 this.userData = JSON.parse(localStorage.getItem("lists"))
             }
             /**
-                初始化判断有没有
-                如果没有就先存到本地一份
+            *    初始化判断有没有
+            *    如果没有就先存到本地一份
             */
             if(this.userData.length>0){
                 for(let i=0;i<this.userData.length;i++){
@@ -122,7 +122,7 @@ new Vue({
                                 "con":uCons
                             })
                         /**
-                            @param {newSort} 针对同一年份的date进行排序
+                        *    @param {newSort} 针对同一年份的date进行排序
                         */
                         this.userData[i].content = this.newSort(reg3,this.userData[i].content)
                         this.saveData(this.userData)
@@ -130,7 +130,7 @@ new Vue({
                     }
                 }
                 /**
-                    @param {newSort2} 针对不同一年份的year进行排序
+                *    @param {newSort2} 针对不同一年份的year进行排序
                 */
                 this.userData.push(this.template(years,months,titles,uCons))
                 this.userData = this.newSort2(this.userData)
@@ -144,10 +144,10 @@ new Vue({
         },
         search() {
             /**
-                监听keyup事件
-                利用filter进行搜索查询本地数据
-                成功后进行lists赋值
-                如果没有就渲染本地
+            *    监听keyup事件
+            *    利用filter进行搜索查询本地数据
+            *    成功后进行lists赋值
+            *    如果没有就渲染本地
             */
             const reg = /^\d{4}$/
             if(reg.test(this.searchYear)){
