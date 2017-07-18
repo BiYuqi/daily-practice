@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+            *    1.浅复制：基本类型为值传递，对象仍为引用传递
+            *    枚举所有属性和方法
+            *
+            */
+            const shallowClone = (o) => {
+                let res = {}
+
+                for( i in o){
+                    if(o.hasOwnProperty(i)){
+                        res[i] = o[i]
+                    }
+                }
+                return res
+            }
+            const test = {
+                name:"小芳",
+                list:{
+                    type:"string"
+                }
+            }
+            const newTest = shallowClone(test)
+            console.log(newTest.name)
+            console.log(newTest.list.type)
+            newTest.name = "小毕"
+            newTest.list.type = "object"
+            console.log('-------------new-----------------')
+            console.log(newTest.name)
+            console.log(newTest.list.type)
+            console.log('--------------old----------------')
+            console.log(test.name)
+            console.log(test.list.type)
+        </script>
+    </body>
+</html>

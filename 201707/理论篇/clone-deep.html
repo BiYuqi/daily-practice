@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+            *    1.浅复制：基本类型为值传递，对象仍为引用传递
+            *    2.深复制：所有元素或属性均完全克隆，并于原引用类型完全独立，即，在后面修改对象的属性的时候，原对象不会被修改。
+            *
+            *    deepClone :枚举对象，判断类型（Array or object） 过滤hasOwnProperty 引用类型=>递归
+            */
+            const deepClone = (o) => {
+                let res
+                const type = Object.prototype.toString;
+
+                res = type.call(o) === '[object Array]' ? []:{}
+
+                for( i in o){
+                    if(o.hasOwnProperty(i)){
+                        res[i] = typeof o[i] === 'object' ? deepClone(o[i]):o[i]
+                    }
+                }
+                return res
+            }
+
+            const obj = {
+                name:"xiaofang",
+                list:{
+                    type:"string"
+                }
+            }
+            const newTest = deepClone(obj)
+            console.log(newTest.list)
+            newTest.list.type = 'object'
+            console.log(newTest.list)
+            console.log(obj.list)
+        </script>
+    </body>
+</html>
