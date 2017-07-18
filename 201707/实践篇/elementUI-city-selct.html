@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+           // 根据element ui 要求 返回的数据（必须符合element UI 组件要求）进行二次加工，实现联动组件
+            var data = {
+                "北京市":{
+                    "市辖区":{
+                        "东城区":[
+                            "东华门街道办事处0",
+                            "景山街道办事处0",
+                            "安定门街道办事处0"
+                        ],
+                        "西城区":[
+                            "东华门街道办事处1",
+                            "景山街道办事处1",
+                            "安定门街道办事处1"
+                        ]
+                    }
+                },
+                "陕西省":{
+                    "西安市":{
+                        "高新区":[
+                            "东华门街道办事处0",
+                            "景山街道办事处0",
+                            "安定门街道办事处0"
+                        ],
+                        "雁塔区":[
+                            "东华门街道办事处1",
+                            "景山街道办事处1",
+                            "安定门街道办事处1"
+                        ]
+                    },
+                    "咸阳市":{
+                        "东城区":[
+                            "东华门街道办事处0",
+                            "景山街道办事处0",
+                            "安定门街道办事处0"
+                        ],
+                        "西城区":[
+                            "东华门街道办事处1",
+                            "景山街道办事处1",
+                            "安定门街道办事处1"
+                        ]
+                    }
+                }
+            }
+
+            const filters = (array) => {
+                let res = []
+
+                for(let i in array){
+                    let obj = {}
+                    if(typeof array[i] === 'object'){
+                        obj.value = i,
+                        obj.label = i
+                        obj.children = filters(array[i])
+                    }else{
+                        obj.value = array[i],
+                        obj.label =array[i]
+                    }
+                    res.push(obj)
+
+                }
+                return res
+            }
+            console.log(filters(data))
+            console.log(data)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>乘法口诀定向输出</title>
+        <style>
+            .render{
+                height: 400px;
+            }
+            span{
+                width: 100px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                border: 1px solid #eee;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="render">
+
+        </div>
+        <button class="btn go">点击开始</button>
+        <button class="btn back">点击回退</button>
+        <script>
+            var res = [];
+            for(var i=1;i<10;i++){
+                for(var j=1;j<=i;j++){
+                    res.push('<span>'+i+'*'+j+'='+i*j+'</span>')
+                    if(i == j){
+                        res.push('<br/>')
+                    }
+                }
+            }
+
+            // flag 全局状态
+            function renderGo(data){
+                var data = data.slice(0);
+                var tpl1 = ''
+                var timer = setInterval(function() {
+                    var tar = data.shift()
+                    if(!tar){
+                        clearInterval(timer)
+                        return
+                    }
+                    tpl1 += tar
+                    document.querySelector('.render').innerHTML = tpl1
+                },200)
+            }
+            document.querySelector('.go').onclick = function(){
+                renderGo(res)
+            }
+            function renderBack(data){
+                var data = data.slice(0);
+                var tpl1 = ''
+                var timer = setInterval(function() {
+                    var tar = data.pop()
+                    tpl1 = tar ? (document.querySelector('.render').innerHTML = data.join('')):clearInterval(timer)
+                },200)
+            }
+            document.querySelector('.back').onclick = function(){
+                renderBack(res)
+            }
+        </script>
+    </body>
+</html>
