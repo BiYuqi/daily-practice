@@ -29,12 +29,12 @@
                 for(var j=1;j<=i;j++){
                     res.push('<span>'+i+'*'+j+'='+i*j+'</span>')
                     if(i == j){
-                        res.push('<br/>')
+                        res.push('<br>')
                     }
                 }
             }
 
-            // flag 全局状态
+            
             function renderGo(data){
                 var data = data.slice(0);
                 var tpl1 = ''
