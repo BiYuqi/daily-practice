@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+            *    @param
+            *
+            */
+            const arr = [9,3,2,4,8]
+            const orderMax = function(data,k){
+                if(k < 0 || k > arr.length){
+                    return 'k值范围有误'
+                }
+                return data.sort( (a,b) => (b-a))[~~k-1]
+            }
+            console.log(orderMax(arr,3))
+        </script>
+    </body>
+</html>
