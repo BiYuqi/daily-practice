@@ -40,37 +40,30 @@ var _validator = (function(){
 })()
 
 /**
-* @param 时间格式化工具 毫秒 => 年月日时分秒
-* @param {string} ms 传毫秒
-* @param {boolean} is true => YY:MM:DD HH:MM:MM  false => YY:MM:DD HH:MM
+* @param 时间格式化工具 支持类似于下面格式
+* @param {String} {fmt} _format("YYYY-MM-DD hh:mm:ss")  年-月-日 时-分-秒
+* @param {String} {fmt} _format("YYYY-MM-DD")    年月日
+* @param {String} {fmt} _format("YYYY/MM/DD")    年月日
+* @param {String} {fmt} _format("YYYY年MM月DD日 hh时mm分ss秒") 年月日时分秒
+* @param {Number} {times} 时间戳  格式化指定时间 (可选) 已做兼容 非number亦可
 */
-var _transTime = function(ms,is){
-        if(!ms){
-            return;
+var _dateFormat = function(fmt,times){
+    var date = times !== undefined ? new Date(parseInt(times)) : new Date()
+    var _time = {
+        "Y+" : date.getFullYear(),
+        "M+" : date.getMonth() + 1,
+        "D+" : date.getDate(),
+        "h+" : date.getHours(),
+        "m+" : date.getMinutes(),
+        "s+" : date.getSeconds()
+    }
+    for(var i in _time){
+        var reg = new RegExp(''+i+'','g');
+        if(reg.test(fmt)){
+            fmt = fmt.replace(reg,(_time[i]+'').length == 1 ? ('00'+_time[i]).substr(-2) : _time[i])
         }
-        var date = new Date(ms),
-            y = date.getFullYear(),
-            m = date.getMonth() + 1,
-            d = date.getDate(),
-            h = date.getHours(),
-            mm = date.getMinutes(),
-            s = date.getSeconds();
-        if(is){
-            return y+'-'+('0'+m).slice(-2)+'-'+('0'+d).slice(-2)+' '+('0'+h).slice(-2)+':'+('0'+mm).slice(-2);
-        }else{
-            return y+'-'+('0'+m).slice(-2)+'-'+('0'+d).slice(-2);
-        }
-}
-
-var _curTime = function(){
-    var date = new Date(),
-        y = date.getFullYear(),
-        m = date.getMonth() + 1,
-        d = date.getDate(),
-        h = date.getHours(),
-        mm = date.getMinutes(),
-        s = date.getSeconds();
-    return y+'-'+('0'+m).slice(-2)+'-'+('0'+d).slice(-2)+' '+('0'+h).slice(-2)+':'+('0'+mm).slice(-2);
+    }
+    return fmt
 }
 
 /**
@@ -209,14 +202,16 @@ var _getRandomFormArr = function(arr){
 * @param {string} dom 错误信息dom
 * @param {string} msg 错误提示信息
 * @param {string} timer 错误显示时间 毫秒 可选
+* @param {function} fn 回调函数 可选
 */
-var _errTips = function(dom,msg,timer){
+var _errTips = function(dom,msg,timer,fn){
     var domTarget = document.querySelector(dom),
         timer = timer || 1500;
     return function(){
         domTarget.innerHTML = msg
         setTimeout(function(){
             domTarget.innerHTML = ''
+            fn && fn()
         },timer)
     }()
 }

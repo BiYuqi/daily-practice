@@ -43,16 +43,15 @@ document.querySelector('.btn').onclick = function(){
 #### 时间相关的函数
 ```js
 /**
-* @param _transTime(ms,is) 时间格式化工具 毫秒 => 年月日时分秒
-* @param _curTime() 当前时间
-* @param {string} ms 传毫秒
-* @param {boolean} is true => YY:MM:DD HH:MM:MM  false => YY:MM:DD HH:MM
+* @param 时间格式化工具 支持类似于下面格式
+* @param {String} {fmt} _format("YYYY-MM-DD hh:mm:ss")  年-月-日 时-分-秒
+* @param {String} {fmt} _format("YYYY-MM-DD")    年月日
+* @param {String} {fmt} _format("YYYY/MM/DD")    年月日
+* @param {String} {fmt} _format("YYYY年MM月DD日 hh时mm分ss秒") 年月日时分秒
+* @param {Number} {times} 时间戳  格式化指定时间 (可选) 已做兼容 非number亦可
 */
 
-_transTime(ms,is)
-
-_curTime()
-
+_dateFormat(fmt,times)
 
 ```
 
