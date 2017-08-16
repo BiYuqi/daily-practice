@@ -3,21 +3,70 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <style>
+            .test{
+                list-style: none;
+                width: 400px;
+                margin: 0 auto;
+                height: 400px;
+            }
+            li{
+                width: 80px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                background-color: rgb(61, 145, 159);
+                color: #fff;
+                float: left;
+                margin: 30px 20px;
+                cursor: pointer;
+            }
+        </style>
         <link rel="stylesheet" href="dist/v-model.css">
     </head>
     <body>
+        <ul class="test">
+            <li class="item-tips">tips效果</li>
+            <li class="item-part">part效果</li>
+            <li class="item-all">all效果</li>
+        </ul>
         <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
         <script src="dist/v-model.js"></script>
         <script>
-            var tips = Modal({
-                tipsTitle:'dfsfsfsf',
-                tips:'sdfsfsfsff',
-                timeout:1500,
-                btnFn:function(){
-                    console.log(1111)
-                }
+            // DEMO
+            $('body').on('click','.item-tips',function(){
+                var tips = Modal({
+                    tipsTitle:'tips效果',
+                    tips:'tips效果tips效果tips效果tips效果tips效果tips效果',
+                    timeout:1500,
+                    btnFn:function(){
+                        console.log(1111)
+                    }
+                })
+                tips.$tips()
             })
-            tips.$tips()
+            $('body').on('click','.item-part',function(){
+                var tips = Modal({
+                    tipsTitle:'part效果',
+                    tips:'part效果part效果part效果part效果part效果part效果',
+                    timeout:1500,
+                    btnFn:function(){
+                        console.log(1111)
+                    }
+                })
+                tips.$part()
+            })
+            $('body').on('click','.item-all',function(){
+                var tips = Modal({
+                    tipsTitle:'all效果',
+                    tips:'all效果all效果all效果all效果all效果all效果all效果',
+                    timeout:1500,
+                    btnFn:function(){
+                        console.log('回调函数生效咯')
+                    }
+                })
+                tips.$all()
+            })
         </script>
     </body>
 </html>
