@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+        <style media="screen">
+            body,html{
+                width: 100%;
+                height: 100%;
+            }
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            li{
+                width: 100%;
+                height: 40px;
+                margin-bottom:10px;
+                background-color: rgb(34, 151, 194);
+            }
+            .wrapper{
+                position: fixed;
+                z-index: 1;
+                top: 55px;
+                bottom: 50px;
+                left: 0;
+                width: 100%;
+                background: #ccc;
+                overflow: hidden;
+            }
+            .wrapper-content{
+                background-color: #fff;
+            }
+            .header{
+                height: 55px;
+                line-height: 55px;
+                text-align: center;
+                width: 100%;
+                background-color: rgb(32, 182, 169);
+            }
+            .footer{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 55px;
+                line-height: 55px;
+                text-align: center;
+                width: 100%;
+                background-color: rgb(32, 182, 169);
+            }
+            .top-tip{
+                position: absolute;
+                top: -40px;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+                height:40px;
+                line-height:40px;
+                text-align:center;
+                color: #555;
+            }
+            .bottom-tip{
+                width: 100%;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                color: #777;
+                background: #f2f2f2;
+            }
+            /* 全局提示信息 */
+            .alert{
+                display: none;
+                position: fixed;
+                top: 55px;
+                left: 0;
+                z-index: 2;
+                width: 100%;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                color: #fff;
+                font-size: 12px;
+                background: rgba(7, 17, 27, 0.7);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">我是Header</div>
+        <div class="wrapper">
+            <div class="wrapper-content">
+                <!-- 顶部提示信息 -->
+                <div class="top-tip">
+                  <span class="refresh-hook">下拉刷新</span>
+                </div>
+                <ul class="content">
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                    <li class="item"></li>
+                </ul>
+                <div class="bottom-tip">
+                  <span class="loading-hook">查看更多</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer">我是Footer</div>
+        <!-- alert -->
+        <div class="alert alert-hook">刷新成功</div>
+        <script src="bscroll.min.js"></script>
+        <script>
+            window.onload = function(){
+                var wrapper = document.querySelector('.wrapper'),
+                    topTip = document.querySelector('.refresh-hook'),
+                    alert = document.querySelector('.alert-hook'),
+                    content = document.querySelector('.content'),
+                    bottomTip = document.querySelector('.loading-hook');
+                var scroll = new window.BScroll(wrapper, {
+                    probeType: 1
+                });
+                scroll.on('scroll', function (position) {
+                  if(position.y > 30) {
+                      topTip.innerText = '释放立即刷新';
+                  }
+                });
+                // 滑动结束
+                scroll.on('touchEnd', function (position) {
+                  if (position.y > 30) {
+
+                    setTimeout(function () {
+                      /*
+                       * 这里发送ajax刷新数据
+                       * 刷新后,后台只返回第1页的数据,无论用户是否已经上拉加载了更多
+                      */
+                      // 恢复文本值
+                      topTip.innerText = '下拉刷新';
+                      // 刷新成功后的提示
+                      refreshAlert('刷新成功');
+                      // 刷新列表后,重新计算滚动区域高度
+                      scroll.refresh();
+                    }, 1000);
+                    console.log(0)
+                  }else if(position.y < (this.maxScrollY - 30)) {
+                    bottomTip.innerText = '加载中...';
+                    setTimeout(function () {
+                      // 恢复文本值
+                      bottomTip.innerText = '查看更多';
+                      // 向列表添加数据
+                      reloadData();
+                      // 加载更多后,重新计算滚动区域高度
+                      scroll.refresh();
+                    }, 1000);
+                  }
+                });
+
+                function reloadData(){
+                    var tpl = '<li class="item">'+parseInt(Math.random()*100)+'</li>'
+                    content.innerHTML = content.innerHTML+tpl+tpl+tpl+tpl+tpl
+                }
+                // 刷新成功提示方法
+                function refreshAlert(text) {
+                  text = text || '操作成功';
+                  alert.innerHtml = text;
+                  alert.style.display = 'block';
+                  setTimeout(function(){
+                    alert.style.display = 'none';
+                  },1000);
+                }
+            }
+        </script>
+    </body>
+</html>
