@@ -10,8 +10,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _classCallCheck(this, Modal);
 
             this.options = options || '';
-
-            this.bindEvents();
         }
 
         _createClass(Modal, [{
@@ -44,6 +42,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 this.renderHtml(tpl);
                 $('.v-detail').text(this.options.tips);
                 $('.v-detail-title').text(this.options.tipsTitle);
+                this.bindEvents();
             }
         }, {
             key: '$all',
@@ -52,6 +51,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 this.renderHtml(tpl);
                 $('.v-detail').text(this.options.tips || '默认');
                 $('.v-detail-title').text(this.options.tipsTitle || '默认');
+                this.bindEvents();
             }
         }, {
             key: '$tips',
@@ -81,10 +81,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             value: function bindEvents() {
                 var that = this;
                 $('body').on('click', '.v-my-close,.v-my-btnNo', function () {
-                    that.removeHtml();
+                    $('.v-my-modal').removeClass('active');
                 });
 
-                $('body').on('click', '.v-my-btnOk', function () {
+                $('.v-my-btnOk').on('click', function () {
                     that.options.btnFn && that.options.btnFn();
                     that.removeHtml();
                 });
