@@ -79,7 +79,7 @@
         bindEvents() {
             const that = this;
             $('body').on('click','.v-my-close,.v-my-btnNo',function(){
-                $('.v-my-modal').removeClass('active')
+                that.removeHtml()
             })
 
             $('.v-my-btnOk').on('click',function(){
