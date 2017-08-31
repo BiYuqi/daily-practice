@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div id="test" class="idtest">sdfsdf</div>
+        <script>
+            var getId = document.getElementById;
+            // document.getElementById('test').onclick = function(){
+            //     console.log(this)
+            // }
+
+            //
+
+
+            // document.getElementById = (function(fun){
+            //     return function(){
+            //         return fun.apply(document,arguments)
+            //     }
+            // })(document.getElementById)
+            //
+            // console.log(document.getElementById('test').className)
+
+            // mock bind
+            Function.prototype.mbind = function(context){
+                var self = this;
+                return function(){
+                    return self.apply(context,arguments)
+                }
+            }
+
+            var obj2 = {
+                name:'xioabai'
+            }
+
+            var func = function(){
+                console.log(this.name)
+            }.mbind(obj2)
+
+            func()
+        </script>
+    </body>
+</html>
