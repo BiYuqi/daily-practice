@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /*
+                高阶函数：满足其一
+                    函数可以作为参数被传递
+                    函数可以当做返回值输出
+            */
+            var Tyle = (function(){
+                var Type = {},
+                    list = ['String','Array','Object','Number'];
+                for(var i=0;i<list.length;i++){
+                    (function(type){
+                        Type['is'+type] = function(obj){
+                            return Object.prototype.toString.call(obj) === '[object '+type+']'
+                        }
+                    })(list[i])
+                }
+                return Type
+            })()
+
+            console.log(Tyle.isArray([]))
+            console.log(Tyle.isNumber(''))
+            console.log(Tyle.isString(''))
+            console.log(Tyle.isObject({}))
+
+            const isType = (() =>{
+                const Type = {}
+                const list = ['String','Array','Object','Number']
+
+                for(let i=0;i<list.length;i++){
+                    Type['is'+list[i]] = function(obj){
+                        return Object.prototype.toString.call(obj) === '[object '+list[i]+']'
+                    }
+                }
+                return Type
+            })()
+            console.log(isType.isArray([]))
+            console.log(isType.isNumber(''))
+            console.log(isType.isString(''))
+            console.log(isType.isObject({}))
+        </script>
+    </body>
+</html>
