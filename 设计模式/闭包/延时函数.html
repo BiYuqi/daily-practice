@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            div{
+                display: inline-block;
+                float: left;
+            }
+            span{
+                width: 100px;
+                height: 30px;
+                line-height: 30px;
+                padding: 2px;
+                margin: 2px;
+                border: 1px solid #eee;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            // 一次性渲染大量好友列表
+            var arg = []
+            for(var i=0;i<10000;i++){
+                arg.push({
+                    name:'毕宇旗'+i,
+                    age:i
+                })
+            }
+
+            var renderList = function(data){
+                for(var i=0;i<data.length;i++){
+                    var div = document.createElement('div')
+                    div.innerHTML = i
+                    document.body.appendChild(div)
+                }
+            }
+            // console.time('测试0')
+            // renderList(arg)
+            // console.timeEnd('测试0')
+
+
+            /**
+            *    延时函数
+            *    arg  数据
+            *    fn   执行方法包含处理的数据结果
+            *    count 100ms一次性执行个数
+            */
+            var timeChunk = function(arg,fn,count){
+                var obj,timer;
+                var len = arg.length;
+
+                var start = function(){
+                    for(var i=0;i<Math.min(count,arg.length);i++){
+                        var obj = arg.shift()
+                        fn(obj)
+                    }
+                }
+
+                return function(){
+                    timer = setInterval(function(){
+                        if(arg.length === 0){
+                            clearInterval(timer)
+                        }
+                        start()
+                    },100)
+                }
+            }
+
+            var timeListTest = timeChunk(arg,function(n){
+                var div = document.createElement('div')
+                div.innerHTML = '<span style="color:'+getColor2()+'">'+n.name+'</span>'
+                document.body.appendChild(div)
+            },100)
+            console.time('测试1')
+            timeListTest()
+            console.timeEnd('测试1')
+
+            // 点击测试
+            document.querySelector('body').onclick = function(e){
+                if(e.target.nodeName === 'SPAN'){
+                    console.log(e.target.innerHTML)
+                    console.log(e.offsetX,e.offsetY)
+                    console.log(e.clientX,e.clientY)
+                }
+            }
+            //--------------------------------随便玩玩
+            function getColor2(){
+            	return "#"+("000"+Math.floor(Math.random()*16777215).toString(16)).slice(-6);
+            }
+        </script>
+    </body>
+</html>

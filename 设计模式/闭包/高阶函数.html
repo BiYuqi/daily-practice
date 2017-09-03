@@ -13,7 +13,7 @@
             */
             var Tyle = (function(){
                 var Type = {},
-                    list = ['String','Array','Object','Number'];
+                    list = ['String','Array','Object','Number','RegExp','Null'];
                 for(var i=0;i<list.length;i++){
                     (function(type){
                         Type['is'+type] = function(obj){
@@ -28,7 +28,9 @@
             console.log(Tyle.isNumber(''))
             console.log(Tyle.isString(''))
             console.log(Tyle.isObject({}))
-
+            console.log(Tyle.isRegExp(''))
+            console.log(Tyle.isNull(''))
+            console.log('---------------------------')
             const isType = (() =>{
                 const Type = {}
                 const list = ['String','Array','Object','Number']

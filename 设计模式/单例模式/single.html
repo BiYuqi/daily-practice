@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            *{
+                margin:0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .test{
+                padding: 5px 10px;
+            }
+            .login-wrapper{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 200px;
+                height: 200px;
+                margin-left: -100px;
+                margin-top: -100px;
+                z-index: 99;
+            }
+            .login{
+                width: 200px;
+                height: 200px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -100px;
+                margin-top: -100px;
+                box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+                border: 1px solid #eee;
+                padding: 10px;
+                text-align: center;
+                z-index: 100;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 惰性单例 -->
+        <button class="test">登录</button>
+        <script src="single.js"></script>
+    </body>
+</html>
