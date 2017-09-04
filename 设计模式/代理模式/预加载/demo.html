@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>图片懒加载实例</title>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+        <style>
+            *{
+                margin: 0;
+                padding:0;
+                box-sizing: border-box;
+            }
+            ul li{
+                list-style: none;
+                width: 800px;
+                height: 400px;
+                margin: 6px auto;
+                box-shadow: 0 0 2px 4px #eee;
+            }
+            ul li img{
+                width: 100%;
+                height: 100%;
+            }
+            h3{
+                text-align: center;
+                margin: 10px 0;
+            }
+            @media screen and (max-width:1080px) {
+                ul li{
+                    list-style: none;
+                    width: 100%;
+                    height: 200px;
+                    margin: 2px auto;
+                    box-shadow: 0 0 2px 4px #eee;
+                }
+                ul li img{
+                    width: 100%;
+                    height: 100%;
+                }
+                h3{
+                    text-align: center;
+                    margin: 10px 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h3>图片懒加载实例</h3>
+        <ul class="box">
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1465405092061-4db6005a2be0?dpr=2&auto=compress,format&fit=crop&w=376&h=564&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1493799817216-4b57dda4229f?dpr=2&auto=compress,format&fit=crop&w=376&h=250&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+        </ul>
+        <script>
+            //使用方法
+            function isLoadImage(target,url){
+                const LOAING_GIF = 'http://cdn.uehtml.com/201402/1392662527843_1140x0.gif'
+                var img = new Image()
+                img.onload = function(){
+                    target.src = url
+                }
+                target.src = LOAING_GIF
+                img.src = url
+            }
+
+            function eachImg(){
+                var imgs = document.querySelectorAll('img')
+                var lists = [].slice.call(imgs)
+                for(let i=0;i<lists.length;i++){
+                    isLoadImage(lists[i],lists[i].getAttribute('data-src'))
+                }
+            }
+            eachImg()
+        </script>
+    </body>
+</html>

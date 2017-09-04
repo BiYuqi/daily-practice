@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .box{
+                width: 800px;
+                height: 400px;
+                line-height: 400px;
+                text-align: center;
+                margin: 0 auto;
+                border: 1px solid #eee;
+            }
+            .box img{
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+
+        </div>
+        <script>
+            const LOAING_GIF = 'http://img.lanrentuku.com/img/allimg/1212/5-121204193R2-50.gif'
+            const REAL_IMG = 'https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop='
+
+            const myImage = (function(){
+                const imgNode = document.createElement('img')
+                document.querySelector('.box').appendChild(imgNode)
+
+                return function(src){
+                    imgNode.src = src
+                }
+            })()
+
+            const proxyImage = (function(){
+                var img = new Image()
+
+                img.onload = function(){
+                    myImage(this.src)
+                }
+
+                return function(src){
+                    myImage(LOAING_GIF)
+                    img.src = src
+                }
+            })()
+            proxyImage(REAL_IMG)
+        </script>
+    </body>
+</html>
