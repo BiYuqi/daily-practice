@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>图片懒加载实例</title>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                padding: 15px 50px;
+            }
+            li{
+                list-style: none;
+                width: 200px;
+                height: 150px;
+                margin: 15px;
+                padding: 10px;
+                float: left;
+                box-shadow: 0 0 2px 4px #eee;
+            }
+            img{
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+            h3{
+                text-align: center;
+                margin: 10px 0;
+            }
+            @media screen and (max-width:1080px) {
+                ul li{
+                    list-style: none;
+                    width: 100%;
+                    height: 200px;
+                    margin: 2px auto;
+                    box-shadow: 0 0 2px 4px #eee;
+                }
+                ul li img{
+                    width: 100%;
+                    height: 100%;
+                }
+                h3{
+                    text-align: center;
+                    margin: 10px 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h3>图片加载前loading</h3>
+        <ul class="box">
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1493799817216-4b57dda4229f?dpr=2&auto=compress,format&fit=crop&w=376&h=250&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584207084&di=efb19db6789b6ca85967e768ed168fe6&imgtype=jpg&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd788d43f8794a4c29e0037eb07f41bd5ac6e39cb.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://images.unsplash.com/photo-1493799817216-4b57dda4229f?dpr=2&auto=compress,format&fit=crop&w=376&h=250&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
+            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
+        </ul>
+        <script>
+            // 直接渲染
+            var myImage = function(target,url){
+                target.src = url
+            }
+            // 代理loading
+            var proxyLoadImage = function(target,url){
+                const LOAING_GIF = 'http://cdn.uehtml.com/201402/1392662591495_1140x0.gif'
+                var img = new Image()
+                img.onload = function(){
+                    myImage(target,url)
+                }
+                myImage(target,LOAING_GIF)
+                img.src = url
+            }
+
+
+            var eachImg = function(){
+                var imgs = document.querySelectorAll('img')
+                var lists = [].slice.call(imgs)
+                for(let i=0;i<lists.length;i++){
+                    proxyLoadImage(lists[i],lists[i].getAttribute('data-src'))
+                    // 去掉代理直接渲染
+                    //  myImage(lists[i],lists[i].getAttribute('data-src'))
+                }
+            }
+            eachImg()
+        </script>
+    </body>
+</html>

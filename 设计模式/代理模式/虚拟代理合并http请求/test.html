@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            var addLine = (function(){
+                var cache = {}
+                return function fibonacci(n){
+                    if(!cache[n]){
+                        cache[n] = n < 1 ? n : n + fibonacci(n-1)
+                    }
+                    return cache[n]
+                }
+            })()
+            console.log(addLine(100))
+        </script>
+    </body>
+</html>

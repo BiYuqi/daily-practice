@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="box">
+            <input type="checkbox" data-id="1">1
+            <input type="checkbox" data-id="2">2
+            <input type="checkbox" data-id="3">3
+            <input type="checkbox" data-id="4">4
+            <input type="checkbox" data-id="5">5
+            <input type="checkbox" data-id="6">6
+            <input type="checkbox" data-id="7">7
+            <input type="checkbox" data-id="8">8
+            <input type="checkbox" data-id="9">9
+            <input type="checkbox" data-id="10">10
+        </div>
+        <script>
+            var $ = function(el){
+                return document.querySelectorAll(el)
+            }
+            var asyncUpload = function(id){
+                console.log("上传的id为："+id)
+            }
+
+            // 传统方法，请求过于频繁
+            // var renderStart = function(){
+            //     var inputs = [].slice.call($('input'))
+            //     for(var i=0;i<inputs.length;i++){
+            //         inputs[i].onclick = function(){
+            //             if(this.checked === true){
+            //                 asyncUpload(this.getAttribute('data-id'))
+            //             }
+            //         }
+            //     }
+            // }
+            // renderStart()
+            console.log('----------------------------------------------------------------------------')
+            // 代理
+            var proxySyncFile = (function(){
+                var cache = [],
+                    timer;
+                return function(id){
+                    cache.push(id)
+                    if(timer){
+                        return;
+                    }
+                    timer = setTimeout(function(){
+                        asyncUpload(cache.join(','))
+                        clearTimeout(timer)
+                        timer = null
+                        cache.length = 0
+                    },2000)
+                }
+            })()
+
+            var requestUpload = function(){
+                var inputs = [].slice.call($('input'))
+                for(var i=0;i<inputs.length;i++){
+                    inputs[i].onclick = function(){
+                        if(this.checked === true){
+                            proxySyncFile(this.getAttribute('data-id'))
+                        }
+                    }
+                }
+            }
+            requestUpload()
+
+        </script>
+    </body>
+</html>
