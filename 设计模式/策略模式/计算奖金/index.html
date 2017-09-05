@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="box">
+            <select class="select" name="">
+                <option value="">请选择绩效级别</option>
+                <option value="S">S</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+            </select>
+            <input type="text" placeholder="请输入员工工资">
+            <button class="btn">计算</button>
+        </div>
+        <h3>员工应得奖金：<span class="res"></span></h3>
+        <script>
+            // 策略模式 ：不变的  变化的的  独立抽取
+            // 奖金的具体计算方法是变化的
+            // 奖金的计算方式不变
+            var strategy = {
+                'S':function(salary){
+                    return salary * 4
+                },
+                'A':function(salary){
+                    return salary * 3
+                },
+                'B':function(salary){
+                    return salary * 2
+                },
+                'C':function(salary){
+                    return salary * 1
+                }
+            }
+
+            var caculateMethods = function(type,salary){
+                return strategy[type](salary)
+            }
+
+            // test
+            var $ = function(el){
+                return document.querySelector(el)
+            }
+            $('.btn').onclick = function(){
+                var type = $('.select').value,
+                    account = $('input').value;
+                if(type && account){
+                    $('.res').innerText = caculateMethods(type,account)
+                }
+            }
+        </script>
+    </body>
+</html>
