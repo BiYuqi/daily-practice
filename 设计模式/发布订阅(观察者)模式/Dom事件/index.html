@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            document.body.addEventListener('click',function(){
+                console.log("触发")
+            },false)
+            document.body.addEventListener('click',function(){
+                console.log("触发2")
+            },false)
+            document.body.addEventListener('click',function(){
+                console.log("触发3")
+            },false)
+
+            var events = new MouseEvent("click")
+            // 最后一步触发事件 dispatchEvent()
+            // IE下触发事件用 fireEvent
+            document.body.dispatchEvent(events)
+        </script>
+    </body>
+</html>
