@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            .nav{
+                position: absolute;
+                top: 0;
+                right: 0;
+                -width: 200px;
+                -height: 200px;
+            }
+            .header{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 200px;
+                height: 200px;
+            }
+            .login{
+                position: absolute;
+                left: 40%;
+                padding: 20px;
+                background-color: #c33;
+                color: #fff;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login">登陆</div>
+        <div class="nav">
+            <img src="" alt="">
+        </div>
+        <div class="header">
+
+        </div>
+        <script>
+            function $(el){
+                return document.querySelector(el)
+            }
+
+            var Event =(function(){
+
+                var clientList = {},
+                    listen,
+                    trigger,
+                    remove;
+
+                listen = function(key,fn){
+                    if(!clientList[key]){
+                        clientList[key] = []
+                    }
+                    clientList[key].push(fn)
+                }
+
+                trigger = function(){
+                    var key = [].shift.call(arguments),
+                        fns = clientList[key];
+
+                    if(!fns || fns.length === 0){
+                        return
+                    }
+
+                    for(var i=0;i<fns.length;i++){
+                        fns[i].apply(this,arguments)
+                    }
+                }
+
+                remove = function(key,fn){
+                    var fns = clientList[key];
+
+                    if(!fns){
+                        return
+                    }
+                    if(!fn){
+                        fns && (fns.length = 0)
+                    }else{
+                        for(var i=0;i<fns.length;i++){
+                            var _fn = fns[i]
+                            if(_fn === fn){
+                                fns.splice(i,1)
+                            }
+                        }
+                    }
+                }
+                return {
+                    listen:listen,
+                    trigger:trigger,
+                    remove:remove
+                }
+            })()
+
+
+            $('.login').addEventListener('click',function(){
+                var data = {
+                    avatar:'http://cdn.uehtml.com/201402/1392662515827_1140x0.gif',
+                    con:'据央广网报道，袁诚家曾先后担任过本溪市政协委员和鞍山市人大代表'
+                }
+                setTimeout(function(){
+                    Event.trigger('sq',data)
+                },2000)
+            },false)
+
+            Event.listen('sq',fn1 = function(p){
+                $('img').setAttribute('src',p.avatar)
+                $('.header').innerHTML = p.con
+            })
+
+        </script>
+    </body>
+</html>
