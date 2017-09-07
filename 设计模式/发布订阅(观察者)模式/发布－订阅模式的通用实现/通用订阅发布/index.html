@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /*
+            *    假设姓名又到另一处售楼处买房子，那么这段代码是否必须在另一个售楼处对象上重写一次呢，有没有办法可以让
+            *    所有对象都拥有发布—订阅功能呢？
+            */
+
+            var events = {
+                clientList:[],
+                listen:function(key,fn){
+                    if(!this.clientList[key]){
+                        this.clientList[key] = []
+                    }
+                    this.clientList[key].push(fn)
+                },
+                trigger:function(){
+                    var key = [].shift.call(arguments),
+                        fns = this.clientList[key];
+                    if(!fns || fns.length === 0){
+                        return
+                    }
+
+                    for(var i=0;i<fns.length;i++){
+                        fns[i].apply(this,arguments)
+                    }
+                }
+            }
+            // 定义一个 installEvent 函数，这个函数可以给所有的对象都动态安装发布—订阅功能
+            var installEvent = function(obj){
+                for(var i in events){
+                    if(events.hasOwnProperty(i)){
+                        obj[i] = events[i]
+                    }
+                }
+            }
+
+            var pubEvent = {}
+            installEvent(pubEvent)
+
+            pubEvent.listen('send',function(email){
+                console.log('发信人: '+email.name)
+                console.log('信的内容是：'+email.con)
+            })
+            var send = {
+                name:"小包",
+                con:'据说赚百万需要用心'
+            }
+            pubEvent.trigger('send',send)
+
+            
+
+        </script>
+    </body>
+</html>
