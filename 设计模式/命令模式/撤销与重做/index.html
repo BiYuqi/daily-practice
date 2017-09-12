@@ -3,9 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <style media="screen">
+            /*.box{
+                height: 200px;
+            }*/
+        </style>
     </head>
     <body>
-        <button class="btn"></button>
+        <div class="box"></div>
+        <button class="reserve">重置</button>
         <script>
             //撤消和重做
             // 创建命令
@@ -36,11 +42,21 @@
                     console.log("攻击")
                 }
             }
+            var cache = []
             document.onkeypress = function(e){
                 var key = e.keyCode;
                 var commond = commondMake(gather,commands[key])
                 if(commond){
                     commond()
+                    cache.push(commond)
+                }
+            }
+
+            document.querySelector('.reserve').onclick = function(){
+                console.log('-------------------------------------------------')
+                while(cache.length){
+                    var excute = cache.pop()
+                    excute()
                 }
             }
         </script>
