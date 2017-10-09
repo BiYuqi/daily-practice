@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            if(!Array.isArray){
+                Array.isArray = function(obj){
+                    return Object.prototype.toString.call(obj) === '[object Array]'
+                }
+            }
+        </script>
+    </body>
+</html>

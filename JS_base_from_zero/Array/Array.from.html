@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+            *    从一个类数组或者可迭代的对象中创建一个新的数组实例
+            */
+            const bar = ['1','2','3']
+            Array.from(bar) // ['1','2','3']
+            const bar2 = 'fool'
+            Array.from(bar2) // ['f','o','o','l']
+
+            // Array.from(arrayLike[, mapFn[, thisArg]])
+            // arrayLike 想要转换成真实数组的类数组对象或可遍历对象
+            // Array.from() 方法有一个可选参数 mapFn，
+            //让你可以在最后生成的数组上再执行一次 map 方法后再返回。
+            // 也就是说 Array.from(obj, mapFn, thisArg) 就相当于 Array.from(obj).map(mapFn, thisArg),
+
+            const data = Array.from({length:10},function(){
+                return '<span></span>'
+            }).join('')
+
+            const data2 = Array.from({length: 10}, (v, i) => i)
+            // 类似于
+            const data3 = Array.from({length:10}).map( (v,i) => i)
+
+            console.log(data)
+            console.log(data2)
+            console.log(data3)
+
+            // 测试转化类数组对象
+            const testC = (...args) => {
+                const data1 = Array.from(args)
+                const data2 = [].slice.call(args)
+                return data1.concat(data2)
+            }
+            // 测试转化类数组对象
+            const testC2 = function(){
+                const data1 = Array.from(arguments)
+                const data2 = [].slice.call(arguments)
+                return data1.concat(data2)
+            }
+            console.log(testC(1,2,3))
+            console.log('--------------')
+            console.log(testC2(1,2,3))
+        </script>
+    </body>
+</html>
