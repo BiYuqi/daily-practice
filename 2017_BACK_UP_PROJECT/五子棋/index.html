@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            #game{
+                position: relative;
+				width: 600px;
+				height: 600px;
+				background-color: #ddd;
+                margin: 0 auto;
+            }
+            #game .chessboard .lattice {
+				border-right: 1px solid #aaa;
+				border-bottom: 1px solid #aaa;
+                float: left;
+			}
+            #game .chessboard {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+                top: 0;
+                left: 0;
+				border-top: 1px solid #aaa;
+				border-left: 1px solid #aaa;
+				z-index: 1;
+			}
+            #game  .chessboard.lattice-16 > .lattice {
+                width: calc(100% / 16);
+                height: calc(100% / 16);
+            }
+            #game .chessmans {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+                top: 0;
+                left: 0;
+
+			}
+            #game .chessmans .chessman {
+				position: absolute;
+				/*display: inline-flex;*/
+				border-radius: 50%;
+			}
+			#game .chessmans .chessman.black {
+				background-color: black;
+			}
+			#game .chessmans .chessman.white {
+				background-color: white;
+			}
+			.chessman.black {
+				background-color: black;
+			}
+			.chessman.white {
+				background-color: white;
+			}
+        </style>
+    </head>
+    <body>
+        <div id="game">
+            <div id="chessboard" class="chessboard lattice-16"></div>
+            <div class="chessmans"></div>
+        </div>
+        <script>
+            // document.querySelector('.chessmans').addEventListener('click',function(){
+            //     console.log(1)
+            // })
+
+            class Game{
+                constructor(options) {
+                    this.options = options
+                    this.wrap = document.querySelector(options.canvas || '#game')
+                    this.chessboard = this.wrap.children[0]
+                    this.chessmans = document.querySelector('.chessmans')
+
+                    // 棋盘样式
+                    this.gloubStyle = Object.assign({
+                        count:16,
+                        padding:30
+                    },options.gloubStyle || {})
+
+                    // 棋盘元素
+                    this.lattice = {
+                        width:(this.wrap.clientWidth -this.gloubStyle.padding*2)/this.gloubStyle.count,
+                        height:(this.wrap.clientHeight -this.gloubStyle.padding*2)/this.gloubStyle.count
+                    }
+                    // console.log(this.lattice)
+
+
+
+                    this.resetAndInit()
+                }
+
+                resetAndInit() {
+                    const { options } = this
+
+                    // 角色
+                    this.role = options.role || this.role || 1
+
+                    //是否分出胜负
+                    this.win = false
+
+                    //走棋记录
+                    this.history = []
+
+                    //当前步数
+                    this.currentStep = 0
+
+                    //清空棋子和事件
+                    this.chessmans.onclick = null
+                    this.chessmans.innerHTML = ''
+
+                    // 初始化
+                    this.drawChessBoard()
+                    this.initChessBoard()
+                    // this.drawChessMans()
+                    this.listenDownChess()
+                    // console.log(this.role)
+                }
+
+                //棋盘矩阵
+                initChessBoard() {
+                    const checkerboard = []
+                    for(let i=0;i<this.gloubStyle.count+1;i++){
+                        checkerboard[i] = []
+                        for(let j=0;j<this.gloubStyle.count+1;j++){
+                            checkerboard[i][j] = 0
+                        }
+                    }
+                    this.checkerboard = checkerboard
+                }
+
+                // 刻画棋盘
+                drawChessBoard() {
+                    const { gloubStyle,wrap } = this
+
+                    const lattice = Array.from({
+                        length:gloubStyle.count*gloubStyle.count
+                    },() => `<span class="lattice"></span>`).join('')
+
+                    this.chessboard.innerHTML = lattice
+                    this.wrap.style.border = `${gloubStyle.padding}px solid #eee`
+                    // console.log(gloubStyle,wrap)
+                }
+
+                // 刻画棋子
+                drawChessMans(x,y,isBlack) {
+                    const { lattice,gloubStyle,wrap} = this
+                    const newChessMan = document.createElement('div')
+                    newChessMan.setAttribute('id',`x${x}-y${y}-r${isBlack ? 1:2}`)
+                    newChessMan.className = isBlack ? 'chessman black':'chessman white'
+                    newChessMan.style.width = lattice.width*0.6 +'px'
+                    newChessMan.style.height = lattice.height*0.6 +'px'
+                    newChessMan.style.left = (x * lattice.width) - lattice.width*0.3 +'px'
+                    newChessMan.style.top = (y * lattice.height) - lattice.height*0.3 + 'px'
+
+                    this.chessmans.appendChild(newChessMan)
+                    // console.log(this.chessmans)
+                }
+
+                //落棋子
+                listenDownChess() {
+                    const that = this
+                    this.chessmans.onclick = function(event){
+                        // console.log(event.target.className)
+                        // 如果点击的是棋子则中断
+    					if (/^chessman\s*[^s]+$/.test(event.target.className)) {
+    						return false
+    					}
+
+    					let { offsetX: x, offsetY: y } = event
+
+    					x = Math.round(x / that.lattice.width)
+    					y = Math.round(y / that.lattice.height)
+
+                        // 空的棋位才可落子
+                        const effectiveBoard = !!that.checkerboard[x]
+
+                        if (effectiveBoard
+                            && that.checkerboard[x][y] !== undefined
+                            && Object.is(that.checkerboard[x][y], 0)) {
+
+                            // 落子后，更新矩阵，切换角色，并记录
+    						that.checkerboard[x][y] = that.role
+    						that.drawChessMans(x, y, Object.is(that.role, 1))
+
+                            // 落子完毕后，有可能是悔棋之后落子的，这种情况下就该重置历史记录
+    						that.history.length = that.currentStep
+    						that.history.push({ x, y, role: that.role })
+
+    						// 保存坐标，角色，快照
+    						that.currentStep++
+    						that.role = Object.is(that.role, 1) ? 2 : 1
+                        }
+
+                        console.log(that.checkerboard)
+                    }
+                }
+            }
+
+            const games = new Game({
+                role:2,
+                canvas:"#game",
+                gloubStyle:{
+                    count:16,
+                    padding:30
+                }
+            })
+
+            var sorets = function(arr){
+                var len = arr.length;
+                for(var i=0;i<len-1;i++){
+                    for(var j=0;j<len-1-i;j++){
+                        if(arr[j]>arr[j+1]){
+                            var smaller = arr[j+1]
+                            arr[j+1] = arr[j]
+                            arr[j] = smaller
+                        }
+                    }
+                }
+                return arr
+            }
+            var arrs = [2,4,22,65,78,21,9,100]
+            console.log(sorets(arrs))
+
+            var shuffer = function(arr){
+                var len = arr.length;
+                for(var i=len-1;i>=0;i--){
+                    var randomIndex = ~~(Math.random()*(i+1))
+                    var randomVal = arr[randomIndex]
+
+                    arr[randomIndex] = arr[i]
+                    arr[i] = randomVal
+                }
+                return arr
+            }
+            const shuarr = [1,2,3,4,5,6,7,8,9]
+            console.log(shuffer(shuarr))
+        </script>
+    </body>
+</html>
