@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            // 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素
+            //ES5
+            function isFilter(val){
+                return val  >10
+            }
+            var ff = [12, 5, 8, 130, 44].filter(isFilter)
+            console.log(ff)
+
+            //ES6
+            const ff2 = [12, 5, 8, 130, 44].filter( v => v > 10)
+            console.log(ff2)
+        </script>
+    </body>
+</html>

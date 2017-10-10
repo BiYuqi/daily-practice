@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            // find() 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined
+            const bb = value => value >= 15
+            const bb2 = value => value >= 150
+            const cc = [12,45,4,23]
+            const ss = cc.find(bb)
+            const ss2 = cc.find(bb2)
+            console.log(ss) // 45
+            console.log(ss2) // undefined
+            var inventory = [
+                {name: 'apples', quantity: 2},
+                {name: 'bananas', quantity: 0},
+                {name: 'cherries', quantity: 5}
+            ];
+
+            // find  filter
+            const last = inventory.find((v)=>v.name === 'cherries')
+            const last2 = inventory.filter((v)=>v.name === 'cherries')
+            console.log(last) // 直接返回对象
+            console.log('-------------------------------------')
+            console.log(last2) // 返回数组和对象
+            console.log(last2[0]) // 返回数组和对象
+        </script>
+    </body>
+</html>

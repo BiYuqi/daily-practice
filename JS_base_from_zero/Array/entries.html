@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            // Array.prototype.entries()
+            // 返回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对
+            var arr = ['one','two','three','four']
+            var iterator = arr.entries()
+            // console.log(iterator.next().value)
+            // console.log(iterator.next().value)
+            // console.log(iterator.next().value)
+            // console.log(iterator.next().value)
+
+            // console.log(iterator.next())
+            // console.log(iterator.next())
+            // console.log(iterator.next())
+            // console.log(iterator.next())
+            // console.log(iterator.next())
+
+            for(let i of iterator){
+                console.log(i)
+            }
+            // [0, "one"]
+            // [1, "two"]
+            // [2, "three"]
+            // [3, "four"]
+        </script>
+    </body>
+</html>

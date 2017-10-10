@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            // 创建一个具有可变数量参数的新数组实例
+            // Array.of()
+            if(!Array.of){
+                Array.of = function() {
+                    return Array.prototype.slice.call(arguments);
+                }
+            }
+            console.log(Array.of(1,2))
+        </script>
+    </body>
+</html>

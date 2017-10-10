@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            // 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组
+            var arr1 = ['a', 'b', 'c'];
+            var arr2 = ['d', 'e', 'f'];
+
+            var arr3 = arr1.concat(arr2)
+            console.log(arr1)
+            console.log(arr2)
+            console.log(arr3)
+
+            //将值连接到数组
+            var test1 = arr1.concat(1,2)
+            console.log(test1)
+
+            //合并嵌套数组
+            var num1 = [[1]]
+            var num2 = [2,[3]]
+
+            var num3 = num1.concat(num2)
+            console.log(num3)
+
+            num1[0].push(8)
+            console.log(num3)
+        </script>
+    </body>
+</html>
