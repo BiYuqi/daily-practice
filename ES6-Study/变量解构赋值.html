@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <button class="btn" type="button" name="button">测试</button>
+        <script>
+            console.log('-----------数组的解构赋值--------------')
+
+            // 本质上就是模式匹配的写法，只要等号两边模式相同，即可赋值
+            // 如果解构不成功，变量的值就等于undefined
+            let [a,b,c] = [1,2,3]
+            console.log(a,b,c)
+
+            let [bar,foo] = [1]
+            console.log(bar,foo)
+
+            console.log('-----------对象的解构赋值--------------')
+
+            // 对象的解构赋值
+            let { fo, ba } = {fo:'aaa',ba:'bbb',ma:'ccc'}
+            console.log(fo,ba)
+
+            console.log('------------区别-------------')
+            // 数组元素是按次序排列的，变量的取值由他的位置确定，
+            // 对象的属性没有次序，变量必须与属性同名，才可取到正确的值
+            // 如果变量名与属性不一致，必须写成下面格式
+            let obj = {first:'hello',last:'world'}
+            let { first: f,last:l} = obj
+            console.log(f,l)
+
+            // 意味着对象对的解构赋值内部机制是先找到同名属性，然后再赋值，真正被赋值的是后者，而不是前者
+            // ex
+            document.querySelector('.btn').onclick = (e) => {
+
+                let {offsetX:x,offsetY:y} = e
+
+                console.log(x,y)
+
+                setTimeout(()=>{
+                    // console.log(this) 箭头函数里 this 永远指向调用对象
+                },1000)
+            }
+
+            console.log('----------现有对象的方法赋值到某个变量---------------')
+            // 对象的解构赋值可以很方便的将现有对象的方法赋值到某个变量
+            let {log,sin,cos,random} = Math
+            console.log(random()*80)
+            console.log(log(30))
+
+            console.log('----------用途---------------')
+            console.log('1---交换变量的值')
+            // 一 交换变量的值
+            let xx = 1;
+            let yy = 2;
+
+            [xx,yy] = [yy,xx]
+
+            console.log(xx,yy)
+            console.log('2---从函数返回多个值')
+            // 二 从函数返回多个值
+            function example1(){
+                return [1,2,3]
+            }
+            let [q,w,e] = example1()
+
+            console.log(q,w,e)
+
+            function example2(){
+                return {
+                    fff:1,
+                    barbar:2
+                }
+            }
+            let { fff, barbar } = example2()
+            console.log(fff,barbar)
+            console.log('3---函数参数的定义')
+            // 三 函数参数的定义
+            // 有序
+            function f2([x,y,z]){
+                console.log(x,y,z)
+            }
+            f2([1,2,3])
+            // 无序
+            function f3({x,y,z}){
+                console.log(x,y,z)
+                x = 9
+                y = 300
+                z = 900
+                console.log(x,y,z)
+            }
+            f3({z:3,y:4,x:7})
+
+            console.log('4---提取JSON数据')
+            let jsonData = {
+                id:32,
+                status:200,
+                data:[1,2,3,4]
+            }
+            let {id,data} = jsonData
+            console.log(data)
+
+            console.log('5---遍历Map结构')
+            const map = new Map()
+            map.set('first','hello')
+            map.set('second','world')
+            console.log('5------------------------------全部数据')
+            for(let [key,value] of map){
+                console.log(key,value)
+            }
+            console.log('5---------------------------------key')
+            for(let [key] of map){
+                console.log(key)
+            }
+            console.log('5---------------------------------value')
+            for(let [,value] of map){
+                console.log(value)
+            }
+
+            console.log('6---输入模块指定方法')
+            // 加载模块时往往需要指定输入哪些方法，解构赋值将会非常方便
+            // 例子只作为示例
+            //const {SourceMapConsumer,SourceNode} = require('source-map')
+        </script>
+    </body>
+</html>
