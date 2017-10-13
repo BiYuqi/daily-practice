@@ -116,14 +116,12 @@
                     this.sendBtn = document.querySelector(options.btn || '#btn')
                     this.userData = document.querySelector(options.input || '#input')
                     this.bullPipe = Array.from(document.querySelectorAll('.bull-pipe'))
-                }
-                // 初始化事件
-                init() {
+
                     this.bindEvent()
                 }
                 // 随机颜色
                 getRandomParam() {
-                    const { random , floor} = Math
+                    const { random , floor } = Math
                     const r = floor(random()*256)
                     const g = floor(random()*256)
                     const b = floor(random()*256)
@@ -157,9 +155,7 @@
                 drawBull(param) {
                     const { color } = this.getRandomParam()
                     const span = document.createElement('P')
-                    const len = param.length
-                    //随机管道
-                    const currPipe = this.bullPipe[parseInt(Math.random()*12)]
+                    const len = param.length  // 计算每个字的长度 以便粗略计算每个弹幕宽度
 
                     span.innerHTML = param
                     span.className = 'bb'
@@ -167,12 +163,14 @@
                     span.style.right = - (20 + (len * 16)) + 'px'
                     span.style.color = color
 
+                    const currPipe = this.bullPipe[parseInt(Math.random()*12)] //随机管道
                     // 管道辨别 如果当前管道有元素 进行判断是否已全部显示 否则随即返回一个符合的管道进行填充
                     if(this.isBug(currPipe)){
                         this.isBug(currPipe).appendChild(span)
                     }else{
                         currPipe.appendChild(span)
                     }
+                    
                     this.bullanimate(span)
                 }
                 // 启动和销毁
@@ -213,7 +211,6 @@
                 input: '#input',
                 speed: 0.5
             })
-            bullReal.init()
         </script>
     </body>
 </html>
