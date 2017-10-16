@@ -1,8 +1,6 @@
 <template lang="html">
     <div class="wrapeer">
-        <header>
-            我是头部
-        </header>
+        <header>测试楼层效果</header>
         <div class="wrapper-inner">
             <ul class="side-bar">
                 <li v-for="(item,index) in side" :class="{active: selected === index}" @click="btnLeft(index)">
@@ -12,10 +10,11 @@
             <div class="wraper-content">
                 <div class="wraper-content-item" ref="profile"
                     v-for="(itemBot,index) in sideContent" :style="{ height:itemBot.height }" >
-                    {{itemBot.title}} {{itemBot.height}}
+                    {{itemBot.title}} {{index+1}}
                 </div>
             </div>
         </div>
+        <footer>我是底部</footer>
     </div>
 </template>
 
@@ -29,20 +28,20 @@ export default {
             side:['我是标题1','我是标题2','我是标题3','我是标题4','我是标题5'],
             sideContent:[
                 {
-                    title:'我是标题1',
+                    title:'我是楼层',
                     height:Math.floor(Math.random()*200+400) + 'px'
                 },
                 {
-                    title:'我是标题2',
+                    title:'我是楼层',
                     height:Math.floor(Math.random()*200+400) + 'px'
                 },{
-                    title:'我是标题3',
+                    title:'我是楼层',
                     height:Math.floor(Math.random()*200+400) + 'px'
                 },{
-                    title:'我是标题4',
+                    title:'我是楼层',
                     height:Math.floor(Math.random()*200+400) + 'px'
                 },{
-                    title:'我是标题5',
+                    title:'我是楼层',
                     height:Math.floor(Math.random()*200+400) + 'px'
                 }
             ]
@@ -62,7 +61,7 @@ export default {
             })
         },
         btnLeft(index) {
-            this.selected = index
+
             this.$nextTick(function(){
                 let jump = document.querySelectorAll('.wraper-content-item')
                 // 获取需要滚动的距离
@@ -74,6 +73,7 @@ export default {
                     if(this.scrollTop*speed >= (total-80)*speed){
                         this.scrollTop = total
                         clearInterval(this.interval)
+                        this.selected = index
                     }
                     window.scrollTo(0,this.scrollTop)
                 },13)
@@ -88,12 +88,26 @@ export default {
 <style scoped>
     .wrapeer{
         width: 100%;
-        min-height: 600px;
+        min-height: 100%;
+        position: relative;
+        padding-bottom: 80px;
     }
     .wrapeer-inner{
         width: 800px;
         min-height: 600px;
         margin: 0 auto;
+    }
+    footer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 80px;
+        width: 100%;
+        line-height: 80px;
+        font-size: 18px;
+        text-align: center;
+        background-color: rgb(52, 201, 170);
+        color: #fff;
     }
     header{
         height: 80px;
