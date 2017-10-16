@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="loading.css">
+        <style>
+            *{
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            .loading-box{
+                width: 800px;
+                margin: 0 auto;
+                background-color: rgb(44, 187, 187);
+                min-height: 600px;
+                padding: 10px;
+            }
+            .box{
+                width: 32%;
+                height: 160px;
+                border: 1px solid rgba(255,255,255,.6);
+                float: left;
+                margin: 0.5%;
+                position: relative;
+                padding-top: 20px;
+            }
+            .box div:nth-child(1){
+                margin: 30px auto;
+            }
+            .box div:nth-child(2){
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                color: #fff;
+                font-size: 10px;
+                white-space: nowrap;
+                margin: 10px auto;
+                transform: translateX(-50%);
+
+            }
+            header{
+                height: 60px;
+                line-height: 60px;
+                width: 100%;
+                background-color: rgb(44, 187, 187);
+                margin-bottom: 20px;
+                color: #fff;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <span>常见的一些效果</span>
+        </header>
+        <div class="loading-box">
+            <div class="box">
+                <div data-loading="circle"></div>
+                <div>data-loading="circle"</div>
+            </div>
+            <div class="box">
+                <div data-loading="circle-half"></div>
+                <div>data-loading="circle-half"</div>
+            </div>
+            <div class="box">
+                <div data-loading="circle-slide"></div>
+                <div>data-loading="circle-slide"</div>
+            </div>
+            <div class="box">
+                <div data-loading="circle-arrow"></div>
+                <div>data-loading="circle-arrow"</div>
+            </div>
+            <div class="box">
+                <div data-loading="bull-circle"></div>
+                <div>data-loading="bull-circle"</div>
+            </div>
+            <div class="box">
+                <div data-loading="bull-line"></div>
+                <div>data-loading="bull-line"</div>
+            </div>
+            <div class="box">
+                <div data-loading="circle-apinner"></div>
+                <div>data-loading="circle-apinner"</div>
+            </div>
+            <div class="box">
+                <div data-loading="bull-fade"></div>
+                <div>data-loading="bull-fade"</div>
+            </div>
+        </div>
+    </body>
+</html>
