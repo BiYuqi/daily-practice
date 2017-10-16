@@ -19,17 +19,36 @@
             li{
                 width: 30px;
                 height: 30px;
+                line-height: 30px;
+                text-align: center;
                 border: 1px solid #eee;
                 float:left;
+                border-right: none;
+            }
+            li:nth-child(6){
+                border-right: 1px solid #eee;
             }
             input{
-                width: 0;
-                height: 0;
+                width: 1px;
+                height: 1px;
                 opacity: 0;
+            }
+            label{
+                display: block;
+                height: 30px;
+            }
+            button{
+                padding: 10px 14px;
+                outline: none;
+                border: none;
+                background-color: rgb(10, 83, 129);
+                color: #fff;
+                margin-top: 30px;
             }
         </style>
     </head>
     <body>
+        <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script> -->
         <div class="pay-box">
             <label for="pay-target">
                 <ul>
@@ -41,11 +60,38 @@
                     <li></li>
                 </ul>
             </label>
-            <input type="text" id="pay-target">
+            <input type="text" id="pay-target" maxlength="6">
+            <button class="btn">提交</button>
         </div>
         <script>
             const $ = (el) => document.querySelector(el)
-            $('.pay-target')
+            const $$ = (el) => document.querySelectorAll(el)
+            const typeReg = /^\d+$/
+            const input = $('input')
+            const items = Array.from($$('ul li'))
+
+            input.addEventListener('input',function(){
+                const pw = this.value
+                const len = 6
+                if(!typeReg.test(pw)){
+                    this.value = ''
+                    alert("仅支持数字密码")
+                    return
+                }
+                for(let i=0;i<6;i++){
+                    if(pw[i]){
+                        items[i].innerHTML = '*'
+                    }else{
+                        items[i].innerHTML = ' '
+                    }
+                }
+            })
+
+            $('.btn').addEventListener('click',function(){
+                if(input.value){
+                    alert('您输入的密码是:'+input.value)
+                }
+            })
         </script>
     </body>
 </html>

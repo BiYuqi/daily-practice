@@ -17,7 +17,7 @@ export default {
         },
         rate: {
             type: Number,
-            default: 4
+            default: 6
         },
         customStyle: {
             type: Object,
