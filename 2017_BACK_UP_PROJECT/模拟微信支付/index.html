@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .pay-box{
+                width: 800px;
+                margin: 50px auto;
+            }
+            ul{
+                list-style: none;
+            }
+            li{
+                width: 30px;
+                height: 30px;
+                border: 1px solid #eee;
+                float:left;
+            }
+            input{
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="pay-box">
+            <label for="pay-target">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </label>
+            <input type="text" id="pay-target">
+        </div>
+        <script>
+            const $ = (el) => document.querySelector(el)
+            $('.pay-target')
+        </script>
+    </body>
+</html>

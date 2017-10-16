@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="swipper-wrap">
         <transition-group tag='ul' class="clearfix slide" name='image'>
-            <li v-for='(item,index) in img' :key='index' v-show='index===mark'>
+            <li v-for='(item,index) in img' :key='index' class="swiper-item" v-show='index===mark'>
                 <a><img :src="item"></a>
             </li>
         </transition-group>
@@ -55,11 +55,11 @@ ul{
     position: relative;
     list-style: none;
 }
-li{
+.swiper-item{
     position: absolute;
     height: 400px;
 }
-li img{
+.swiper-item img{
     width: 100%;
     height: 100%;
 }
