@@ -9,10 +9,11 @@
             </ul>
             <div class="wraper-content">
                 <div class="wraper-content-item" ref="profile"
-                    v-for="(itemBot,index) in sideContent" :style="{ height:itemBot.height }" >
+                    v-for="(itemBot,index) in sideContent" :style="{ height:itemBot.height}" >
                     {{itemBot.title}} {{index+1}}
                 </div>
             </div>
+            <div class="hot-goods">热门商品</div>
         </div>
         <footer>我是底部</footer>
     </div>
@@ -44,7 +45,8 @@ export default {
                     title:'我是楼层',
                     height:Math.floor(Math.random()*200+400) + 'px'
                 }
-            ]
+            ],
+            randomColor:null
         }
     },
     mounted() {
@@ -55,7 +57,7 @@ export default {
             this.scrollTop = window.pageYOffset
             let jump = Array.from(document.querySelectorAll('.wraper-content-item'))
             jump.forEach((v,k)=>{
-                if(v.offsetTop - this.scrollTop<= 0){
+                if(v.offsetTop - this.scrollTop <= 0){
                     this.selected = k
                 }
             })
@@ -66,14 +68,14 @@ export default {
                 let jump = document.querySelectorAll('.wraper-content-item')
                 // 获取需要滚动的距离
                 let total = jump[index].offsetTop
-                let speed = (total-this.scrollTop-80)/20
+                let speed = (total-this.scrollTop)/20 // 同时也决定滚动方向
 
                 this.interval = setInterval(()=> {
                     this.scrollTop += speed
-                    if(this.scrollTop*speed >= (total-80)*speed){
+                    if(this.scrollTop*speed >= total*speed){
                         this.scrollTop = total
-                        clearInterval(this.interval)
                         this.selected = index
+                        clearInterval(this.interval)
                     }
                     window.scrollTo(0,this.scrollTop)
                 },13)
@@ -96,6 +98,10 @@ export default {
         width: 800px;
         min-height: 600px;
         margin: 0 auto;
+    }
+    .hot-goods{
+        height: 400px;
+        margin-left: 210px;
     }
     footer{
         position: absolute;

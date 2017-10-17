@@ -66,17 +66,17 @@
         <script>
             const $ = (el) => document.querySelector(el)
             const $$ = (el) => document.querySelectorAll(el)
-            const typeReg = /^\d+$/
+            const typeReg = /^\d*$/
             const input = $('input')
             const items = Array.from($$('ul li'))
 
             input.addEventListener('input',function(){
-                const pw = this.value
-                const len = 6
+                let pw = this.value
+                let len = 6
                 if(!typeReg.test(pw)){
                     this.value = ''
+                    pw = ''
                     alert("仅支持数字密码")
-                    return
                 }
                 for(let i=0;i<6;i++){
                     if(pw[i]){
