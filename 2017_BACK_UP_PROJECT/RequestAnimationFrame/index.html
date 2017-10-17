@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            .progress{
+                width: 0;
+                height: 50px;
+                line-height: 50px;
+                border-radius: 50px;
+                color: #fff;
+                text-align: right;
+                background-color: #37b5c2;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="SomeElementYouWantToAnimate">测试</div>
+        <div class="progress"></div>
+        <button type="button" name="button">开始</button>
+        <script>
+            // var start = null;
+            // var element = document.getElementById('SomeElementYouWantToAnimate');
+            // element.style.position = 'absolute';
+            //
+            // function step(timestamp) {
+            //     if (!start) start = timestamp;
+            //     console.log(timestamp)
+            //     var progress = timestamp - start;
+            //     // console.log(timestamp)
+            //     element.style.left = Math.min(progress / 10, 200) + 'px';
+            //     if (progress < 2000) {
+            //         window.requestAnimationFrame(step);
+            //     }
+            // }
+            // window.requestAnimationFrame(step);
+            let timer = null
+            const $ = (el) => document.querySelector(el)
+            $('button').onclick = function(){
+                $('.progress').style.width = 0
+                requestAnimationFrame(function s(){
+                    $('.progress').style.width = parseInt($('.progress').style.width) + 5 + 'px'
+                    $('.progress').innerHTML = parseInt(parseInt($('.progress').style.width) / 5) + '%'
+                    if(parseInt($('.progress').style.width) < 500){
+                        window.requestAnimationFrame(s)
+                    }
+                })
+            }
+
+        </script>
+    </body>
+</html>

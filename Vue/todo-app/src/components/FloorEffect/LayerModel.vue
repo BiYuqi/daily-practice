@@ -3,14 +3,14 @@
         <header>测试楼层效果</header>
         <div class="wrapper-inner">
             <ul class="side-bar">
-                <li v-for="(item,index) in side" :class="{active: selected === index}" @click="btnLeft(index)">
+                <li v-for="(item,index) in side" :class="{active: selected === index}" @click="jumpFloor(index)">
                     {{ item }}
                 </li>
             </ul>
             <div class="wraper-content">
                 <div class="wraper-content-item" ref="profile"
-                    v-for="(itemBot,index) in sideContent" :style="{ height:itemBot.height}" >
-                    {{itemBot.title}} {{index+1}}
+                    v-for="(itemBot,index) in sideContent" :style="{ height:itemBot.height,background: itemBot.bgc}" >
+                    {{itemBot.title}}
                 </div>
             </div>
             <div class="hot-goods">热门商品</div>
@@ -26,47 +26,29 @@ export default {
             interval:null,
             scrollTop:0,
             selected:0,
-            side:['我是标题1','我是标题2','我是标题3','我是标题4','我是标题5'],
-            sideContent:[
-                {
-                    title:'我是楼层',
-                    height:Math.floor(Math.random()*200+400) + 'px'
-                },
-                {
-                    title:'我是楼层',
-                    height:Math.floor(Math.random()*200+400) + 'px'
-                },{
-                    title:'我是楼层',
-                    height:Math.floor(Math.random()*200+400) + 'px'
-                },{
-                    title:'我是楼层',
-                    height:Math.floor(Math.random()*200+400) + 'px'
-                },{
-                    title:'我是楼层',
-                    height:Math.floor(Math.random()*200+400) + 'px'
-                }
-            ],
-            randomColor:null
+            side:[],
+            sideContent:[]
         }
     },
     mounted() {
-        window.addEventListener('scroll',this.scrollPage)
+        this.makeData()
+        window.addEventListener('scroll',this.scrollEvents)
     },
     beforeDestory() {
-        window.removeEventListener('scroll',this.scrollPage)
+        window.removeEventListener('scroll',this.scrollEvents)
     },
     methods:{
-        scrollPage() {
+        scrollEvents() {
             this.scrollTop = window.pageYOffset
             let jump = Array.from(document.querySelectorAll('.wraper-content-item'))
             jump.forEach((v,k)=>{
                 if(v.offsetTop - this.scrollTop <= 0){
+                    // 匹配更新索引
                     this.selected = k
                 }
             })
         },
-        btnLeft(index) {
-
+        jumpFloor(index) {
             this.$nextTick(function(){
                 let jump = document.querySelectorAll('.wraper-content-item')
                 // 获取需要滚动的距离
@@ -77,12 +59,32 @@ export default {
                     this.scrollTop += speed
                     if(this.scrollTop*speed >= total*speed){
                         this.scrollTop = total
+                        // 匹配更新索引
                         this.selected = index
                         clearInterval(this.interval)
                     }
                     window.scrollTo(0,this.scrollTop)
                 },13)
             })
+        },
+        makeData() {
+            const getRandomParam =  function() {
+                const { random , floor } = Math
+                const r = floor(random()*256)
+                const g = floor(random()*256)
+                const b = floor(random()*256)
+                return {
+                    color: `rgb(${r}, ${g}, ${b})`
+                }
+            }
+            for(let i=0;i<5;i++){
+                this.side.push(`我是楼层${i+1}`)
+                this.sideContent.push({
+                    title:`我是楼层${i+1}`,
+                    height:Math.floor(Math.random()*200+400) + 'px',
+                    bgc: getRandomParam().color
+                })
+            }
         }
     }
 }
@@ -152,6 +154,9 @@ export default {
     .wraper-content{
         margin-left: 210px;
         margin-top: 80px;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
     }
     @media screen and (max-width:800px) {
         .side-bar{

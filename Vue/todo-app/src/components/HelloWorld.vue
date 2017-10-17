@@ -19,7 +19,7 @@
 import GetTodo from '@/components/todo/GetTodo'
 import CurrentTodos from '@/components/todo/CurrentTodos'
 import CompletedTodos from '@/components/todo/CompletedTodos'
-import BackTop from '@/components/BackTop.vue'
+import BackTop from '@/components/BackTop/BackTop.vue'
 import SwiperSlide from '@/components/SwiperSlide'
 import '../assets/css/loading.css'
 export default {
@@ -32,7 +32,7 @@ export default {
   },
   data() {
       return {
-          items:Array.from({length:30})
+          items:Array.from({length:40})
       }
   }
 }
