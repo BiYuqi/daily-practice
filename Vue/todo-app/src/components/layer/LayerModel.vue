@@ -52,6 +52,9 @@ export default {
     mounted() {
         window.addEventListener('scroll',this.scrollPage)
     },
+    beforeDestory() {
+        window.removeEventListener('scroll',this.scrollPage)
+    },
     methods:{
         scrollPage() {
             this.scrollTop = window.pageYOffset
@@ -79,8 +82,6 @@ export default {
                     }
                     window.scrollTo(0,this.scrollTop)
                 },13)
-
-
             })
         }
     }
