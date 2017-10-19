@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            const souceData = [
+                {
+                    code:'001',
+                    listItem:[
+                        {
+                            subcode: "s_001",
+                            flag: 'B',
+                            value: '1'
+                        },
+                        {
+                            subcode: "s_002",
+                            value: '2',
+                            flag: 'R',
+                        }
+                    ]
+                },
+                {
+                    code:'002',
+                    listItem:[
+                        {
+                            subcode: "s_003",
+                            value: '3',
+                            flag: 'B'
+                        },
+                        {
+                            subcode: "s_004",
+                            value: '4',
+                            flag: 'B'
+                        }
+                    ]
+                },
+                {
+                    code:'003',
+                    listItem:[
+                        {
+                            subcode: "s_005",
+                            value: '5',
+                            flag: 'C'
+                        },
+                        {
+                            subcode: "s_006",
+                            value: '6',
+                            flag: 'T'
+                        },
+                        {
+                            subcode: "s_007",
+                            value: '7',
+                            flag: 'M'
+                        }
+                    ]
+                }
+            ]
+            //console.log(souceData)  数据源
+
+            const arr = [] // 数组扁平化收集数据
+            let start = 0  // 开始查询位置
+            let obj;
+            while(souceData[start]){
+                const souceItemLen = souceData[start].listItem.length
+                if( souceItemLen > 1){
+                    const len = souceData[start].listItem.length
+                    for(let i=0;i<len;i++){
+                        obj = {}
+                        obj.fatherCode = souceData[start].code
+                        obj.subcode = souceData[start].listItem[i].subcode
+                        obj.value = souceData[start].listItem[i].value
+                        obj.flag = souceData[start].listItem[i].flag
+                        arr.push(obj)
+                    }
+                }else{
+                    obj = {}
+                    obj.fatherCode = souceData[start].code
+                    obj.subcode = souceData[start].listItem[0].subcode
+                    obj.value = souceData[start].listItem[0].value
+                    obj.flag = souceData[start].listItem[0].flag
+                    arr.push(obj)
+                }
+                start++
+            }
+
+            const resB = arr.filter((v)=> v.flag === 'B')
+            const resC = arr.filter((v)=> v.flag === 'C')
+            const resT = arr.filter((v)=> v.flag === 'T')
+            const resM = arr.filter((v)=> v.flag === 'M')
+            const resR = arr.filter((v)=> v.flag === 'R')
+
+            console.log(resB)
+            console.log(resC)
+            console.log(resT)
+            console.log(resM)
+            console.log(resR)
+        </script>
+    </body>
+</html>
