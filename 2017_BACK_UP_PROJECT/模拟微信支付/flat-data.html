@@ -6,97 +6,174 @@
     </head>
     <body>
         <script>
-            const souceData = [
-                {
-                    code:'001',
-                    listItem:[
+                var data =  [{
+                     "checktypeId": "1",
+                     "name": "临床症状",
+                     "code": "JC001",
+                     "levelCode": "L1",
+                     "rdCheckItemList": [
                         {
-                            subcode: "s_001",
-                            flag: 'B',
-                            value: '1'
-                        },
-                        {
-                            subcode: "s_002",
-                            value: '2',
-                            flag: 'R',
-                        }
-                    ]
-                },
-                {
-                    code:'002',
-                    listItem:[
-                        {
-                            subcode: "s_003",
-                            value: '3',
-                            flag: 'B'
-                        },
-                        {
-                            subcode: "s_004",
-                            value: '4',
-                            flag: 'B'
-                        }
-                    ]
-                },
-                {
-                    code:'003',
-                    listItem:[
-                        {
-                            subcode: "s_005",
-                            value: '5',
-                            flag: 'C'
-                        },
-                        {
-                            subcode: "s_006",
-                            value: '6',
-                            flag: 'T'
-                        },
-                        {
-                            subcode: "s_007",
-                            value: '7',
-                            flag: 'M'
-                        }
-                    ]
+                             "checkitemId": "1",
+                             "name": "头痛",
+                             "code": "LC001",
+                             "rdParamList": [{
+                                 "paramId": "1",
+                                 "code": "B0001",
+                                 "specFlag": "B",
+                                 "value": "T"
+                             }]
+                         },
+                         {
+                             "checkitemId": "10",
+                             "name": "腹泻",
+                             "code": "LC010",
+                             "rdParamList": [{
+                                 "paramId": "1",
+                                 "code": "B0001",
+                                 "specFlag": "B",
+                                 "value": "T"
+                             }]
+                         },
+                         {
+                             "checkitemId": "8",
+                             "name": "呕吐",
+                             "code": "LC008",
+                             "rdParamList": [{
+                                 "paramId": "4",
+                                 "code": "R0001",
+                                 "specFlag": "R",
+                                 "value": "0"
+                             }, {
+                                 "paramId": "1",
+                                 "code": "B0001",
+                                 "specFlag": "B",
+                                 "value": "T"
+                             }]
+                         }, {
+                             "checkitemId": "85",
+                             "name": "皮疹",
+                             "code": "LC016",
+                             "rdParamList": [{
+                                 "paramId": "27",
+                                 "code": "C0012",
+                                 "specFlag": "C",
+                                 "value": "8"
+                             }, {
+                                 "paramId": "1",
+                                 "code": "C00129",
+                                 "specFlag": "B",
+                                 "value": "T"
+                             }]
+                         }]
+                     },
+                     {
+                          "checktypeId": "1",
+                          "name": "临床症状",
+                          "code": "JC001",
+                          "levelCode": "L1",
+                          "rdCheckItemList": [
+                             {
+                                  "checkitemId": "1",
+                                  "name": "头痛",
+                                  "code": "LC058",
+                                  "rdParamList": [{
+                                      "paramId": "1",
+                                      "code": "B0001",
+                                      "specFlag": "B",
+                                      "value": "T"
+                                  }]
+                              },
+                              {
+                                  "checkitemId": "10",
+                                  "name": "腹泻",
+                                  "code": "LC012",
+                                  "rdParamList": [{
+                                      "paramId": "1",
+                                      "code": "B0001",
+                                      "specFlag": "B",
+                                      "value": "T"
+                                  }]
+                              },
+                              {
+                                  "checkitemId": "8",
+                                  "name": "呕吐",
+                                  "code": "LC028",
+                                  "rdParamList": [{
+                                      "paramId": "4",
+                                      "code": "R0001",
+                                      "specFlag": "R",
+                                      "value": "2"
+                                  }, {
+                                      "paramId": "1",
+                                      "code": "B0001",
+                                      "specFlag": "B",
+                                      "value": "T"
+                                  }]
+                              }, {
+                                  "checkitemId": "85",
+                                  "name": "皮疹",
+                                  "code": "LC066",
+                                  "rdParamList": [{
+                                      "paramId": "27",
+                                      "code": "C0012",
+                                      "specFlag": "C",
+                                      "value": "8"
+                                  }, {
+                                      "paramId": "1",
+                                      "code": "B0001",
+                                      "specFlag": "B",
+                                      "value": "T"
+                                  }]
+                              }]
+                          }
+             ]
+
+
+            var l1 = []
+            var souceData = []
+            var filterData = data.forEach((v)=>{
+                l1.push(v.rdCheckItemList)
+            })
+            for(var i=0;i<l1.length;i++){
+                for(var j=0;j<l1[i].length;j++){
+                    souceData.push(l1[i][j])
                 }
-            ]
-            //console.log(souceData)  数据源
+            }
 
             const arr = [] // 数组扁平化收集数据
             let start = 0  // 开始查询位置
             let obj;
             while(souceData[start]){
-                const souceItemLen = souceData[start].listItem.length
+                const souceItemLen = souceData[start].rdParamList.length
                 if( souceItemLen > 1){
-                    const len = souceData[start].listItem.length
+                    const len = souceData[start].rdParamList.length
                     for(let i=0;i<len;i++){
                         obj = {}
                         obj.fatherCode = souceData[start].code
-                        obj.subcode = souceData[start].listItem[i].subcode
-                        obj.value = souceData[start].listItem[i].value
-                        obj.flag = souceData[start].listItem[i].flag
+                        obj.subcode = souceData[start].rdParamList[i].code
+                        obj.value = souceData[start].rdParamList[i].value
+                        obj.flag = souceData[start].rdParamList[i].specFlag
                         arr.push(obj)
                     }
                 }else{
                     obj = {}
                     obj.fatherCode = souceData[start].code
-                    obj.subcode = souceData[start].listItem[0].subcode
-                    obj.value = souceData[start].listItem[0].value
-                    obj.flag = souceData[start].listItem[0].flag
+                    obj.subcode = souceData[start].rdParamList[0].code
+                    obj.value = souceData[start].rdParamList[0].value
+                    obj.flag = souceData[start].rdParamList[0].specFlag
                     arr.push(obj)
                 }
                 start++
             }
 
             const resB = arr.filter((v)=> v.flag === 'B')
-            const resC = arr.filter((v)=> v.flag === 'C')
-            const resT = arr.filter((v)=> v.flag === 'T')
-            const resM = arr.filter((v)=> v.flag === 'M')
             const resR = arr.filter((v)=> v.flag === 'R')
+            const resC = arr.filter((v)=> v.flag === 'C')
+
 
             console.log(resB)
-            console.log(resC)
-            console.log(resT)
-            console.log(resM)
             console.log(resR)
+            console.log(resC)
         </script>
     </body>
 </html>
