@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            const arr = [1,2,3,[4],[5,[7,8,[45]]]]
+            const res = []
+            const getRes = function(arr){
+                arr.map((m)=>{
+                    typeof m === 'object' ? getRes(m) : res.push(m)
+                })
+                return res
+            }
+
+            console.log(getRes(arr))
+
+            // const reduce = ( (arr) => {
+            //     arr.map( (n) => {
+            //         typeof n === 'object' ? reduce(n) : res.push(n)
+            //     })
+            //     return res
+            // })
+            // console.log(reduce(arr))
+        </script>
+    </body>
+</html>
