@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <div class="header">我是头部</div>
+        <div class="header">Header</div>
         <div class="concat">
             <div class="letter-wrapper">
                 <span class="current-char"></span>
@@ -95,14 +95,6 @@
                     this.touchEnd()
                     this.touchMove()
                 }
-                // 此为理想状况下联系人或者城市列表刚好都存在时用索引匹配
-                // 不是很符合多样化需求，故废弃该方法
-                moveTo(index) {
-                    const mainWrap = Array.from(this.concatList)
-                    if(mainWrap[index]){
-                        window.scrollTo(0,mainWrap[index].offsetTop-this.offsetTop)
-                    }
-                }
                 // 到达指定位置 用字母去匹配内容区域是否存在，如果存在就跳转
                 moveTo2(letter) {
                     const len = this.concatList.length
@@ -140,19 +132,7 @@
                             const index = this.getIndex(touchY)
                             this.showTips(index)
                             this.moveTo2(this.source[index])
-                            // this.moveTo(index)
                         }
-                    },false)
-                }
-
-                touchEnd() {
-                    this.letterWrap.addEventListener('touchend',()=>{
-                        if(this.touching){
-                            this.touching = false
-                            this.letterWrap.className = this.letterWrap.className.replace(/\s*active/,'')
-                            this.hideTips()
-                        }
-
                     },false)
                 }
 
@@ -163,8 +143,18 @@
                             const touchY = e.touches[0].clientY
                             const index = this.getIndex(touchY)
                             this.showTips(index)
-                            // this.moveTo(index)
                             this.moveTo2(this.source[index])
+                        }
+
+                    },false)
+                }
+
+                touchEnd() {
+                    this.letterWrap.addEventListener('touchend',()=>{
+                        if(this.touching){
+                            this.touching = false
+                            this.letterWrap.className = this.letterWrap.className.replace(/\s*active/,'')
+                            this.hideTips()
                         }
 
                     },false)
