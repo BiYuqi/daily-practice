@@ -10,7 +10,7 @@
                 background-color: green;
                 margin: 0 auto;
                 transition: all .2s;
-                transform: translate(-4px,-4px);
+                transform: translate(-4px,-8px);
             }
             .box:after{
                 font-size: 18px;
@@ -23,14 +23,35 @@
             const $ = function(el){
                 return document.querySelector(el)
             }
-            const getStyle = function(obj,attr){
-                return obj.currentStyle ? obj.currentStyle[attr] : window.getComputedStyle($(obj))[attr]
-            }
-            const res = getStyle('.box','transform')
+            // const getStyle = function(obj,attr){
+            //     return obj.currentStyle ? obj.currentStyle[attr] : window.getComputedStyle($(obj))[attr]
+            // }
+            // const res = getStyle('.box','transform')
             // console.log(res)
-
-            console.log(window.getComputedStyle($('.box'),':after'))
-
+            //
+            // const reg = /matrix\((.*)\)/
+            //
+            // const getTransForm = function(){
+            //     const result = reg.exec(res)[1].split(',')
+            //     var transX,transY;
+            //     transY = result[result.length-1]
+            //     transX = result[result.length-2]
+            //     console.log(transX,transY)
+            // }
+            // getTransForm()
+            const getStyle = function(obj,attr){
+                return obj.currentStyle ? obj.currentStyle[attr] : window.getComputedStyle(obj)[attr]
+            }
+            const getTransform = function(data){
+                const reg = /matrix\((.*)\)/
+                const result = reg.exec(data)[1].split(',')
+                return {
+                    transX: parseInt(result[result.length-2]),
+                    transY: parseInt(result[result.length-1])
+                }
+            }
+            const data = getTransform(getStyle( $('.box'), 'transform' ))
+            console.log(data)
         </script>
     </body>
 </html>
