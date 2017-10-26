@@ -5,6 +5,7 @@ const res = document.querySelector('.target').style.width
 
 console.log(res) // 结果为空
 ```
+郁闷啊。。。
 突然想到之前看高程的时候看到过getComputedStyle这个方法，于是MDN了一下[这里](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle)
 
 ```js
