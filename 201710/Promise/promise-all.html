@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function getURL(URL) {
+                return new Promise(function (resolve, reject) {
+                    var req = new XMLHttpRequest();
+                    req.open('GET', URL, true);
+                    req.onload = function () {
+                        if (req.status === 200) {
+                            resolve(req.responseText);
+                        } else {
+                            reject(new Error(req.statusText));
+                        }
+                    };
+                    req.onerror = function () {
+                        reject(new Error(req.statusText));
+                    };
+                    req.send();
+                });
+            }
+
+            const res1 = getURL('http://azu.github.io/promises-book/json/comment.json').then(JSON.parse)
+            const res2 = getURL('http://azu.github.io/promises-book/json/people.json').then(JSON.parse)
+
+            function test(){
+                return Promise.all([res1,res2])
+            }
+            test().then(function(value){
+                console.log(value)
+            }).catch(function(){
+
+            })
+        </script>
+    </body>
+</html>

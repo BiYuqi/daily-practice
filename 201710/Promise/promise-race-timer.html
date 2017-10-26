@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+            *    第一个promise对象变为确定（FulFilled）状态后，
+            *    它之后的promise对象是否还在继续运行。
+            */
+            var winnerPromise = new Promise(function (resolve) {
+                    setTimeout(function () {
+                        console.log('this is winner');
+                        resolve('this is winner');
+                    }, 4);
+                });
+            var loserPromise = new Promise(function (resolve) {
+                    setTimeout(function () {
+                        console.log('this is loser');
+                        resolve('this is loser');
+                    }, 1000);
+            });
+            Promise.race([
+                winnerPromise,
+                loserPromise
+            ]).then(function(value){
+                console.log(value)
+                // this is winner
+                // this is winner
+                // this is loser
+            })
+
+            //也就是说， Promise.race 在第一个promise对象变为Fulfilled之后，并不会取消其他promise对象的执行。
+
+        </script>
+    </body>
+</html>

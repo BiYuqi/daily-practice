@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+            *    测试promise-all 里面的方法是不是同时执行
+            */
+            const timerPromisefy = function(delay){
+                return new Promise(function(resolve,reject){
+                    setTimeout(function(){
+                        resolve(delay)
+                    },delay)
+                })
+            }
+            const startDate = Date.now()
+            Promise.all([
+                timerPromisefy(100),
+                timerPromisefy(200),
+                timerPromisefy(400),
+                timerPromisefy(800),
+                timerPromisefy(1600)
+            ])
+            .then(function(value){
+                console.log(Date.now() - startDate + 'ms');
+                console.log(value)
+            })
+            /**
+                也就是说，这个promise对象数组中所有promise都变为resolve状态的话，
+                至少需要1600ms。实际我们计算一下Promise.all 的执行时间的话，它确实是消耗了1600ms的时间。
+                从上述结果可以看出，传递给 Promise.all 的promise并不是一个个的顺序执行的，而是同时开始、并行执行的。
+            */
+        </script>
+    </body>
+</html>
