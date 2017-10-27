@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .time-wraper{
+                width: 400px;
+                margin: auto;
+                list-style: none;
+            }
+            .time-wraper .time-item{
+                position: relative;
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+                /*height: 100px;*/
+            }
+            .time-item .time-circle{
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: rgb(52, 141, 191);
+                display: block;
+                position: absolute;
+                top: 28%;
+                left: -15px;
+                transform: translateY(-20%);
+            }
+            .time-item .time-circle:after,
+            .time-item .time-circle:before{
+                content: '';
+                display: block;
+                width: 1px;
+                height: 50px;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: rgb(52, 141, 191);
+            }
+            .time-item:first-child .time-circle:before{
+                height: 0;
+            }
+            .time-item:last-child .time-circle:after{
+                height: 0;
+            }
+            .time-item .time-circle:after{
+                top: 0;
+            }
+            .time-item .time-circle:before{
+                bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <ul class="time-wraper">
+            <li class="time-item">
+                <i class="time-circle"></i>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+            </li>
+            <li class="time-item">
+                <i class="time-circle"></i>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+            </li>
+            <li class="time-item">
+                <i class="time-circle"></i>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+            </li>
+            <li class="time-item">
+                <i class="time-circle"></i>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+            </li>
+            <li class="time-item">
+                <i class="time-circle"></i>
+                <div class="head">上的放松放松发是否是打发打发算法是</div>
+            </li>
+        </ul>
+        <script>
+            /**
+            *    @param listItem 元素
+            *    @param sideItem 元素
+            *    只需填充内容即可 单个item高度不可超过其他两倍以上
+            */
+            const initTimeLine = function(options){
+                const items = Array.from(document.querySelectorAll(options.listItem))
+                const realHeight = items[0].clientHeight
+                const csstext = `.time-item .time-circle:after,
+                                 .time-item .time-circle:before{
+                                     height: ${realHeight}px;
+                                }`
+                const style = document.createElement('style')
+                if(style.styleSheet){
+                    style.styleSheet.cssText = csstext
+                }else{
+                    style.innerHTML = csstext
+                }
+                document.getElementsByTagName('head')[0].appendChild(style)
+            }
+            initTimeLine({
+                listItem:'.time-item',
+                sideItem:'.time-circle'
+            })
+        </script>
+    </body>
+</html>
