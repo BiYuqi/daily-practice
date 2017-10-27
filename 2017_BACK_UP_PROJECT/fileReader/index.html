@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <input type="file" class="inputs" multiple>
+        <div class="prev"></div>
+        <script src="filereader.js"></script>
+        <script>
+            /**
+            *   @param {el}  目标元素
+            *   @param {data} {Array} 返回一个数据 ，第一个参数是base64img可用于预览，第二个是files文件可用于上传
+            */
+            ReadFileAndUpLoad({
+                el:'.inputs',
+                resolve:function(data){
+                        const imgs = data[0]
+                        const files = data[1]
+                        console.log(imgs)
+                        console.log(files)
+
+                        let imgHtml = ''
+                        for(let i=0;i<imgs.length;i++){
+                            imgHtml += '<img src="'+imgs[i]+'" alt=""/>'
+                        }
+                        document.querySelector('.prev').innerHTML = imgHtml
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function loadData(){
+                return new Promise(function(resolve,reject){
+                    setTimeout(function(){
+                        resolve('测试')
+                    },1500)
+                })
+            }
+            function update() {
+                let nextUpdateTime = Date.now()
+                loadData().then(function(data) {
+                    console.log(data)
+                    var delay = Date.now() - nextUpdateTime;
+                    if (delay > 1000) {
+                        setTimeout(update, delay);
+                        nextUpdateTime = Date.now()
+                    }
+                });
+            }
+            update()
+        </script>
+    </body>
+</html>
