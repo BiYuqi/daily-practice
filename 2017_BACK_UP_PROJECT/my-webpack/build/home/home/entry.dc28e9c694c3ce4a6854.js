@@ -1,0 +1,1 @@
+webpackJsonp([0],{gtTu:function(t,o,e){"use strict";function n(){return 100*Math.random()}o.a=n},ti8B:function(t,o,e){"use strict";Object.defineProperty(o,"__esModule",{value:!0});var n=e("gtTu");!function(){console.log(Object(n.a)()),console.log("woaicaicai")}()}},["ti8B"]);

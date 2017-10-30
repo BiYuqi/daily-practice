@@ -1,0 +1,1 @@
+webpackJsonp([1],{gtTu:function(n,t,e){"use strict";function o(){return 100*Math.random()}t.a=o},"x/nx":function(n,t,e){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var o=e("gtTu");!function(){console.log(Object(o.a)())}()}},["x/nx"]);
