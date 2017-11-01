@@ -3,8 +3,27 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <style>
+            .pics{
+              width: 300px;
+              margin: 0 auto;
+            }
+            .pics img{
+              display: block;
+              width: 100%;
+            }
+            .loading{
+              text-align: center;
+              font-size: 14px;
+              color: #111;
+            }
+         </style>
     </head>
-    <body>
+    <body class="pics">
+        <div class="prev">
+
+        </div>
+        <div class="loading">正在加载...</div>
         <script>
 
             const loading = (function(){
@@ -33,14 +52,29 @@
                 })
             }
 
-            loadUrl('https://images.unsplash.com/photo-1462212018902-1ca14eec1bb2?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D')
-                .then(function(d){
-                    console.log(d)
-                })
-                .catch(function(err){
-                    console.log(err)
-                })
-
+            
+            var imgs = [
+                'https://wheato.github.io/demo/promise-demo/images/1.jpg',
+                'https://wheato.github.io/demo/promise-demo/images/2.jpg',
+                'https://wheato.github.io/demo/promise-demo/images/3.jpg',
+                'https://wheato.github.io/demo/promise-demo/images/4.jpg'
+            ];
+            (function getImage(){
+                const u = imgs.shift()
+                if(u){
+                    loadUrl(u)
+                        .then(function(d){
+                            document.querySelector('.prev').appendChild(d)
+                            getImage()
+                        })
+                        .catch(function(err){
+                            console.log(err)
+                        })
+                }else{
+                    var loading = document.querySelector('.loading')
+                    loading.parentNode.removeChild(loading)
+                }
+            })()
         </script>
     </body>
 </html>
