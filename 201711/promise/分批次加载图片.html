@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+
+            const loading = (function(){
+                const close = function(){
+                    return '加载完毕...'
+                }
+                const open = function(){
+                    return '开始加载...'
+                }
+                return {
+                    close:close,
+                    open:open
+                }
+            })()
+
+            const loadUrl = function(url){
+                return new Promise(function(resolve,reject){
+                    const img = new Image()
+                    img.onload = function(){
+                        console.log(loading.close())
+                        resolve(img)
+                    }
+                    img.src = url
+                    img.onerror = reject
+                    console.log(loading.open())
+                })
+            }
+
+            loadUrl('https://images.unsplash.com/photo-1462212018902-1ca14eec1bb2?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D')
+                .then(function(d){
+                    console.log(d)
+                })
+
+        </script>
+    </body>
+</html>
