@@ -20,18 +20,16 @@
          </style>
     </head>
     <body class="pics">
-        <div class="prev">
-
-        </div>
+        <div class="prev"></div>
         <div class="loading">正在加载...</div>
         <script>
 
             const loading = (function(){
                 const close = function(){
-                    return '加载完毕...'
+                    console.log('加载完毕...')
                 }
                 const open = function(){
-                    return '开始加载...'
+                    console.log('开始加载...')
                 }
                 return {
                     close:close,
@@ -43,16 +41,16 @@
                 return new Promise(function(resolve,reject){
                     const img = new Image()
                     img.onload = function(){
-                        console.log(loading.close())
+                        loading.close()
                         resolve(img)
                     }
                     img.src = url
                     img.onerror = reject
-                    console.log(loading.open())
+                    loading.open()
                 })
             }
 
-            
+
             var imgs = [
                 'https://wheato.github.io/demo/promise-demo/images/1.jpg',
                 'https://wheato.github.io/demo/promise-demo/images/2.jpg',

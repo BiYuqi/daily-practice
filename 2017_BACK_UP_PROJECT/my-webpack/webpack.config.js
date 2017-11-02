@@ -7,7 +7,7 @@ module.exports = {
 
   // module: require('./webpack-config/module.product.config.js'),
 
-  // resolve: require('./webpack-config/resolve.config.js'),
+  resolve: require('./webpack-config/resolve.config.js'),
 
   plugins: require('./webpack-config/plugins.product.config.js')
 
