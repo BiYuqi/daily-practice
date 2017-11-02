@@ -5,34 +5,31 @@
         <title></title>
         <meta name="viewport" content="width=device-width">
         <style>
-            html,body{
-                height: 100%;
-                width: 100%;
-            }
-            .wrapper{
-                min-height: 100%;
-                margin-bottom: -50px;
-            }
-            .push{
-                height: 50px;
-            }
-            .footer{
-                height: 50px;
-                background-color: rgb(32, 184, 210);
-            }
+                html, body {
+                    height: 100%;
+                    margin: 0;
+                }
+                .wrapper {
+                    min-height: 100%;
+                }
+                .wrapper-inside {
+                    padding-bottom: 50px;
+                }
+                .footer {
+                    height: 50px;
+                    margin-top: -50px;
+                    background-color: rgb(73, 207, 231);
+                }
         </style>
     </head>
     <body>
         <div class="wrapper">
-            <div class="main">
+            <div class="wrapper-inside">
                 <button>点击加载</button>
                 <div class="prev"></div>
             </div>
-            <div class="push"></div>
         </div>
-        <div class="footer">
-            我是FOOTER
-        </div>
+        <footer class="footer">我是FOOTER</footer>
         <script>
             // const tpl = Array.from({length:50},() => `<span style="display:block;">测试数据</span>`).join('')
             // const div = document.createElement('DIV')

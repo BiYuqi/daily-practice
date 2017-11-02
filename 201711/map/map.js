@@ -27,18 +27,3 @@ class MyMap{
     }
 
 }
-
-const map = new MyMap()
-
-map.set('key',true)
-map.set('key2','测试2')
-map.set('key3','测试3')
-const data = map.opt
-for(item in data){
-    if(!map.get(item)){
-        console.log(item)
-    }
-}
-
-map.clear()
-console.log(map)
