@@ -1,0 +1,41 @@
+age = 18
+if age <10:
+    print('this is a little boy')
+elif age < 20:
+    print('this is big boy')
+elif age < 50:
+    print('this is old man')
+else:
+    print('go to dead')
+
+print('....................分割线...........................')
+
+birth = input('birth:')
+# 由于输入的是字符串，必须转化为整数(string -- number)后在进行比较 int
+#
+if int(birth) < 2000:
+    print('00前')
+else:
+    print('00后')
+
+print('....................分割线...........................')
+# 低于18.5：过轻
+# 18.5-25：正常
+# 25-28：过重
+# 28-32：肥胖
+# 高于32：严重肥胖
+
+def isHealth(n):
+    if n < 18.5:
+        print('过轻')
+    elif 18.5 <= n < 25:
+        print('正常')
+    elif 25 <= n < 28:
+        print('过重')
+    elif 28 <= n < 32:
+        print('肥胖')
+    elif n > 32:
+        print('严重肥胖')
+
+isHealth(25)
+
