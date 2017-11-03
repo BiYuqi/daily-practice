@@ -1,3 +1,4 @@
+# coding=UTF-8
 classMate = ['job','mike','mary']
 
 print(classMate[0])

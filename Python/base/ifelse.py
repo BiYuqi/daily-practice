@@ -1,3 +1,4 @@
+# coding=UTF-8
 age = 18
 if age <10:
     print('this is a little boy')
