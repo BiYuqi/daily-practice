@@ -31,6 +31,7 @@ if age > 18:
 print('----参数检查----')
 # 数据类型检查可以用内置函数isinstance()
 
+
 def my_abs(x):
     if not isinstance(x,(int,float)):
         return 'bad arguments'
@@ -38,6 +39,8 @@ def my_abs(x):
         return x
     else:
         return -x
+
+
 print(my_abs('58'))
 print(my_abs(58))
 print(my_abs(58.258))
