@@ -55,5 +55,7 @@ print(response.reason)
 for name, value in response.headers.items():
     print('%s:%s' % (name, value))
 
-# print(response.content)
+print(response.content)
 
+with open("test.jpg", "wb") as f:
+    f.write(response.content)
