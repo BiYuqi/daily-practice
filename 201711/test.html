@@ -7,13 +7,38 @@
             .box{
                 width: 800px;
                 margin: 0 auto;
+                border-bottom: 1px solid #eee;
             }
             .box p{
                 width: 600px;
+                font-size: 16px;
+            }
+            h6{
+                color: #999;
+                font-size: 14px;
+            }
+            html,body{
+                height: 100%;
+            }
+            .wrapper{
+                min-height: 100%;
+            }
+            .inner-wrapper{
+                padding-bottom: 20px;
+            }
+            button{
+                height: 20px;
+                margin-top: -20px;
             }
         </style>
     </head>
     <body>
+        <div class="wrapper">
+            <div class="inner-wrapper">
+
+            </div>
+        </div>
+        <button>加载更多</button>
         <script type="text/javascript">
             const ajax_GET = function(){
                 return new Promise((resolve,reject) => {
@@ -31,23 +56,43 @@
                     }
                 })
             }
-            ajax_GET()
-                .then(function(data){
-                    data = JSON.parse(data)
-                    var tpl = ''
-                    for(let i=0;i<data.length;i++){
+            function loadData(index){
+                ajax_GET()
+                    .then(function(data){
+                        if(index === JSON.parse(data).length-1){
+                            alert('数据已经加载完毕')
+                            return
+                        }
+                        index = index || 0
+                        data = JSON.parse(data)[index]
 
-                        tpl += `
-                            <div class="box">
-                                <h2>${data[i].name}</h2>
-                                <p>${data[i].con}</p>
-                            </div>
-                        `
-                    }
-                    div = document.createElement('DIV')
-                    div.innerHTML = tpl
-                    document.body.appendChild(div)
-                })
+                        var tpl = ``
+                        for(let i=0;i<data.length;i++){
+                            var inner = ``
+                            if(data[i].img){
+                                inner = `<img src="${data[i].img}" style="max-width:400px;" alt="" />`
+                            }
+                            tpl += `
+                                <div class="box">
+                                    <h6>作者：${data[i].name}</h6>
+                                    <p>${data[i].con}</p>
+                                    ${inner}
+                                </div>
+
+                            `
+                        }
+                        div = document.createElement('DIV')
+                        div.innerHTML = tpl
+                        document.querySelector('.inner-wrapper').appendChild(div)
+                    })
+            }
+            loadData(0)
+            let pageIndex = 0
+            document.querySelector('button').addEventListener('click',function(){
+                pageIndex += 1
+                loadData(pageIndex)
+            },false)
+
         </script>
     </body>
 </html>
