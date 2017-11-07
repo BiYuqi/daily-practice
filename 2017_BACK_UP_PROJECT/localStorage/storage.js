@@ -6,7 +6,7 @@
         return this.storage.getItem(key)
     }
     Storage.prototype.set = function(key,value){
-        return this.storage.setItem(key,value)
+        this.storage.setItem(key,value)
     }
     Storage.prototype.update = function(key,value){
         this.set(key,value)
@@ -20,5 +20,5 @@
     console.log(s.get('name'))
     s.update('name','wagning')
     s.remove('name')
-    console.log(s.get('name'))
+    console.log(JSON.parse(s.get('lists')))
 })()
