@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            /**
+            *    依照一个存着新进货物的二维数组，更新存着现有库存(在 arr1 中)的二维数组.
+            *    如果货物已存在则更新数量 . 如果没有对应货物则把其加入到数组中，
+            *    更新最新的数量. 返回当前的库存数组，
+            *    ----且按货物名称的字母顺序排列.---本案例没有按字母排列
+            *    本案例遵循有则更新 无则依次放入尾部 （见第二个方法为官方要求）
+            */
+            function updateInventory(arr1, arr2) {
+                (function go(){
+                    const id = arr2.shift()
+                    if(id){
+                        const a = arr1.filter(function(v){
+                            return v[1] == id[1]
+                        })
+                        if(a.length>0){
+                            for(let i=0;i<arr1.length;i++){
+                                if(arr1[i][1] == id[1]){
+                                    arr1[i][0] += id[0]
+                                }
+                            }
+                        }else{
+                            arr1.push(id)
+                        }
+                        go()
+                    }
+                })()
+                // 本案例遵循有则更新 无则依次放入尾部
+                return arr1
+            }
+            const a = updateInventory2([
+                [0, "Bowling Ball"],
+                [0, "Dirty Sock"],
+                [0, "Hair Pin"],
+                [0, "Microphone"]
+                ], [
+                    [1, "Hair Pin"],
+                    [1, "Half-Eaten Apple"],
+                    [1, "Bowling Ball"],
+                    [1, "Toothpaste"]
+                ])
+            console.log(a)
+
+            /*-------*/
+            function updateInventory2(arr1, arr2) {
+                let res = arr1.concat(arr2),
+                    sss = [],
+                    l = {};
+                for(let i=0;i<res.length;i++){
+                    if(!l[res[i][1]]){
+                        l[res[i][1]] = res[i][0]
+                    }else{
+                        l[res[i][1]] += res[i][0]
+                    }
+                }
+                for(item in l){
+                    sss.push([l[item], item])
+                }
+
+                var res2 = [],
+                    result = [];
+                sss.map((v,k)=>{
+                    res2.push(sss[k].reverse().toString())
+                }).sort()
+                res2.map((v,k)=>{
+                    var e = v.split(',')[0]
+                        f = parseInt(v.split(',')[1])
+                    return result.push([f,e])
+                })
+                return result
+            }
+
+            const b = updateInventory2([
+                [0, "Bowling Ball"],
+                [0, "Dirty Sock"],
+                [0, "Hair Pin"],
+                [0, "Microphone"]
+                ], [
+                    [1, "Hair Pin"],
+                    [1, "Half-Eaten Apple"],
+                    [1, "Bowling Ball"],
+                    [1, "Toothpaste"]
+                ])
+            console.log(b)
+        </script>
+    </body>
+</html>
