@@ -1,6 +1,6 @@
-(function(){
+;(function(window){
     function Storage(){
-        this.storage = window.localStorage
+        this.storage = window.sessionStorage
     }
     Storage.prototype.get = function(key){
         return this.storage.getItem(key)
@@ -15,10 +15,6 @@
         this.storage.removeItem(key)
     }
 
-    var s = new Storage()
-    s.set('name','biyuqi')
-    console.log(s.get('name'))
-    s.update('name','wagning')
-    s.remove('name')
-    console.log(JSON.parse(s.get('lists')))
-})()
+    window.Storage = Storage
+
+})(window);

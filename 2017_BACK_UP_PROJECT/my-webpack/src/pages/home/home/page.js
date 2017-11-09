@@ -1,6 +1,7 @@
-import { getRandom } from '../../../public-resource/lib/util.js'
+import { getRandom } from '../../../public-resource/libs/util.js'
 
-(function(){
+
+!(function(){
     console.log(getRandom())
-    console.log("woaicaicai")
+    console.log($("a"))
 })()

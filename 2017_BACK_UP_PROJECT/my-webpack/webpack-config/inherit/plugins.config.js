@@ -8,6 +8,13 @@ var pageArr = require('../base/page-entries.config.js')
 var HashOutput = require('webpack-plugin-hash-output')
 
 var configPlugins = [
+     /* 全局shimming */
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      'window.$': 'jquery'
+    }),
 
     /*抽取出所有通用部分*/
     new webpack.optimize.CommonsChunkPlugin({

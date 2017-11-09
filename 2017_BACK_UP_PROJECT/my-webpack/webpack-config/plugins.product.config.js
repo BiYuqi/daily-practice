@@ -8,9 +8,9 @@ pluginsConfig.push(new webpack.optimize.UglifyJsPlugin({
   },
 }));
 
-// pluginsConfig.push(new webpack.DefinePlugin({
-//   IS_PRODUCTION: true,
-// }));
+pluginsConfig.push(new webpack.DefinePlugin({
+  IS_PRODUCTION: true,
+}));
 
 pluginsConfig.push(new webpack.NoEmitOnErrorsPlugin()); // 配合CLI的--bail，一出error就终止webpack的编译进程
 

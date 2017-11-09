@@ -9,8 +9,8 @@ const navBar = require('../../components/nav-bar/html.ejs')
 /* 整理渲染公用部分所用到的模板变量 */
 
 const pf = {
-    pageTitle: ''
-    // constructInsideUrl: noJquery.constructInsideUrl
+    pageTitle: '',
+    constructInsideUrl: noJquery.constructInsideUrl
 }
 
 const moduleExports = {

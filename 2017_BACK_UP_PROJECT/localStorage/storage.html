@@ -5,15 +5,15 @@
         <title></title>
     </head>
     <body>
+        <a href="test.html" target="_blank">第三方士大夫</a>
         <script src="storage.js"></script>
         <script type="text/javascript">
-            var a = 2
-            var b = 2
-            a--
-            var c =  b + a
-            console.log(c)
-            console.log(c)
-            console.log(c)
+            var s = new Storage()
+            s.set('name','biyuqi')
+
+            setTimeout(function(){
+                window.location.href = 'test.html'
+            },4000)
         </script>
     </body>
 </html>
