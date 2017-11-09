@@ -7,6 +7,7 @@ module.exports = {
         iconfontDir: path.resolve(dirVars.publicDir, 'iconfont/'),
         configDir: dirVars.configDir,
         vendorDir: dirVars.vendorDir,
+        
         withoutJqueryModule: path.resolve(dirVars.libsDir, 'without-jquery.module'),
         /* layout */
         layout: path.resolve(dirVars.layoutDir, 'layout/html'),
