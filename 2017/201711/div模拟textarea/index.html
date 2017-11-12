@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            div[data-mock="textarea"]{
+                width: 30%;
+                min-height: 120px;
+                border: 1px solid #999;
+            }
+        </style>
+    </head>
+    <body>
+        <div contenteditable="true" data-mock="textarea" class="ms"></div>
+        <textarea name="name" rows="8" cols="80"></textarea>
+        <input type="button" name="" value="点击测试">
+        <script>
+
+            function $(el){
+                return document.querySelector(el)
+            }
+
+            $('input').addEventListener('click',function(){
+                console.log($('.ms').innerHTML.replace(/(<\/?div>|<br\/?>|\s|\n|\r)*/gm,''))
+                console.log($('textarea').value.replace(/(\s|\n|\r)*/gm,''))
+            })
+        </script>
+    </body>
+</html>

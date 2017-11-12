@@ -15,12 +15,57 @@
             }
             li{
                 list-style: none;
-                width: 200px;
-                height: 150px;
+                width: 400px;
+                height: 250px;
                 margin: 15px;
                 padding: 10px;
                 float: left;
                 box-shadow: 0 0 2px 4px #eee;
+                position: relative;
+            }
+            li.show-loading:after{
+                content: '';
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 30px;
+                height: 30px;
+                margin-top: -15px;
+                margin-left: -15px;
+                border-radius: 50%;
+                border: 2px solid #dedada;
+                border-top: 2px solid transparent;
+                -webkit-animation: circle infinite .8s linear;
+                        animation: circle infinite .8s linear;
+            }
+            @-webkit-keyframes circle {
+                0% {
+                    -webkit-transform: rotate(0);
+                       -moz-transform: rotate(0);
+                          -o-transform:rotate(0);
+                            transform: rotate(0);
+                }
+                100% {
+                    -webkit-transform: rotate(360deg);
+                       -moz-transform: rotate(360deg);
+                          -o-transform:rotate(360deg);
+                            transform: rotate(360deg);
+                }
+            }
+            @keyframes circle {
+                0% {
+                    -webkit-transform: rotate(0);
+                       -moz-transform: rotate(0);
+                          -o-transform:rotate(0);
+                            transform: rotate(0);
+                }
+                100% {
+                    -webkit-transform: rotate(360deg);
+                       -moz-transform: rotate(360deg);
+                          -o-transform:rotate(360deg);
+                            transform: rotate(360deg);
+                }
             }
             img{
                 width: 100%;
@@ -53,20 +98,10 @@
     <body>
         <h3>图片加载前loading</h3>
         <ul class="box">
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://images.unsplash.com/photo-1493799817216-4b57dda4229f?dpr=2&auto=compress,format&fit=crop&w=376&h=250&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584207084&di=efb19db6789b6ca85967e768ed168fe6&imgtype=jpg&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd788d43f8794a4c29e0037eb07f41bd5ac6e39cb.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://images.unsplash.com/photo-1493799817216-4b57dda4229f?dpr=2&auto=compress,format&fit=crop&w=376&h=250&q=80&cs=tinysrgb&crop=" alt="测试懒加载"></li>
-            <li><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt="测试懒加载"></li>
-        </ul>
+            <li class="show-loading" ><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt=""></li>
+            <li class="show-loading" ><img src="" data-src="https://images.unsplash.com/photo-1507097489474-c9212a8f8597?auto=format&fit=crop&w=1951&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt=""></li>
+            <li class="show-loading" ><img src="" data-src="https://images.unsplash.com/photo-1493799817216-4b57dda4229f?dpr=2&auto=compress,format&fit=crop&w=376&h=250&q=80&cs=tinysrgb&crop=" alt=""></li>
+            <li class="show-loading" ><img src="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504584187974&di=66ea70d42945660ac5c6854672ad548b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fw2%2F10%2Fd%2F63.jpg" alt=""></li>
         <script>
             // 直接渲染
             var myImage = function(target,url){
@@ -77,9 +112,10 @@
                 const LOAING_GIF = 'http://cdn.uehtml.com/201402/1392662591495_1140x0.gif'
                 var img = new Image()
                 img.onload = function(){
+                    target.parentNode.className = ''
                     myImage(target,url)
                 }
-                myImage(target,LOAING_GIF)
+                //myImage(target,LOAING_GIF)
                 img.src = url
             }
 
@@ -90,7 +126,7 @@
                 for(let i=0;i<lists.length;i++){
                     proxyLoadImage(lists[i],lists[i].getAttribute('data-src'))
                     // 去掉代理直接渲染
-                    //  myImage(lists[i],lists[i].getAttribute('data-src'))
+                    // myImage(lists[i],lists[i].getAttribute('data-src'))
                 }
             }
             eachImg()
