@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                display: flex;
+				justify-content: center;
+				align-items: center;
+            }
+            canvas{
+                background-color: #eee;
+            }
+            button{
+                position: absolute;
+                top: 100px;
+                right: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- <canvas id="canvas" width="820" height="820"></canvas> -->
+        <button type="button" name="button">悔棋</button>
+        <script>
+            class GoBang{
+                constructor(options) {
+                    const defaultConfig = {
+                        lineWidth: 1,    //线宽
+                        lineGap: 40,     // 格子大小
+                        strokeStyle: '#666'
+                    }
+                    this.options = Object.assign({},options,defaultConfig)
+
+                    this.history = [] //记录
+                    this.currentStep = 0 //步数
+                    this.win = false
+
+                    this.setBaseData() // 初始化
+                    this.drawSketch() // 画板
+                    this.drawChessList() //坐标
+                    this.bindEvent()
+
+                    this.backChess()
+                }
+
+                setBaseData() {
+                    let canvas = document.createElement('canvas');
+                    canvas.id = 'canvas'
+                    canvas.setAttribute('width', this.options.width)
+                    canvas.setAttribute('height', this.options.width)
+                    document.body.appendChild(canvas)
+                    this.canvas = document.querySelector('#canvas')
+                    this.ctx = this.canvas.getContext('2d')
+                }
+
+                getPosition(x,y) {
+                    const param = this.canvas.getBoundingClientRect()
+                    return { //减去linecap/2  是为了修正由于translate 导致的坐标偏差
+                        x: Math.abs(Math.round((x - param.left-this.options.lineGap)/this.options.lineGap)),
+                        y: Math.abs(Math.round((y - param.top-this.options.lineGap)/this.options.lineGap))
+                    }
+                }
+
+                drawSketch() {
+                    const { floor, random } = Math
+                    const { ctx } = this
+                    this.renderNum = 21
+                    ctx.strokeStyle = this.options.strokeStyle
+
+                    for(let i=0;i<this.renderNum;i++){
+                        ctx.beginPath()
+                        ctx.moveTo(this.options.lineGap+i*this.options.lineGap+0.5,this.options.lineGap)
+                        ctx.lineTo(this.options.lineGap+i*this.options.lineGap+0.5,this.options.height-this.options.lineGap)
+                        ctx.stroke()
+                    }
+                    for(let i=0;i<this.renderNum;i++){
+                        ctx.beginPath()
+                        ctx.moveTo(this.options.lineGap, i*this.options.lineGap+0.5+this.options.lineGap)
+                        ctx.lineTo(this.options.height-this.options.lineGap,i*this.options.lineGap+0.5+this.options.lineGap)
+                        ctx.stroke()
+                    }
+                }
+
+                drawChessList() {
+                    const reslist = []
+                    for(let i=0;i<this.renderNum;i++){
+                        reslist[i] = []
+                        for(let j=0;j<this.renderNum;j++){
+                            reslist[i][j] = 0
+                        }
+                    }
+                    this.chessboard = reslist
+                    // console.log(this.chessboard)
+                }
+
+                drawArc(x, y, isBlack) {
+                    const { ctx } = this
+                    let xx = x*this.options.lineGap+this.options.lineGap,
+                        yy = y*this.options.lineGap+this.options.lineGap;
+                    ctx.fillStyle = '#' + (isBlack == true ? '000' : 'fff')
+                    ctx.beginPath()
+                    ctx.arc(xx,yy,16,0,Math.PI*2,true)
+                    ctx.fill()
+                }
+
+                handler(event) {
+                    const rect = this.getPosition(event.clientX, event.clientY)
+                    if(this.chessboard[rect.x][rect.y] !== 0){
+                        return false
+                    }
+                    if(this.win){
+                        return false
+                    }
+                    this.chessboard[rect.x][rect.y] = this.options.role
+                    this.drawArc(rect.x,rect.y,Object.is(this.options.role, 1))
+                    this.history.push({
+                        x: rect.x,
+                        y: rect.y,
+                        role: this.options.role,
+                        snap: this.ctx.getImageData(0, 0, this.canvas.clientWidth, this.canvas.clientHeight)
+                    })
+                    this.options.role = Object.is(this.options.role, 1) ? 2 : 1
+                    this.currentStep++
+
+                    setTimeout(()=>{
+                        this.checkWin(rect.x, rect.y,this.options.role)
+                    },0)
+                }
+                bindEvent() {
+                    this.canvas.addEventListener('mousedown', this.handler.bind(this),false)
+                }
+                checkWin(x, y, role) {
+                    if ((x == undefined) || (y == undefined) || (role == undefined)) return
+                    const XContinuous = this.chessboard.map(x => x[y])
+                    const YContinuous = this.chessboard[x]
+                    const S1Con = []
+                    const S2Con = []
+                    this.chessboard.forEach((_y, i)=>{
+                        // 左斜线
+                        const s1Item = _y[y-(x-i)]
+                        if(s1Item !== undefined){
+                            S1Con.push(s1Item)
+                        }
+                        // 右斜线
+                        const s2Item = _y[y+(x-i)]
+                        if(s2Item !== undefined){
+                            S2Con.push(s2Item)
+                        }
+                    })
+                    ;[ XContinuous, YContinuous, S1Con, S2Con].forEach((t)=>{
+                        if(t.some((v,i)=>
+                                    t[i] !== 0 &&
+                                    t[i-2] === t[i-1] &&
+                                    t[i-1] === t[i] &&
+                                    t[i] === t[i+1] &&
+                                    t[i+1] === t[i+2]
+                        )){
+                            alert(this.options.role == 2 ? '黑棋':'白棋')
+                            this.win = true
+                            this.canvas.removeEventListener('mousedown', this.handler.bind(this),false)
+                        }
+                    })
+                }
+                backChess() {
+                    const backBtn = document.querySelector('button')
+                    backBtn.addEventListener('click',()=>{
+                        const prev = this.history[this.currentStep - 2]
+                        const _prev = this.history[this.currentStep - 1]
+                        if(prev){
+                            this.history.pop()
+                            this.ctx.putImageData(prev.snap,0,0)
+                            this.chessboard[_prev.x][_prev.y] = 0 // 悔棋的位置置为0
+                            this.options.role = Object.is(prev.role, 1) ? 2 : 1
+                            this.currentStep -= 1 // 跟新步骤
+                        }
+                    })
+                }
+            }
+
+            const gb = new GoBang({
+                width:880,
+                height:880,
+                role:1 //black   white 2
+            })
+        </script>
+    </body>
+</html>
