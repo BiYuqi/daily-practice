@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <input type="file" id="input">
+        <script>
+            const imagePreview = function(dom,fn){
+                if(typeof dom === 'string'){
+                    dom = document.querySelector(dom)
+                }
+                window.URL = window.URL || window.webkitURL
+                const bindEv = function(){
+                    const file = this.files[0]
+                    const bs64 = window.URL.createObjectURL(file)
+                    const img = document.createElement("img")
+                    img.src = bs64
+                    img.onload = function(){
+                        window.URL.revokeObjectURL(this.src)
+                    }
+                    fn && fn(bs64, file)
+                }
+                dom.addEventListener('change',bindEv,false)
+            }
+            imagePreview('#input',function(src,file){
+                // src 就是base64图片 可进行预览操作
+                //.file 为文件 可在此处进行上传操作
+                const img = document.createElement('img')
+                img.src = src
+                document.body.appendChild(img)
+                console.log(src)
+                console.log(file)
+            })
+        </script>
+    </body>
+</html>
