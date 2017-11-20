@@ -1,4 +1,4 @@
-(function(window,undefined){
+!(function(window,undefined){
     "use strict";
     const ReadFileAndUpLoad = function(options){
         let el
@@ -34,7 +34,7 @@
     window.ReadFileAndUpLoad = function(options){
         return new ReadFileAndUpLoad(options)
     }
-})(window)
+})(window);
 /**
     if (navigator.appName === "Microsoft Internet Explorer") {
         return function () {
