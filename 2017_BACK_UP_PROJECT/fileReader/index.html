@@ -3,6 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <style>
+            img[alt=""],
+            img:not([alt]){
+                border: 5px dashed #c33;
+            }
+        </style>
     </head>
     <body>
         <input type="file" class="inputs" multiple>
@@ -13,19 +19,17 @@
             *   @param {el}  目标元素
             *   @param {data} {Array} 返回一个数据 ，第一个参数是base64img可用于预览，第二个是files文件可用于上传
             */
+            function create(dom){
+                return document.createElement(dom)
+            }
             ReadFileAndUpLoad({
                 el:'.inputs',
-                resolve:function(data){
-                        const imgs = data[0]
-                        const files = data[1]
-                        console.log(imgs)
-                        console.log(files)
-
-                        let imgHtml = ''
-                        for(let i=0;i<imgs.length;i++){
-                            imgHtml += '<img src="'+imgs[i]+'" alt=""/>'
-                        }
+                success:function(bs64,file){
+                        console.log(bs64)
+                        console.log(file)
+                        let imgHtml = '<img src="'+bs64+'" alt="" width=500/>'
                         document.querySelector('.prev').innerHTML = imgHtml
+
                 }
             })
         </script>
