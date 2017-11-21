@@ -2,9 +2,10 @@ import {
     isBrower,
     format
 } from './simple/simple';
-import Cookie from './cookie/cookie';
-import is from './is/is'
-import Emmit from './eventEmmit/eventEmmit'
+import Cookie from './Cookie/Cookie';
+import is from './Is/Is'
+import Emmit from './Event/Event'
+import shuffle from './modules/shuffle'
 
 const log = (...con) =>{
     console.log.apply(null, con)
@@ -61,8 +62,13 @@ newEmmit.once('test-once',function(d){
     console.log(d)
 })
 let a = 0
-document.querySelector('button').onclick = function(){
+document.querySelector('.once').onclick = function(){
     a++
     newEmmit.trigger('test-once',"发送once事件"+a)
 }
 log('-----------------测试once事件-end---------------------')
+
+log('--------------shuffle----------')
+document.querySelector('.shuffle').onclick = function(){
+    log(shuffle([1,2,3,4,5,6,7]))
+}
