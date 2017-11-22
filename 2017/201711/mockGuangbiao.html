@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1s">
+        <link rel="stylesheet" href="linshi.css">
+    </head>
+    <body>
+        <div class="box">
+            <div class="mock-wrap">
+
+            </div>
+        </div>
+        <div class="bot">
+            <ul class="left">
+                <li class="num-item argue" data-num="1">1</li>
+                <li class="num-item argue" data-num="2">2</li>
+                <li class="num-item argue" data-num="3">3</li>
+                <li class="num-item argue" data-num="4">4</li>
+                <li class="num-item argue" data-num="5">5</li>
+                <li class="num-item argue" data-num="6">6</li>
+                <li class="num-item argue" data-num="7">7</li>
+                <li class="num-item argue" data-num="8">8</li>
+                <li class="num-item argue" data-num="9">9</li>
+                <li class="num-item argue" data-num=".">.</li>
+                <li class="num-item argue" data-num="0">0</li>
+                <li class="num-item remove" data-num="-">减去</li>
+            </ul>
+        </div>
+        <script>
+            function $(el){
+                return document.querySelector(el)
+            }
+            function $$(el){
+                return document.querySelectorAll(el)
+            }
+            var filerArray = []
+            $('body').addEventListener('click',function(e){
+                if(e.target.className.indexOf('argue') > -1){
+                    var num = e.target.getAttribute('data-num'),
+                        val = e.target.innerHTML;
+                    if($('.cursor')){
+                        $('.cursor').parentNode.removeChild($('.cursor'))
+                    }
+                    createSpan(num,val)
+                }
+            })
+            $('.remove').addEventListener('click',function(e){
+                var target = Array.from($$('.mock-wrap span'))[$$('.mock-wrap span').length-2]
+                if(target){
+                    target.parentNode.removeChild(target)
+                }
+            })
+            function createSpan(v,val){
+                var span = document.createElement('span'),
+                    name = '';
+                if(v === ''){
+                    name = 'space'
+                }else if(typeof parseInt(v) === 'number' || v === '.'){
+                    name = 'val'
+                }else{
+                    name = 'cursor'
+                }
+                span.className = name
+                span.innerHTML = val
+                $('.mock-wrap').appendChild(span)
+                setTimeout(function(){
+                    var span2 = document.createElement('span');
+                    span2.className = 'cursor'
+                    span2.innerHTML = '|'
+                    $('.mock-wrap').appendChild(span2)
+                },0)
+                filerArray.push(span)
+            }
+
+            $('.mock-wrap').addEventListener('click',function(e){
+                // if(e.target.tagName === 'span'){
+                    var index = Math.ceil(e.offsetX*2/22)
+                    console.log(e.offsetX)
+                    var span2 = document.createElement('span');
+                    span2.className = 'cursor'
+                    span2.innerHTML = '|'
+                    console.log($$('.mock-wrap span')[index])
+                    $('.mock-wrap').insertBefore(span2,$$('.mock-wrap span')[index-1])
+
+                    var target = Array.from($$('.mock-wrap .cursor'))[$$('.mock-wrap .cursor').length-1]
+                    if(target){
+                        target.parentNode.removeChild(target)
+                    }
+                // }
+            })
+        </script>
+    </body>
+</html>

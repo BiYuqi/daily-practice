@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <button type="button" name="button">测试targetAndcurentTarget</button>
+        <script>
+            document.documentElement.addEventListener('click',function(event){
+                console.log(event.target)
+                console.log(event.currentTarget)
+                console.log(event)
+                console.log(event.target === this)
+                console.log(event.currentTarget === this)
+                console.log(event.target === event.currentTarget)
+            },false)
+            document.querySelector('button').addEventListener('click',function(event){
+
+                console.log(event.target === this)
+                console.log(event.currentTarget === this)
+                console.log(event.target === event.currentTarget)
+            },false)
+        </script>
+    </body>
+</html>
