@@ -36,9 +36,6 @@ class Mock {
             if(this.boardShow){
                 boardBox.className = 'bot'
                 this.boardShow = false
-
-                // 看下结果
-                this.getInputValue()
             }
         },false)
     }
@@ -109,7 +106,7 @@ class Mock {
                 this.startInterval()
             }
             /*
-            *   先把光标替换为最后一个元素  此刻页面所有空格值都一一对应
+            *   先把光标替换为最后一个元素(该情况下光标不在最后)  替换后此刻页面所有空格值都一一对应
             *   再次把cursor 放进最后即可
             */
             var temp = wrapBox.lastElementChild
@@ -124,7 +121,7 @@ class Mock {
 
     }
     startInterval() {
-        const { cursor, intervalId } = this
+        const { cursor } = this
         if(this.boardShow){
             if(this.intervalId){
                 clearInterval(this.intervalId)
@@ -136,7 +133,7 @@ class Mock {
                 }else{
                     cursor.className = 'cursor hidden'
                 }
-            },800)
+            },700)
         }
     }
 
@@ -146,7 +143,6 @@ class Mock {
             if(wrapBox.children.length === 1){
                 this.rightArea.innerHTML = '请在此输入...'
             }
-            this.startInterval()
             const target = cursor.previousElementSibling
             if(target !== null){
                 const tagetSpace = target.previousElementSibling
