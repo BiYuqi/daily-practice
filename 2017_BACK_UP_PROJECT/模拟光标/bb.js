@@ -97,6 +97,10 @@ class Mock {
     // 移动光标
     moveCusor(event) {
         const { wrapBox, boardBox, cursor } = this
+        /***
+        *   分为两种情况 一种是点击右侧占位符区域 锁定光标为最后
+        *   第二种就是正常的切换光标位置
+        */
         if(event.currentTarget.className === 'right-area'){
             // 右侧区域单独处理
             if(!this.boardShow){
@@ -134,18 +138,6 @@ class Mock {
                 }
             },800)
         }
-    }
-
-    replaceNode() {
-        const { wrapBox, cursor } = this
-        const spaces = Array.from(document.querySelectorAll('.space'))
-        spaces.forEach((v,k) => {
-            v.addEventListener('click', (event)=> {
-                // 用指定的节点替换当前节点的一个子节点，并返回被替换掉的节点。
-                wrapBox.replaceChild(cursor, v)
-                console.log(wrapBox.replaceChild(cursor, v))
-            })
-        })
     }
 
     deleteEle() {

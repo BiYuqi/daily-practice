@@ -141,18 +141,6 @@ class Mock {
         }
     }
 
-    replaceNode() {
-        const { wrapBox, cursor } = this
-        const spaces = Array.from(document.querySelectorAll('.space'))
-        spaces.forEach((v,k) => {
-            v.addEventListener('click', (event)=> {
-                // 用指定的节点替换当前节点的一个子节点，并返回被替换掉的节点。
-                wrapBox.replaceChild(cursor, v)
-                console.log(wrapBox.replaceChild(cursor, v))
-            })
-        })
-    }
-
     deleteEle() {
         const {wrapBox, remove, cursor } = this
         remove.addEventListener('click', (event)=> {
