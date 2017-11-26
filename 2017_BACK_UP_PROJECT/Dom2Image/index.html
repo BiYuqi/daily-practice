@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            #render{
+                width: 20%;
+                height: 400px;
+                border: 1px solid #eee;
+                text-align: center;
+                padding: 20px;
+                background-color: #fff;
+            }
+            img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+            button{
+                position: absolute;
+                top: 15%;
+                right: 30%;
+                padding: 2px 6px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="render">
+            <img src="http://oiukswkar.bkt.clouddn.com/2017.jpeg" class="set-img" alt="">
+            <div class="text">
+                devicePixelRatio此属性返回当前显示设备的物理像素分辨率与CSS像素分辨率的比值。该
+                值也可以被解释为像素大小的比例：即一个CSS像素的大小相对于一个物理像素的大小的比值
+            </div>
+        </div>
+        <button type="button" name="button">下载图片</button>
+        <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+        <script>
+            const url = `http://oiukswkar.bkt.clouddn.com/2017.jpeg`
+            function DPR(){
+                if(window.devicePixelRatio && window.devicePixelRatio > 1){
+                    return window.devicePixelRatio
+                }
+                return 1
+            }
+            // html2canvas 图片不支持跨域，所以此处先把页面图片转为base64
+            // https://developer.mozilla.org/zh-CN/docs/Web/HTML/CORS_enabled_image
+            /*
+                什么是“被污染”的 canvas?Edit
+                尽管不通过 CORS 就可以在画布中使用图片，但是这会污染画布。一旦画布被污染，你就无法读取其数据。
+                例如，你不能再使用画布的 toBlob(), toDataURL() 或 getImageData() 方法，调用它们会抛出安全错误。
+                这种机制可以避免未经许可拉取远程网站信息而导致的用户隐私泄露。
+            */
+            function renderImgToPage(url, crossOrigin='anonymous'){
+                return new Promise((resolve,reject)=>{
+                    const img = new Image()
+                    img.onload = function(){
+                        const canvas = document.createElement('canvas')
+                        canvas.width = this.naturalWidth
+                        canvas.height = this.naturalHeight
+
+                        const ctx = canvas.getContext('2d')
+                        ctx.drawImage(this, 0, 0)
+
+                        resolve(canvas.toDataURL('image/png'))
+                    }
+                    img.onerror = reject
+                    img.setAttribute('crossOrigin', crossOrigin)
+                    img.src = url
+                })
+            }
+            // 设备屏幕像素率比不一致，为避免在一些高像素比的设备转化后模糊
+            // 此处利用canvas进行重新绘制，根据像素比动态的设置宽高
+            // 最后返回html2canvas
+            function drawCanvas(selector){
+                const dom = document.querySelector(selector)
+                const rect = dom.getBoundingClientRect()
+                // 计算宽高
+                const width = parseInt(rect.width, 10)
+                const height = parseInt(rect.height, 10)
+                // 获取像素比
+                const DPRValue = DPR()
+
+                // 创建canva
+                const canvas = document.createElement('canvas')
+                // 设置canva属性宽高 = dom节点宽高*像素比
+                canvas.width = width * DPRValue
+                canvas.height = height * DPRValue
+                // 设置canvas css属性宽高 = dom节点宽高
+                canvas.style.width = `${width}px`
+                canvas.style.height = `${height}px`
+
+                // get paient
+                const ctx = canvas.getContext('2d')
+
+                // 绘制内容放大至像素比值
+                ctx.scale(DPRValue, DPRValue)
+
+                return html2canvas(dom, {canvas:canvas})
+            }
+
+            // 下载
+            function downLoad(data,filename = Date.now()){
+                const a = document.createElement('a')
+                a.href = data.toDataURL('image/jpeg')
+                a.download = filename
+                a.click()
+            }
+            document.querySelector('button').addEventListener('click',function(e){
+                renderImgToPage(url)
+                    .then((src)=>{
+                        document.querySelector('.set-img').src = src
+                        drawCanvas('#render').then((canvas) =>{
+                            // document.body.appendChild(canvas)
+                            downLoad(canvas)
+                        })
+                    })
+            })
+
+        </script>
+    </body>
+</html>
