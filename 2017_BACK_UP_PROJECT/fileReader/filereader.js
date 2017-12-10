@@ -1,5 +1,4 @@
 !(function(window,undefined){
-    "use strict";
     const ReadFileAndUpLoad = function(options){
         let el,
             success = options.success;

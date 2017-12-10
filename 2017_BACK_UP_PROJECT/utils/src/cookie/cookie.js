@@ -5,7 +5,7 @@
 export default {
     get:function(key){
         if(!key){
-            return 'key is not allow an enpty char'
+            return 'key is not allow an empty char'
         }
         const data = document.cookie.split('; ')
         for(let i=0;i<data.length;i++){

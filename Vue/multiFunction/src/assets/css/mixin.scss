@@ -1,0 +1,12 @@
+@mixin abs($top: 0, $right: 0, $bottom: 0, $left: 0) {
+    position: absolute;
+    top: $top; right: $right; bottom: $bottom; left: $left;
+}
+@mixin trans($top:-50%, $left: -50%){
+    transform: translate($top,$left);
+}
+// 格子颜色
+$borderColor: #4e4542;
+
+// 文本颜色
+$textColor: #6e6763;
