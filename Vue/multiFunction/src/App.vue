@@ -62,7 +62,7 @@ export default {
     #app {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      min-height: 100%;
+      height: 100%;
       width: 100%;
       overflow-x: hidden;
       background-color: #413735;

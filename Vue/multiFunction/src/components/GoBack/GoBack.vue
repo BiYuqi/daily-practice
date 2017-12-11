@@ -19,7 +19,7 @@ export default {
             this.$router.replace({
                 name: 'home',
                 query: {
-                    mode: 'turn'
+                    mode: 'modal'
                 }
             })
         }
@@ -39,7 +39,6 @@ export default {
     padding: 0 .4rem;
     background-color: $bgc;
     text-align: center;
-    position: relative;
     span{
         color: #333;
         font-weight: bold;
