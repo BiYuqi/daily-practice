@@ -42,7 +42,11 @@ export default {
                   break
               case 'modal-out':
                   this.transName = 'modal-out'
-                  this.transMode = 'in-out'
+                  this.transMode = ''
+                  break
+              case 'modal-in':
+                  this.transName = 'modal-in'
+                  this.transMode = ''
                   break
               default:
                   this.transName = 'fade'
@@ -58,12 +62,10 @@ export default {
     #app {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      /*text-align: center;*/
-      /*color: #2c3e50;*/
-      /*margin-top: 60px;*/
-      height: 100%;
+      min-height: 100%;
       width: 100%;
       overflow-x: hidden;
+      background-color: #413735;
     }
     // 1. push pop
     .push-enter,
@@ -121,11 +123,22 @@ export default {
         transition: transform .3s ease-out;
     }
     //
-    .modal-out-enter{
-        transform: scale(.2);
+    .modal-out-enter,
+    .modal-out-leave-active{
+        transform: scale(0);
     }
     .modal-out-enter-active,
     .modal-out-leave-active {
+        transition: transform .3s ease-out;
+    }
+
+    //
+    .modal-in-enter,
+    .modal-in-leave-active{
+        transform: scale(1);
+    }
+    .modal-in-enter-active,
+    .modal-in-leave-active {
         transition: transform .3s ease-out;
     }
 </style>

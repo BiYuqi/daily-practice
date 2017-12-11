@@ -1,11 +1,17 @@
 <template>
     <div class="huilv">
-        汇率
+        <go-back>
+            <span slot="center-title">汇率转换</span>
+        </go-back>
     </div>
 </template>
 
 <script>
+import GoBack from '@/components/GoBack/GoBack'
 export default {
+    components:{
+        GoBack
+    }
 }
 </script>
 
