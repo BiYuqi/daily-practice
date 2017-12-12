@@ -56,7 +56,8 @@ export default {
             isActive: false,
             isActive2: false,
             isActive3: false,
-            isOver: false
+            isOver: false,  // 点击等号
+            isAction: true  // 判定是否可以继续输入
         }
     },
     mounted() {
@@ -69,8 +70,10 @@ export default {
             const last = relationship(options);
             if(last.length >0){
                 this.renderData = last[0]
+                this.isAction = true
             }else{
                 this.renderData = '你这关系有点乱...'
+                this.isAction = false
             }
         },
         textCheck() {
@@ -93,7 +96,7 @@ export default {
         start(t) {
             this.textCheck()
             this.isOver = false
-            if(t !== 'AC' && t !== 'delete' && t !== '长' && t !== '轻'){
+            if(t !== 'AC' && t !== 'delete' && t !== '长' && t !== '轻' && this.isAction){
                 this.initData = this.initData + t
                 this.render()
                 this.textCheck()
@@ -139,6 +142,7 @@ export default {
     display:flex;
     flex-direction: column;
     padding-top: .9rem;
+    overflow: hidden;
 }
 .relative-con{
     background-color: $bgc;
@@ -181,6 +185,7 @@ export default {
     height: 1.87*4rem;
     width: 100%;
     border-top: .01rem solid #dbdcdd;
+    position: relative;
 }
 .re-item:nth-child(4n){
     border-right: none;
@@ -191,8 +196,12 @@ export default {
 .re-item:nth-child(12){
     border-bottom: none;
 }
+.re-item:nth-child(13){
+    color: #c6c3c3;
+}
 .re-item:nth-child(14){
     border-right: none;
+    color: #c6c3c3;
 }
 .AC{
     font-size: .4rem;

@@ -39,6 +39,7 @@ export default {
     padding: 0 .4rem;
     background-color: $bgc;
     text-align: center;
+    z-index: 10;
     span{
         color: #333;
         font-weight: bold;
