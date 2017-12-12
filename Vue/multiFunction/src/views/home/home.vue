@@ -27,6 +27,7 @@ export default {
         top: 0;
         left: 0;
         background-color: #413735;
+        z-index: 20;
     }
     .home-head{
         height: .9rem;
