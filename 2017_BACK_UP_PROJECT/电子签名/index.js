@@ -30,7 +30,6 @@ class Elect extends Dom{
         // 默认样式
         this.ctx.lineWidth = 6
         this.ctx.lineJoin = 'round'
-        this.ctx.lineJoin = 'round'
         this.ctx.strokeStyle = 'black'
         /*************************************/
         // 下载的时候防止黑背景

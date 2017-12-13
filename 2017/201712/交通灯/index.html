@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            li{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: 6px 6px;
+                list-style: none;
+                background-color: rgb(144, 142, 147);
+                transition: all .1s;
+            }
+            ul.pass li:nth-child(1){
+                background-color: green;
+                animation: fade .1s linear;
+            }
+            ul.wait li:nth-child(2){
+                background-color: yellow;
+                animation: fade .1s linear;
+            }
+            ul.stop li:nth-child(3){
+                background-color: red;
+                animation: fade .1s linear;
+            }
+            @keyframes fade {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <script>
+            const $ = (el) => document.querySelector(el);
+            // (function start(){
+            //     $('ul').className = 'pass'
+            //     setTimeout(function(){
+            //         $('ul').className = 'wait'
+            //         setTimeout(function(){
+            //             $('ul').className = 'stop'
+            //             setTimeout(start,2000)
+            //         },2000)
+            //     },2000)
+            // })();
+
+            const status = ['pass','wait','stop']
+
+            function traficc(trac, statusList){
+                let currIndex = 0
+                setInterval(()=>{
+                    const state = statusList[currIndex]
+                    trac.className = state
+                    currIndex = (currIndex+1) %  status.length
+                },2000)
+            }
+            traficc($('ul'), status)
+        </script>
+    </body>
+</html>
