@@ -3,31 +3,59 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
         <style>
             html,body{
                 height: 100%;
                 width: 100%;
+                overflow: hidden;
             }
             *{
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
             }
-            .canvas-box{
+            .canvas-wrapper{
                 height: 100%;
-                width: 100%;
+                display: flex;
+                flex-direction: column;
             }
-            #canvas{
+            .canvas-head{
+                background-color: #eee;
+                border-bottom: 1px solid #dcdcdc;
+                padding: 10px 20px;
+            }
+            select{
+                border: 1px solid rgb(1, 150, 164);
+                padding: 2px 6px;
+                vertical-align: middle;
+            }
+            button{
+                border: 1px solid rgb(1, 150, 164);
+                background-color: rgb(1, 150, 164);
+                color: #fff;
+                padding: 2px 8px;
+            }
+            canvas{
                 height: 100%;
                 width: 100%;
+                flex: 1;
+                cursor: crosshair;
             }
         </style>
     </head>
     <body>
-        <button type="button" name="button">下载</button>
-        <div class="canvas-box">
-            <canvas id="canvas"></canvas>
+        <div class="canvas-wrapper">
+            <div class="canvas-head">
+                <button type="button" name="button">下载</button>
+                <select class="select" name="">
+                    <option value="0">正常</option>
+                    <option value="90">顺时针90</option>
+                    <option value="-90">逆时针90</option>
+                    <option value="180">顺时针180</option>
+                </select>
+            </div>
+            <canvas></canvas>
         </div>
         <script src="index.js"></script>
     </body>
