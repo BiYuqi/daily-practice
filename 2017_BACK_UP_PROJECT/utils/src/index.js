@@ -1,11 +1,12 @@
 import {
     isBrower,
     format
-} from './simple/simple';
+} from './modules/simple';
 import Cookie from './Cookie/Cookie';
 import is from './Is/Is'
 import Emmit from './Event/Event'
 import shuffle from './modules/shuffle'
+import { bstoblob } from './FileCanvas/bs2blob'
 
 const log = (...con) =>{
     console.log.apply(null, con)
@@ -71,4 +72,16 @@ log('-----------------测试once事件-end---------------------')
 log('--------------shuffle----------')
 document.querySelector('.shuffle').onclick = function(){
     log(shuffle([1,2,3,4,5,6,7]))
+}
+
+document.querySelector('input').onchange = function(){
+    const file = this.files[0]
+    const reader = new FileReader()
+    reader.onload = function(){
+        console.log(bstoblob(this.result))
+        const img = document.createElement('img')
+        img.src = window.URL.createObjectURL(bstoblob(this.result))
+        document.body.appendChild(img)
+    }
+    reader.readAsDataURL(file)
 }
