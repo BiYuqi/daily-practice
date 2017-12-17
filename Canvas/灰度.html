@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>图片灰度计算</h1>
+        <canvas id="canvas" width="300" height="300"></canvas>
+        <input type="file" name="" value="">
+        <script>
+            const $ = (el) => document.querySelector(el)
+            const canvas = $('#canvas')
+            const ctx = canvas.getContext('2d')
+            const img = new Image()
+            img.onload = function(){
+                ctx.drawImage(this,0,0,canvas.width,canvas.height)
+                const imageData = ctx.getImageData(0,0,canvas.width,canvas.height)
+                ctx.clearRect(0,0,canvas.width,canvas.height)
+                const pixels = imageData.data
+
+                for(let i=0;i<pixels.length;i++){
+                    var average = (pixels[i*4]+pixels[i*4+1]+pixels[i*4+2])/3
+                    pixels[i*4] = average
+                    pixels[i*4+1] = average
+                    pixels[i*4+2] = average
+                }
+                ctx.putImageData(imageData,0,0)
+            }
+            img.setAttribute('crossOrigin','Anonymous')
+            img.src='bb.jpg'
+            function DPR(){
+                if(window.devicePixelRatio && window.devicePixelRatio > 1){
+                    return window.devicePixelRatio
+                }
+                return 1
+            }
+            $('input').addEventListener('change',function(){
+                var file = this.files[0]
+                var reader = new FileReader()
+                reader.onload = function(){
+                    const url = this.result
+                    const img = new Image()
+                    img.onload = function(){
+                        /**************重置优化屏幕显示*************************/
+                        canvas.width = this.naturalWidth * DPR()
+                        canvas.height = this.naturalHeight * DPR()
+                        canvas.style.width = this.naturalWidth + 'px'
+                        canvas.style.height = this.naturalHeight + 'px'
+
+
+                        /***************************************/
+                        ctx.drawImage(this,0,0,canvas.width,canvas.height)
+                        const imageData = ctx.getImageData(0,0,canvas.width,canvas.height)
+                        ctx.clearRect(0,0,canvas.width,canvas.height)
+                        const pixels = imageData.data
+
+                        for(let i=0;i<pixels.length;i++){
+                            var average = (pixels[i*4]+pixels[i*4+1]+pixels[i*4+2])/3
+                            pixels[i*4] = average
+                            pixels[i*4+1] = average
+                            pixels[i*4+2] = average
+                        }
+                        ctx.putImageData(imageData,0,0)
+                        ctx.scale(DPR(),DPR())
+                    }
+                    img.setAttribute('crossOrigin','Anonymous')
+                    img.src=url
+                }
+                reader.readAsDataURL(file)
+            })
+
+            var   rows = 3,
+                  cols = 2,
+                  cb = document.querySelector(".allCanvas"),
+                  vw = 600,
+                  vh = 400,
+                  canvases = [];
+
+          function createCanvas(){
+              var num = rows*cols;
+              for(var i=0;i<cols;i++){
+                  for(var j=0;j<rows;j++){
+                      console.log(Math.random()*600, Math.random()*600 , vw/rows , vh/cols , j , i)
+                      // var canvas = new vCanvas(Math.random()*600, Math.random()*600 , vw/rows , vh/cols , j , i);
+                      canvases.push(canvas);
+                  }
+              }
+              console.log(canvases)
+          }
+          createCanvas()
+        </script>
+    </body>
+</html>

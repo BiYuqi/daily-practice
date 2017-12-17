@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            canvas{
+                position: absolute;
+            }
+            #canvas{
+                z-index: 1
+            }
+            #canvas2{
+                z-index: 2
+            }
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .box{
+                position: relative;
+                padding: 20px;
+            }
+            button{
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: rgb(53, 176, 209);
+                z-index: 8;
+                outline: none;
+                border: none;
+            }
+
+            .left{
+                top: 81px;
+                left: 81px;
+            }
+            .right{
+                top: 319px;
+                left: 319px;
+            }
+            .inner{
+                position: absolute;
+                left: 600px;
+                top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <canvas id="canvas" width="401" height="401"></canvas>
+            <canvas id="canvas2" width="401" height="401"></canvas>
+            <button type="button" name="button" class="left"></button>
+            <button type="button" name="button" class="right"></button>
+            <div class="inner"></div>
+        </div>
+        <script>
+            const $ = (el) => document.querySelector(el)
+
+            const canvas0 = $('#canvas')
+            const ctx0 = canvas0.getContext('2d')
+            const canvas = $('#canvas2')
+            const ctx = canvas.getContext('2d')
+            const width = canvas0.width
+            const height = canvas0.height
+            const n = Math.ceil(width/40)
+            ctx0.lineWidth = 1
+            ctx0.lineCap = 'join'
+            ctx0.strokeStyle = 'black'
+            ctx0.font="12px Arial";
+
+            ctx0.beginPath()
+            for(let i=0;i<n;i++){
+                const x1 = 0
+                const x2 = width
+                const y1 = 40*i + 0.5
+                ctx0.moveTo(x1,y1)
+                ctx0.lineTo(x2,y1)
+                if(n-1 == i){
+                    //console.log(y1,x1)
+                }
+            }
+            for(let j=0;j<n;j++){
+                const x1 = 0
+                const x2 = width
+                const y1 = 40*j + 0.5
+                ctx0.moveTo(y1,x1)
+                ctx0.lineTo(y1,x2)
+                if(n-1 == j){
+                    //console.log(y1,x1)
+                }
+            }
+            ctx0.closePath()
+            ctx0.stroke()
+
+
+            function render(x1 = 81,y1 = 81,x2 = 319,y2 = 319) {
+                ctx.beginPath()
+                ctx.moveTo(0,400.5)
+                ctx.bezierCurveTo(x1,y1,x2,y2,400.5,0)
+                ctx.stroke()
+                ctx.closePath()
+                $('.inner').innerHTML = 'canvas-bezierCurveTo贝塞尔数值'+ x1+','+y1+','+x2+','+y2+','+400.5+','+0
+            }
+            render()
+            var param = {
+                left:81,
+                top:81,
+                left2:319,
+                top2:319,
+                currentX:0,
+                currentY:0,
+                currentX2:0,
+                currentY2:0,
+                flag:false,
+                flag2:false
+            }
+            function init(){
+                ctx.beginPath()
+                ctx.moveTo(0,400.5)
+                ctx.lineTo(param.left-10,param.top)
+                ctx.stroke()
+                ctx.closePath()
+
+                ctx.beginPath()
+                ctx.moveTo(400.5,0)
+                ctx.lineTo(param.left2-10,param.top2-10)
+                ctx.stroke()
+                ctx.closePath()
+            }
+            function renderBtn(dom1,dom2){
+                init()
+                $(dom1).addEventListener('mousedown',function(e){
+                    param.flag = true
+                    param.currentX = e.offsetX
+                    param.currentY = e.offsetY
+                })
+                $(dom2).addEventListener('mousedown',function(e){
+                    param.flag2 = true
+                    param.currentX2 = e.offsetX
+                    param.currentY2 = e.offsetY
+                })
+                document.onmousemove = function(e){
+                    event.preventDefault();
+                    if(param.flag){
+                        param.left = e.clientX - param.currentX
+                        param.top = e.clientY - param.currentY
+
+                        $(dom1).style.left = param.left + 'px'
+                        $(dom1).style.top = param.top + 'px'
+                        ctx.beginPath()
+                        ctx.moveTo(0,400.5)
+                        ctx.lineTo(param.left-10,param.top-10)
+                        ctx.stroke()
+                        ctx.closePath()
+                        ctx.clearRect(0,0,canvas.width,canvas.height)
+                        init()
+                        render(param.left-10,param.top-10,param.left2-10,param.top2-10)
+                    }
+                    if(param.flag2){
+                        param.left2 = e.clientX - param.currentX2
+                        param.top2 = e.clientY - param.currentY2
+
+                        $(dom2).style.left = param.left2 + 'px'
+                        $(dom2).style.top = param.top2 + 'px'
+                        ctx.beginPath()
+                        ctx.moveTo(400.5,0)
+                        ctx.lineTo(param.left2-10,param.top2-10)
+                        ctx.stroke()
+                        ctx.closePath()
+                        ctx.clearRect(0,0,canvas.width,canvas.height)
+                        init()
+                        render(param.left-10,param.top-10,param.left2-10,param.top2-10)
+                    }
+
+                }
+                document.onmouseup = function(e){
+                    param.flag = false;
+                    param.flag2 = false;
+                    console.log(ctx.getImageData(0,0,canvas.width,canvas.height).data)
+                }
+            }
+            renderBtn('.left','.right')
+        </script>
+    </body>
+</html>

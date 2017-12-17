@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            video{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="300" height="300">
+            <video id="video" src="video.mp4" autoplay>
+
+            </video>
+        </canvas>
+
+        <script>
+            const $ = (el) => document.querySelector(el)
+            const canvas = $('#canvas')
+            const video = document.getElementById("video");
+            const ctx = canvas.getContext('2d')
+            canvas.width = 848
+            canvas.height = 464
+            ctx.drawImage(video,0,0,848,464)
+            console.log(video.getBoundingClientRect())
+            setInterval(function(){
+                ctx.drawImage(video,0,0,848,464)
+            },30)
+        </script>
+    </body>
+</html>

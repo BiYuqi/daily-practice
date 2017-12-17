@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <canvas id="canvas" width="300" height="300"></canvas>
+        <script>
+            const $ = (el) => document.querySelector(el)
+            const canvas = $('#canvas')
+            const ctx = canvas.getContext('2d')
+
+            const base = 4
+
+            const imageData = ctx.createImageData(300,300)
+            const pixels = imageData.data
+
+            const numPixels = imageData.width * imageData.height
+
+            // for(let i=0;i<numPixels;i++){
+            //     pixels[i*4] = 255
+            //     pixels[i*4+1] = 0
+            //     pixels[i*4+2] = 0
+            //     pixels[i*4+3] = 255
+            // }
+
+
+            setInterval(function(){
+                for(let i=0;i<numPixels.length;i++){
+                    pixels[i*4] = Math.floor(Math.random()*255)
+                    pixels[i*4+1] = Math.floor(Math.random()*255)
+                    pixels[i*4+2] = Math.floor(Math.random()*255)
+                    pixels[i*4+3] = 255
+                }
+                ctx.putImageData(imageData,0,0)
+            },1000)
+            console.log(imageData)
+        </script>
+    </body>
+</html>

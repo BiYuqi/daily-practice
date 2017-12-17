@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <canvas id="canvas" width="300" height="300"></canvas>
+        <button>点点滴滴</button>
+        <script>
+
+            const $ = (el) => document.querySelector(el)
+
+            const canvas = $('#canvas')
+            const ctx = canvas.getContext('2d')
+            ctx.fillStyle = 'red'
+            ctx.save()
+            ctx.beginPath()
+            ctx.fillRect(30,30,30,40)
+            ctx.closePath()
+
+            $('button').addEventListener('click',function() {
+
+                ctx.clearRect(0,0,300,300)
+                ctx.fillStyle = 'blue'
+                ctx.save()
+                ctx.fillRect(0,0,100,40)
+                setTimeout(()=>{
+                    ctx.restore()
+                    ctx.restore()
+                    ctx.fillRect(100,100,100,40)
+                },1000)
+            })
+        </script>
+    </body>
+</html>
