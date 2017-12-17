@@ -3,6 +3,29 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <style media="screen">
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body,html{
+                width: 100%;
+                height: 100%;
+                background-color: rgb(34, 54, 71);
+            }
+            button{
+                position: absolute;
+                top: 30px;
+                padding: 4px 8px;
+            }
+            .start{
+                right: 100px;
+            }
+            .stop{
+                right: 30px;
+            }
+        </style>
     </head>
     <body>
         <canvas id="canvas" width="300" height="300"></canvas>
@@ -12,10 +35,12 @@
 
             const $ = (el) => document.querySelector(el)
             const canvas = $('#canvas')
+            canvas.width = $('body').getBoundingClientRect().width
+            canvas.height = $('body').getBoundingClientRect().height
             const start = $('.start')
             const stop = $('.stop')
             const ctx = canvas.getContext('2d')
-            ctx.fillStyle='red'
+            ctx.fillStyle='#fff'
             let isPlay = false
             let x = 0
             start.addEventListener('click',function(){
@@ -34,11 +59,11 @@
                 animate()
             })
             var arr = []
-            for(var i=0;i<100;i++){
+            for(var i=0;i<300;i++){
                 arr.push({
-                    'top':Math.random()*300,
-                    'left':Math.random()*300,
-                    'scale':Math.random()*4+3,
+                    'top':Math.random()*canvas.height,
+                    'left':Math.random()*canvas.width,
+                    'scale':Math.random()*6+3,
                     "deg":Math.random(-10,10)
                 })
             }
@@ -54,7 +79,7 @@
                         arr[i].left = arr[i].left + Math.tan(d2a(arr[i].deg))*speed
                         arr[i].top = arr[i].top + speed
 
-                        if(arr[i].top >= 300 || arr[i].left <0 || arr[i].left >= 300){
+                        if(arr[i].top >= canvas.height || arr[i].left <0 || arr[i].left >= canvas.width){
                             arr.splice(i--,1)
                             continue
                         }
@@ -70,11 +95,11 @@
             }
 
             function addFlow(){
-                if(arr.length < 150){
-                    for(let i=0;i<10;i++){
+                if(arr.length < 350){
+                    for(let i=0;i<20;i++){
                         arr.push({
                             'top':-Math.random()*50,
-                            'left':Math.random()*300,
+                            'left':Math.random()*canvas.width,
                             'scale':Math.random()*4+3,
                             "deg":Math.random(-10,10)
                         })
@@ -82,8 +107,6 @@
                 }
                 setTimeout(addFlow,60)
             }
-
-
         </script>
     </body>
 </html>
