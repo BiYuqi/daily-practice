@@ -33,21 +33,43 @@
                 isPlay = false
                 animate()
             })
+            var arr = []
+            for(var i=0;i<100;i++){
+                arr.push({
+                    x:Math.random()*canvas.width,
+                    y:Math.random()*canvas.height,
+                    w:Math.random()*15,
+                    h:Math.random()*15
+                })
+            }
+            let reverseX = false
+            let reverseY = false
             function animate(){
-                var arr = []
-                for(var i=0;i<100;i++){
-                    arr.push({
-                        x:Math.random()*canvas.width,
-                        y:Math.random()*250,
-                        w:Math.random()*15,
-                        h:Math.random()*15
-                    })
-                }
                 if(isPlay){
                     ctx.clearRect(0,0,canvas.width,canvas.height)
                     for(let i=0;i<arr.length;i++){
+                        if(arr[i].x <= 0){
+                            reverseX = false
+                        }else if(arr[i].x+arr[i].w > canvas.width){
+                            reverseX = true
+                        }
+                        if(arr[i].y <= 0){
+                            reverseY = false
+                        }else if(arr[i].y+arr[i].h > canvas.height){
+                            reverseY = true
+                        }
+                        if(!reverseX){
+                            arr[i].x += 2
+                        }else{
+                            arr[i].x -= 2
+                        }
+                        if(!reverseY){
+                            arr[i].y += 2
+                        }else{
+                            arr[i].y -= 2
+                        }
                         ctx.beginPath();
-                        ctx.fillRect(arr[i].x,arr[i].y,arr[i].w,arr[i].w)
+                        ctx.fillRect(arr[i].x,arr[i].y,arr[i].w,arr[i].h)
                         ctx.closePath()
                     }
                     setTimeout(animate,60)
