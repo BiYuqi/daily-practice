@@ -6,26 +6,34 @@
     </head>
     <body>
         <script>
-            var a = {
-                key1 : '1111'
-            }
-            function copy(p){
-                var c = {}
-                for(var i in p){
-                    c[i] = p[i]
+            function getRandom(n){
+                if(typeof n !== 'number'){
+                    return 'bad num'
                 }
-                return c
+                if(!n){
+                    return 'n is not allow blank'
+                }
+                if(n < 2 || n > 32){
+                    return 'n is 2~32'
+                }
+                const res = []
+                for(let i=0;i<n;i++){
+                    const index = Math.floor(Math.random()*30+2)
+                    if(is(res,index)){
+                        i--
+                        continue
+                    }
+                    res.push(index)
+                }
+                return res
             }
-
-            a.key2 = ['sb1','sb2']
-            var b = copy(a)
-            b.key2[0] = 'change'
-            a.key2[0] = 'back'
-            b.key3 = 'dddfsfsfsdf'
-            console.log(a.__proto__)
-            console.log(b.prototype == a.prototype)
-            console.log(a==b)
-            console.log(a===b)
+            function is(result,v){
+                if(result.indexOf(v)>-1){
+                    return true
+                }
+                return false
+            }
+            console.log(getRandom(10))
         </script>
     </body>
 </html>
