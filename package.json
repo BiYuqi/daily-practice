@@ -1,0 +1,21 @@
+{
+  "name": "daily-practice",
+  "version": "1.0.0",
+  "description": "该项目地址主要是日常练习的DEMO，开发的小东西，放在此地留存\r ## 命名规则\r * 2017    ---------------ever-month-practice\r * 2017_BACK_UP_PROJECT ---------------current-year-demo\r * 表单优化 ---------------针对我写的表单构造器，做的针对性demo\r * MongoDB ---------------用nodejs MongoDB 调通成功，并实现读写搜索数据\r * FoundationCode --------日常偶尔看到的面试题随性所写\r * LeetCode----------------算法挑战\r * 百度前端学院-------------皆为日常所练习百度课程(样式皆采用sass编写)\r * Python------------------练习python文件夹",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "u": "git fetch origin master && git merge"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BiYuqi/daily-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BiYuqi/daily-practice/issues"
+  },
+  "homepage": "https://github.com/BiYuqi/daily-practice#readme"
+}
