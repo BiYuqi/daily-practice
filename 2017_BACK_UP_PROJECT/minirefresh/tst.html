@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="./minirefresh.css">
+        <link rel="stylesheet" href="./common.css">
+    </head>
+    <body>
+        <nav class="navbar-header">
+           <a class="nav-btn-left" href="../index.html">dashboard</a>
+           最基础的新闻列表
+       </nav>
+       <div class="content">
+           <div id="minirefresh" class="minirefresh-wrap">
+               <div class="minirefresh-scroll">
+
+                   <ul class="data-list" id="listdata"></ul>
+               </div>
+           </div>
+       </div>
+        <script src="./minirefresh.js"></script>
+        <script src="./common.js"></script>
+        <script>
+            var appendTestData = Common.appendTestData,
+                // 记录一个最新
+                maxDataSize = 30,
+                listDom = document.querySelector('#listdata'),
+                requestDelayTime = 600;
+
+            var miniRefresh = new MiniRefresh({
+                container: '#minirefresh',
+                down: {
+                    callback: function() {
+                        console.log('初始化222')
+                        setTimeout(function() {
+                            // 每次下拉刷新后，上拉的状态会被自动重置
+                            appendTestData(listDom, 10, true);
+                            // 数据加载成功后可关闭
+                            miniRefresh.endDownLoading(true);
+                        }, requestDelayTime);
+                    }
+                },
+                up: {
+                    isAuto: true,
+                    callback: function() {
+                        console.log('初始化')
+                        setTimeout(function() {
+                            appendTestData(listDom, 10);
+                            miniRefresh.endUpLoading(listDom.children.length >= maxDataSize ? true : false);
+                        }, requestDelayTime);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

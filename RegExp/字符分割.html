@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function setMoney(s,t,n){
+                if(s.length < 3){
+                    return;
+                }
+                var reg = new RegExp('\\B(?=(\\d{'+n+'})+$)','g');
+                //判断是否有小数位 如果有,需要多加判断
+                if(s.indexOf('.') > -1){
+                    var index = s.indexOf('.');
+                    var last = s.substr(index);
+                    s = s.substr(0,index).replace(reg,''+t+'');
+                    s = s + last;
+                    return s;
+                }else{
+                    //没有小数的就直接返回
+                    return s.replace(reg,''+t+'')
+                }
+            }
+            console.log(setMoney('465465465465465456465.46545464',',',4))
+        </script>
+    </body>
+</html>

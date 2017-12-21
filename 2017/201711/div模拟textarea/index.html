@@ -22,6 +22,7 @@
             }
 
             $('input').addEventListener('click',function(){
+                console.log($('.ms').innerHTML)
                 console.log($('.ms').innerHTML.replace(/(<\/?div>|<br\/?>|\s|\n|\r)*/gm,''))
                 console.log($('textarea').value.replace(/(\s|\n|\r)*/gm,''))
             })

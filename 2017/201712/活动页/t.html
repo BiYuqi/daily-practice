@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .box{
+                width: 500px;
+                height: 800px;
+                background-color:rgb(66, 69, 89);
+                margin: 0 auto;
+                padding: 10px 20px;
+                overflow: hidden;
+            }
+            .inner{
+                background-color: rgba(255, 255, 255, 0.1);
+                width: 400px;
+                height: 600px;
+                overflow: hidden;
+                margin: 30px auto 0;
+            }
+            ul{
+                list-style: none;
+                margin-top: 0;
+            }
+            ul.active{
+                animation: move .2s ease-out;
+            }
+            @keyframes move {
+                from {
+                    margin-top: -30px;
+                }
+                to {
+                    margin-top: 0;
+                }
+            }
+            li{
+                height: 40px;
+                line-height: 40px;
+                margin: 6px 0;
+
+            }
+            li.active{
+                animation: mymove .6s ease-out;
+
+                transition: all .8s;
+            }
+            @keyframes mymove {
+                from {
+                    transform: translateX(100%);
+                    background-color: rgba(255, 255, 255, 0.7);
+                }
+                to {
+                    transform: translateX(0);
+                    background-color: rgba(255, 255, 255, 0);
+                }
+            }
+            img{
+                width: 40px;
+                height: 40px;
+            }
+            span{
+                vertical-align: top;
+                margin-left:30px;
+                color:#fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div class="inner">
+                <ul>
+                    <li>
+                        <img src="http://images.cnblogs.com/cnblogs_com/rubylouvre/205314/o_image017.png" alt="">
+                        <span>kjkjhhjjhjljlk</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            let cacheList = []
+            const CHECK_INTERVAL = 2000  // 检查频率
+            const UPDATE_INTERVAL = 1500 // 更新频率
+            const MIN_CACHE = 10 // 检查边界
+            let startIndex = 0  // 测试
+            function checkCache(){
+                if(cacheList.length < MIN_CACHE){
+                    const data = '测试号----'+ startIndex++
+                    cacheList = cacheList.concat(data)
+
+                    setTimeout(checkCache,CHECK_INTERVAL)
+                }
+            }
+            function render(data){
+                document.querySelector('ul').className = 'active'
+                const li = document.createElement('li')
+                li.innerHTML = `<img src="http://images.cnblogs.com/cnblogs_com/rubylouvre/205314/o_image017.png" alt="">
+                                <span>${data}</span>`
+                li.className = 'active'
+                document.querySelector('ul').insertBefore(li,document.querySelectorAll('ul li')[0])
+            }
+            function loadData(){
+                if(cacheList.length > 0){
+                    render(cacheList[0])
+                    setTimeout(()=>{
+                        document.querySelector('ul').className = ''
+                        document.querySelectorAll('ul li')[0].className = ''
+                    },1200)
+                    cacheList.splice(0,1)
+                }
+                if(document.querySelectorAll('ul li').length > 14){
+                    document.querySelector('ul').lastElementChild.parentNode.removeChild(document.querySelector('ul').lastElementChild)
+                }
+                setTimeout(start,UPDATE_INTERVAL)
+            }
+            function start(){
+                loadData()
+                checkCache()
+            }
+            loadData()
+            checkCache()
+
+        </script>
+    </body>
+</html>
