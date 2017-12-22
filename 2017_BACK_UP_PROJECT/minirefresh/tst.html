@@ -35,22 +35,22 @@
                 down: {
                     callback: function() {
                         console.log('初始化222')
-                        setTimeout(function() {
-                            // 每次下拉刷新后，上拉的状态会被自动重置
+                        // setTimeout(function() {
+                        //     // 每次下拉刷新后，上拉的状态会被自动重置
                             appendTestData(listDom, 10, true);
-                            // 数据加载成功后可关闭
-                            miniRefresh.endDownLoading(true);
-                        }, requestDelayTime);
+                        //     // 数据加载成功后可关闭
+                        //     // miniRefresh.endDownLoading(true);
+                        // }, requestDelayTime);
                     }
                 },
                 up: {
                     isAuto: true,
                     callback: function() {
-                        console.log('初始化')
-                        setTimeout(function() {
-                            appendTestData(listDom, 10);
-                            miniRefresh.endUpLoading(listDom.children.length >= maxDataSize ? true : false);
-                        }, requestDelayTime);
+                        // console.log('初始化')
+                        // setTimeout(function() {
+                            // appendTestData(listDom, 10);
+                        //     // miniRefresh.endUpLoading(listDom.children.length >= maxDataSize ? true : false);
+                        // }, requestDelayTime);
                     }
                 }
             });
