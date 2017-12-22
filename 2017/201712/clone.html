@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+
+            function clone(src){
+                var o
+                if(Object.prototype.toString.call(src) === '[object Array]'){
+                    o = []
+                }else{
+                    o = {}
+                }
+                for(let i in src){
+                    if(src.hasOwnProperty(i)){
+                        if(typeof src[i] === 'object'){
+                            o[i] = clone(src[i])
+                        }else{
+                            o[i] = src[i]
+                        }
+                    }
+                }
+                return o
+            }
+
+            var test = {
+                name:"测量",
+                tt:[1,2,3]
+            }
+            var news = clone(test)
+            test.go = 'pingyu'
+            console.log(news)
+            console.log(test)
+        </script>
+    </body>
+</html>
