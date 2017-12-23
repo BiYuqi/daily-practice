@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            .test{
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                background-color: red;
+                cursor: move;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="test"></div>
+        <script src="drag.js"></script>
+        <script>
+            const d = new Drags({
+                el:'.test',
+                limit:[0,200,200,0],
+                styles:{
+                    top:30,
+                    left:30
+                }
+            })
+        </script>
+    </body>
+</html>

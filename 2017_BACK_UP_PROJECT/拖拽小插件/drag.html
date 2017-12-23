@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            html,body{
+                width: 100%;
+                height: 100%;
+            }
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            button{
+                padding: 4px 10px;
+            }
+            .dd{
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                background-color: rgb(50, 187, 205);
+                cursor: move;
+                z-index: 666;
+            }
+            .wrap{
+                position: absolute;
+                top:100px;
+                left: 200px;
+                width: 300px;
+                height: 300px;
+                z-index: 99;
+                border: 1px solid rgb(31, 230, 164);
+            }
+        </style>
+    </head>
+    <body>
+        <button class="close" type="button" name="button">锁住</button>
+        <button class="open" type="button" name="button">打开</button>
+        <button class="get">当前坐标</button>
+        <div class="dd"></div>
+        <div class="wrap"></div>
+        <script src="drag.js"></script>
+        <script>
+            function $(el) {
+                return document.querySelector(el)
+            }
+            /****要求目标元素top left只能不设置，或者设置在new 方法styles里面******/
+            const dragger = new Drags({
+                el:'.dd', //dom元素
+                limit:[100,500,400,200], // 拖拽范围 上 右 下 左
+                isRandomParam:false, //随机坐标
+                styles:{ //默认位置
+                    top:'300',
+                    left:'400'
+                }
+            })
+            $('.close').addEventListener('click',() => {
+                dragger.stop()
+            },false)
+            $('.open').addEventListener('click',() => {
+                dragger.open()
+            },false)
+
+            $('.get').addEventListener('click',() => {
+                console.log(dragger.getParam())
+            },false)
+
+
+
+        </script>
+    </body>
+</html>
