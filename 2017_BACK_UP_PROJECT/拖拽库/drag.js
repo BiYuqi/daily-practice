@@ -15,6 +15,10 @@ class Drags {
             xx:0,
             yy:0
         }
+        /****自定义默认styles******/
+        this.customStyles = {
+            position: 'absolute'
+        }
         this.resetInit()
         this.bindEvent()
     }
@@ -51,8 +55,9 @@ class Drags {
 
         /********自定义styles*************/
         if(this.options.styles){
-            for(let i in this.options.styles){
-                this.dom.style[i] = this.options.styles[i] + 'px'
+            const newStyles = Object.assign({},this.options.styles,this.customStyles)
+            for(let i in newStyles){
+                this.dom.style[i] = newStyles[i]
             }
         }else{
             /*

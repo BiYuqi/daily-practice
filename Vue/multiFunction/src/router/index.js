@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/home/home'
 import HuiLv from '@/views/huilv/huilv'
 import Relative from '@/views/relativeCall/relativeCall'
+import LenCount from '@/views/LenCount/lencount'
 Vue.use(Router)
 
 export default new Router({
@@ -10,7 +11,7 @@ export default new Router({
         {
             path: '/',
             redirect: {
-                name: 'relative' 
+                name: 'relative'
             }
         },
         {
@@ -27,6 +28,11 @@ export default new Router({
             path: '/relative',
             name: 'relative',
             component: Relative
+        },
+        {
+            path: '/lencount',
+            name: 'lencount',
+            component: LenCount
         }
     ]
 })

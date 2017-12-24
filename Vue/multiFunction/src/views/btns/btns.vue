@@ -52,7 +52,7 @@ export default {
                 {
                     icon: 'icon-ruler',
                     name: '长度转换',
-                    target: 'huilv'
+                    target: 'lencount'
                 },
                 {
                     icon: 'icon-fangda1',
