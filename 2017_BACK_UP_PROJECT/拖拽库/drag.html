@@ -35,8 +35,10 @@
         </style>
     </head>
     <body>
-        <button class="close" type="button" name="button">锁住</button>
-        <button class="open" type="button" name="button">打开</button>
+        <button class="close" type="button" name="button">全局锁住</button>
+        <button class="open" type="button" name="button">打开全局锁(受水平锁，垂直锁的影响)</button>
+        <button class="lockX" type="button" name="button">水平锁定</button>
+        <button class="lockY" type="button" name="button">垂直锁定</button>
         <button class="get">当前坐标</button>
         <div class="dd"></div>
         <div class="wrap"></div>
@@ -55,15 +57,24 @@
                     left:'400'
                 }
             })
-            $('.close').addEventListener('click',() => {
+            $('.close').addEventListener('click',function(){
                 dragger.stop()
             },false)
-            $('.open').addEventListener('click',() => {
+            $('.open').addEventListener('click',function(){
                 dragger.open()
             },false)
 
-            $('.get').addEventListener('click',() => {
+            $('.get').addEventListener('click',function(){
                 console.log(dragger.getParam())
+            },false)
+
+            $('.lockX').addEventListener('click',function(){
+                const islockX = dragger.lockX()
+                this.innerHTML = islockX === true ? '取消水平锁定':'水平锁定'
+            },false)
+            $('.lockY').addEventListener('click',function(){
+                const islockY = dragger.lockY()
+                this.innerHTML = islockY === true ? '取消垂直锁定':'垂直锁定'
             },false)
 
 

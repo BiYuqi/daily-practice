@@ -1,10 +1,12 @@
 class Drags {
     constructor(options) {
         this.options = options
-        this.width = window.screen.width // 屏幕宽高
-        this.height = window.screen.height// 屏幕宽高
+        this.width = document.body.clientWidth || document.documentElement.clientWidth // 视口宽高
+        this.height = document.body.clientHeight || document.documentElement.clientHeight// 视口宽高
         this.drag = false // 是否正在拖拽
         this.flag = true //开关
+        this.stopX = false //水平锁定
+        this.stopY = false //垂直锁定
         this.isRandomParam = this.options.isRandomParam || false // 随机坐标
         /***存储默认坐标信息***/
         this.opData = {
@@ -29,8 +31,9 @@ class Drags {
                 this.dom = options.el
             }
         }else{
-            throw ('target is not allow blank')
+            throw ('The el options can not be empty')
         }
+
         /************目标元素样式*****************/
         const clientRect = this.dom.getBoundingClientRect()
         this.dw = clientRect.width // 目标宽高
@@ -40,11 +43,10 @@ class Drags {
         /************end*****************/
 
         /************范围控制 check limit******************/
-        if(options.limit[2] - options.limit[0] > this.dh && options.limit[1] - options.limit[3] > this.dw){
-            this.limit = options.limit || [0,width,height,0] // 范围控制
+        if(options.limit && options.limit[2] - options.limit[0] > this.dh && options.limit[1] - options.limit[3] > this.dw){
+            this.limit = options.limit // 范围控制
         }else{
-            this.limit = [0,width,height,0] // 默认全屏
-            throw '范围输入有误'
+            this.limit = [0,width,height,0] // limit参数有误，那就默认全屏
         }
 
         /********自定义styles*************/
@@ -89,8 +91,19 @@ class Drags {
                             opData.xx <= limit[3] ? limit[3] : opData.xx
                 opData.yy = opData.yy >= (limit[2]-dw) ? (limit[2]-dw) :
                             opData.yy <= limit[0] ? limit[0] : opData.yy
-                dom.style.left = opData.xx + 'px'
-                dom.style.top = opData.yy + 'px'
+                /*
+                *   锁定Y
+                *   锁定X
+                *   不锁定
+                */
+                if(this.stopX && !this.stopY){
+                    dom.style.top = opData.yy + 'px'
+                }else if(this.stopY && !this.stopX){
+                    dom.style.left = opData.xx + 'px'
+                }else if(!this.stopY && !this.stopX){
+                    dom.style.top = opData.yy + 'px'
+                    dom.style.left = opData.xx + 'px'
+                }
             }
         },false)
 
@@ -102,7 +115,8 @@ class Drags {
     stop() {
         if(this.flag){
             this.flag = false
-            this.dom.style.cursor = 'not-allowed'
+            this.dom.style.cursor = 'move'
+            return true
         }
     }
 
@@ -110,9 +124,17 @@ class Drags {
         if(!this.flag){
             this.flag = true
             this.dom.style.cursor = 'move'
+            return true
         }
     }
-
+    lockX() {
+        this.stopX = !this.stopX
+        return this.stopX
+    }
+    lockY() {
+        this.stopY = !this.stopY
+        return this.stopY
+    }
     getParam() {
         return {
             left:this.opData.xx,

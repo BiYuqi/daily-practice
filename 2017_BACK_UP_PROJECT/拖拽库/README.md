@@ -2,6 +2,9 @@
 
 ## 使用方法
 ```html
+<!-- 必须定位 top left 可不指定 -->
+<div class="test"></div>
+
 <script src="drag.js"></script>
 ```
 ```js
@@ -11,9 +14,11 @@
 *   @param {isRandomParam} [可选 默认false] 随机坐标
 *   @param {styles} [可选 目标样式设置，主要是用来设置top，left]
 *   @param 优先级：styles > isRandomParam
-*   @param drag.stop() 锁定不让拖拽
-*   @param drag.open() 打开锁定
+*   @param drag.stop() 锁定不让拖拽 全局锁
+*   @param drag.open() 打开全局锁
 *   @param drag.getParam() 获取当前坐标位置
+*   @param drag.lockX() 水平锁定 并且返回true or false 可动态更新UI组件
+*   @param drag.lockY() 垂直锁定 并且返回true or false 可动态更新UI组件
 */
 const drag = new Drags({
     el: '',
@@ -27,4 +32,8 @@ const drag = new Drags({
 drag.stop()
 drag.open()
 drag.getParam()
+const islockX = dragger.lockX()
+console.log(islockX)
+const islockY = dragger.lockY()
+console.log(islockY)
 ```
