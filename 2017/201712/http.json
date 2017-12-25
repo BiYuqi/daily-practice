@@ -1,0 +1,407 @@
+{
+    "100":[
+        {
+            "img": "image/100.jpg",
+            "status": "Continue",
+            "exp": "这意味着服务器已经接收到请求头，并且客户端应该继续发送请求体（在需要发送请求体的情况下，例如POST请求）。当因为请求头不恰当而被服务端拒绝时，如果请求体很大，就不应该继续发送请求体。为了让服务器只根据请求头部来检查请求是否可被接受，客户端必须在其初始请求中发送Expect: 100-continue作为请求头，并在继续之前检查是否接收到100 Continue状态代码（如果接收到417 Expectation Failed则不继续）",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#1xx_Server_Error"
+        }
+    ],
+    "200":[
+        {
+            "img": "image/200.jpg",
+            "status": "OK",
+            "exp": "成功HTTP请求的标准响应。实际的响应取决于使用的请求方法。在GET请求中，响应中会包含与所请求资源对应的一个实体。在POST请求中，响应会包含一个描述或包含动作结果的实体。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Server_Error"
+        }
+    ],
+    "201":[
+        {
+            "img": "image/201.jpg",
+            "status": "Created",
+            "exp": "请求已经处理完成，导致创建新资源。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Server_Error"
+        }
+    ],
+    "202":[
+        {
+            "img": "image/202.jpg",
+            "status": "Accepted",
+            "exp": "请求已经被接受和处理，但处理尚未完成。请求最终可能会也可能不会有结果，因为在实际处理时请求可能并不会被允许。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Server_Error"
+        }
+    ],
+    "203":[
+        {
+            "img": "image/203.jpg",
+            "status": "Non-Authoritative",
+            "exp": "服务器成功处理了请求，但要返回的信息可能来自其他网站。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Server_Error"
+        }
+    ],
+    "204":[
+        {
+            "img": "image/204.jpg",
+            "status": "No Content",
+            "exp": "成功HTTP请求的标准响所请求资",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Server_Error"
+        }
+    ],
+    "206":[
+        {
+            "img": "image/206.jpg",
+            "status": "Partial Content",
+            "exp": "由于客户端发送的范围（range）首部限制，服务器只返回了资源的一部分。范围首部是wget等工具用来实现断点续传或多点并传的。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Server_Error"
+        }
+    ],
+    "207":[
+        {
+            "img": "image/207.jpg",
+            "status": "Multi-Status",
+            "exp": "后面的消息体是XML格式的，根据子请求的数量，可能包含几个独立的响应码。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Server_Error"
+        }
+    ],
+    "208":[
+        {
+            "img": "image/208.jpg",
+            "status": "Already Reported",
+            "exp": "DAV（Distributed Authoring and Versioning）绑定的构成已经在对当前请求的前一次响应中给予枚举，再次响应不再包含。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Server_Error"
+        }
+    ],
+    "226":[
+        {
+            "img": "image/226.jpg",
+            "status": "IM Used",
+            "exp": "服务器已经满足了对资源的GET请求，此时的响应表示的是对当前资源实例的一或多个实例级修改的结果。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Server_Error"
+        }
+    ],
+    "304":[
+        {
+            "img": "image/304.jpg",
+            "status": "Not Modified",
+            "exp": "表示资源自上次请求以来未发生更改。通常情况下，HTTP客户端会提供一个请求头(如：If-Modified-Since)来跟服务器端相对应的时间相比较。使用这种方法既能节省服务器和客户端的带宽，又能减轻服务器和客户端的处理压力，因为只有请求头内的数据必须要发送(接收)。通过比较请求头的内容，只有发现页面整体发生更改才会占用更多的带宽重新发送新的内容。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_Server_Error"
+        }
+    ],
+    "305":[
+        {
+            "img": "image/305.jpg",
+            "status": "Use Proxy",
+            "exp": "主要因为安全性问题，很多 HTTP 客户端（像火狐浏览器和 IE 浏览器）对此状态码不会正确的响应",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_Server_Error"
+        }
+    ],
+    "400":[
+        {
+            "img": "image/400.jpg",
+            "status": "Bad Request",
+            "exp": "由于语法错误，导致了请求无法响应",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "300":[
+        {
+            "img": "image/300.jpg",
+            "status": "Multiple Choices",
+            "exp": "提供多个资源可供客户端选择。例如，它可以用于呈现不同格式的视频，列出不同拓展名的文件，或者消除词语的歧义。",
+            "link": ""
+        }
+    ],
+    "301":[
+        {
+            "img": "image/301.jpg",
+            "status": "Moved Permanently",
+            "exp-p": "你永远叫不醒一只装睡的狗狗。",
+            "exp": "当前以及将来的所有请求都会被转发到给定URI。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_Server_Error"
+        }
+    ],
+    "306":[
+        {
+            "img": "image/306.jpg",
+            "status": "Switch Proxy",
+            "exp-p": "狗都醉了",
+            "exp": "不再使用。最初是指“后续请求应使用指定的代理”。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_Server_Error"
+        }
+    ],
+    "308":[
+        {
+            "img": "image/308.jpg",
+            "status": "Permanent Redirect",
+            "exp-p": "嘘，我是一只狗",
+            "exp": "当前请求和将来所有的请求都将被重新发送到另一个URI。307、308（按照建议）和302、301的行为对应，只是不允许改变HTTP方法。因此，将表单提交给永久重定向的资源是可以顺利完成的。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_Server_Error"
+        }
+    ],
+    "401":[
+        {
+            "img": "image/401.jpg",
+            "status": "Unauthorized",
+            "exp-p": "",
+            "exp": "跟“403 Forbidden”相似，但主要用于身份验证没通过或者根本没进行身份验证。此响应必须包含一个WWW-Authenticate标头字段，包含适用于请求资源的口令。更多内容请查看基本认证和摘要认证",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "402":[
+        {
+            "img": "image/402.jpg",
+            "status": "Payment Required",
+            "exp-p": "",
+            "exp": "为将来使用而预留。原计划此状态码可用于某种形式的电子现金或者网上小额交易，然而并没有，因此不常用。倒是有用到它的例子，比如要是苹果云服务账号（MobileMe ）欠费，它会生成一个402错误（在控制台中打出httpStatusCode:402）",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "403":[
+        {
+            "img": "image/403.jpg",
+            "status": "Forbidden",
+            "exp": "请求合法，但服务器拒绝响应。与401 Unauthorized响应不同，此时即使授权结果也一样。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "404":[
+        {
+            "img": "image/404.jpg",
+            "status": "Not Found",
+            "exp": "当前请求的资源不存在，但将来可能会存在。不影响客户端的后续请求。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "405":[
+        {
+            "img": "image/405.jpg",
+            "status": "Method Not Allowed",
+            "exp": "所请求的资源不支持当前请求方法；例如，在需要通过POST方法传递数据的表单上使用GET方法，或者通过PUT方法请求只读资源。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "406":[
+        {
+            "img": "image/406.jpg",
+            "status": "Not Acceptable",
+            "exp": "根据请求中发送的Accept表头字段，该请求资源所生成的内容不满足要求。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "407":[
+        {
+            "img": "image/407.jpg",
+            "status": "Proxy Authentication Required",
+            "exp": "客户端必须要先在代理服务器上进行身份验证",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "408":[
+        {
+            "img": "image/408.jpg",
+            "status": "Request Timeout",
+            "exp": "服务器等待请求超时。根据 W3 HTTP 规范：“在服务器预备等待的时间内，客户端不用发送请求。在以后的任何时间，客户端可能会不做更改的重复发送同一个请求。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "414":[
+        {
+            "img": "image/414.jpg",
+            "status": "Request-URI Too Long",
+            "exp": "提供的 URI 过长，服务器无法处理。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "416":[
+        {
+            "img": "image/416.jpg",
+            "status": "Requested Range Not Satisfiable",
+            "exp": "成功HTTP请客户端请求文件的一部分，但是服务器不能提供该部分。例如，如果客户端请求的部分超出文件的结尾不在文件的范围。求的标准响所请求资",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "417":[
+        {
+            "img": "image/417.jpg",
+            "status": "Expectation Failed",
+            "exp": "服务器无法满足 HTTP请求头 Expect字段的要求。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "418":[
+        {
+            "img": "image/418.jpg",
+            "status": "I’m a teapot",
+            "exp": "这个响应状态码是在1998年定义的，作为传统的IETF愚人节笑话之一，在 RFC 2324,Hyper Text Coffee Pot Control Protocol，并不期望会被实际应用的 HTTP服务器实现。然而，有的服务器确实实现了。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "424":[
+        {
+            "img": "image/424.jpg",
+            "status": "Failed Dependency",
+            "exp": "先前请求失败导致的请求失败。 (例如： 一个错误的修正).",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "444":[
+        {
+            "img": "image/444.jpg",
+            "status": "No Response",
+            "exp": "Nginx上HTTP服务器扩展。 服务器不向客户端返回任何信息，并关闭连接（有助于阻止恶意软件）。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "411":[
+        {
+            "img": "image/411.jpg",
+            "status": "HTTP状态狗",
+            "exp": "请求没有指定其内容长度，请求的资源要求必须有这个长度值。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "420":[
+        {
+            "img": "image/420.jpg",
+            "status": "Enhance Your Calm",
+            "exp": "Twitter Search与Trends API在客户端被限速的情况下返回。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "422":[
+        {
+            "img": "image/422.jpg",
+            "status": "Unprocessable Entity",
+            "exp": "请求格式良好，但由于语义错误而无法继续。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "423":[
+        {
+            "img": "image/423.jpg",
+            "status": "Locked",
+            "exp": "要访问的资源被锁定。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "502":[
+        {
+            "img": "image/502.jpg",
+            "status": "Bad Gateway",
+            "exp": "当服务器充当网关或代理服务器，并且从上游服务器接收到无效响应时返回。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error"
+        }
+    ],
+    "429":[
+        {
+            "img": "image/429.jpg",
+            "status": "Too Many Requests",
+            "exp": "用户在给定时间内发送了过多请求。用于限速，在一份Internet草案中提出。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "431":[
+        {
+            "img": "image/431.jpg",
+            "status": "Request Header Fields Too Large",
+            "exp": "服务器不“情愿”处理请求，或者是个别首部无效，或者是所有首部加起来太大。在一份Internet草案中提出。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "500":[
+        {
+            "img": "image/500.jpg",
+            "status": "Internal Server Error",
+            "exp": "一个通用的错误信息，通常在没有更加具体的错误信息合适的情况下给出。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error"
+        }
+    ],
+    "504":[
+        {
+            "img": "image/504.jpg",
+            "status": "Gateway Timeout",
+            "exp": "在服务器充当网关或代理服务器，且没有及时收到来自上游服务器的响应时返回。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error"
+        }
+    ],
+    "503":[
+        {
+            "img": "image/503.jpg",
+            "status": "Service Unavailable",
+            "exp": "服务器目前不可用（服务器过载或者因维护而关闭）。一般来说，这是一个临时的状态。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error"
+        }
+    ],
+    "450":[
+        {
+            "img": "image/450.jpg",
+            "status": "Blocked by Windows Parental Controls",
+            "exp": "微软的扩展。在Windows Parental Controls打开且被屏蔽无法访问当前网页时返回。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "501":[
+        {
+            "img": "image/501.jpg",
+            "status": "Not Implemented",
+            "exp": "服务器不能识别请求的方法或者没有执行请求的能力。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error"
+        }
+    ],
+    "451":[
+        {
+            "img": "image/451.jpg",
+            "status": "Unavailable For Legal Reasons",
+            "exp": " 在Inrternet草案“A New HTTP Status Code for Legally-restricted Resources”中定义。意在因法律原因拒绝访问资源时使用，比如访问被封的或政府控制的内容。一个参考是《华氏451度》（Fahrenheit 451）中描述的图书都被焚毁的场景。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "412":[
+        {
+            "img": "image/412.jpg",
+            "status": "Precondition Failed",
+            "exp": "服务器与请求中的某项预设请求不相符。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "413":[
+        {
+            "img": "image/413.jpg",
+            "status": "Request Entity Too Large",
+            "exp": "请求太大，超出了服务器处理能力",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Server_Error"
+        }
+    ],
+    "507":[
+        {
+            "img": "image/507.jpg",
+            "status": "Insufficient Storage",
+            "exp": "由于服务器存储空间不足，导致无法存储完成请求所需存储的信息。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error"
+        }
+    ],
+    "509":[
+        {
+            "img": "image/509.jpg",
+            "status": "Bandwidth Limit Exceeded",
+            "exp": "当服务器已经超出服务器管理员指定的带宽时返回。很多服务器使用的这个状态码，并没有在任何RFCs中指定过。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error"
+        }
+    ],
+    "510":[
+        {
+            "img": "image/510.jpg",
+            "status": "Not Extended",
+            "exp": "当服务器需要进一步扩展才能处理请求，而没有扩展时返回。",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error"
+        }
+    ],
+    "508":[
+        {
+            "img": "image/508.jpg",
+            "status": "Loop Detected",
+            "exp": "服务器在处理请求时发现存在无限循环时返回。（发送代替208）",
+            "link": "http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error"
+        }
+    ]
+}
