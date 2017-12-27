@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <input type="file" name="" value="">
+        <script src="https://cdn.bootcss.com/exif-js/2.3.0/exif.min.js"></script>
+        <!-- <script src="small-exif.js"></script> -->
+        <script>
+            let Orientation = null
+            document.querySelector('input').onchange = function(){
+                var file = this.files[0]
+                EXIF.getData(file, function() {
+                    // Orientation = EXIF.getTag(this, 'Orientation');
+                    console.log(this.exifdata)
+                    console.log(Orientation)
+                });
+            }
+        </script>
+    </body>
+</html>
