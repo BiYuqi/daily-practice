@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            var tree = {
+                    "id": 0,
+                    "a1": {
+                        "id": 1,
+                        "name": "a1",
+                        "children": {
+                            "b1": "b1_1",
+                            "b2": "b1_2",
+                            "b3": "b1_3"
+                        }
+                    },
+                    "a2": {
+                        "id": 1,
+                        "name": "a2",
+                        "children": {}
+                    },
+                    "a3": {
+                        "id": 1,
+                        "name": "a3",
+                        "children": {
+                            "b1": "b3_1",
+                            "b2": "b3_2",
+                            "b3": "b3_3"
+                        }
+                    }
+                };
+            class Tree {
+                constructor(options) {
+                    this.options = options
+                    console.log(this.createRoot(options))
+                }
+
+                createNodeList(obj) {
+                    const ulRoot = document.createElement('ul')
+                    const docfrag = document.createDocumentFragment()
+                    if(obj.id == 0){
+                        ulRoot.setAttribute('class', 'tree_0')
+                        for(let key in obj){
+                            if(key == 'id') {
+                                continue
+                            }
+                            const li = document.createElement('li')
+                            const span  = document.createElement("span")
+                            span.appendChild(document.createTextNode( obj[key].name ))
+                            li.appendChild(span)
+                            docfrag.appendChild(li)
+                        }
+                    }else if(obj.id && obj.id == 1){
+                        ulRoot.setAttribute("class", "tree_1")
+                        for(let key in obj){
+                            if(key == 'id' || key == "name" || !obj.children){
+                                continue
+                            }
+                            for(let key in obj.children){
+                                const li = document.createElement('li')
+                                li.appendChild(document.createTextNode( obj.children[key] ))
+                                docfrag.appendChild(li)
+                            }
+                        }
+                    }
+                    ulRoot.appendChild(docfrag)
+                    console.log(ulRoot)
+                    return ulRoot
+                }
+
+                createRoot(obj) {
+                    var root, child, count = 0;
+                    root = this.createNodeList( obj );
+                    for(var key in obj){
+                        if(obj[key] == "id" || !obj[key].children) continue;
+                        child = this.createNodeList(obj[key]);
+                        root.children[count].appendChild( child );
+                        //count来判断插入的位置
+                        count++;
+                    }
+                    return root;
+                }
+            }
+            new Tree(tree)
+        </script>
+    </body>
+</html>
