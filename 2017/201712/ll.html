@@ -5,18 +5,22 @@
         <title></title>
     </head>
     <body>
-        <input type="file" name="" value="" id="inputs">
         <script>
-            document.getElementById('inputs').onchange = function(){
-                var url;
-                var fileobj =document.getElementById('inputs');
-                fileobj.select();
-                url = document.selection.createRange().text;
-                var img = document.createElement('img')
-                img.src = url
+        var url = `https://www.baidu.com?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJERVMifQ==.eyJpZCI6MjgwLCJleHAiOiIxNTE0MzM4NzgxNzc4IiwibG9naW5OYW1lIjoiMTgwMzk2MDgyMDkifQ==.7b01517332f630d897893322f51e6a2d47d123d1ec73de38a2b4d7f3de732269cd3c6c3f23ae54062fba5fbfaeec8d152153f3d26a3bebd6dda7393cad86b3965418347e171e75419460827587d3af6d86d51651146c08a06100f0764d032806154bc8da734eab01915cbd3726a0cf758491afea6986e535&id=280`
 
-                document.body.appendChild(img)
+        function getUrlParamFromLocation(url){
+            var s1 = url.split('?')[1].split('&')
+            var res = {}
+            for(var i=0;i<s1.length;i++){
+                if(s1[i].indexOf('token') > -1){
+                    res['token'] = s1[i].replace(/token=/,'')
+                }else{
+                    var ff = s1[i].split('=')
+                    res[ff[0]] = ff[1]
+                }
             }
+            return res
+        }
         </script>
     </body>
 </html>
