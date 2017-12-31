@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+
+            const STATE = {
+                GET_FAIL: 0,
+                GET_SUCC: 1,
+                CAN_JOIN: 2,
+                ALREADY_JOIN: 3
+
+            }
+
+            const groupStatus = (STATE) => ({
+                joinedUserCount,
+                joinedGroup,
+                serverTime,
+                endTime}) => {
+                if(joinedUserCount >= 5){
+                    return STATE.GET_SUCC
+                }
+                if(serverTime > endTime){
+                    return STATE.GET_FAIL
+                }
+                return joinedGroup == '0' ?
+                        STATE.CAN_JOIN :
+                        STATE.ALREADY_JOIN
+            }
+            const s = groupStatus(STATE)({
+                joinedUserCount:5,
+                joinedGroup:3,
+                serverTime:123,
+                endTime:256
+            })
+            console.log(s)
+        </script>
+    </body>
+</html>
