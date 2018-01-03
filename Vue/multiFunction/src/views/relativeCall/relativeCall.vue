@@ -10,6 +10,8 @@
             <div class="bot" :class="{ active : isOver}">
                 {{ renderData }}
             </div>
+            <button type="button" name="button" @click="setPhoto">测试</button>
+            <img :src="getphoto" alt="" style="width:50px;height:50px;">
         </div>
         <div class="relative-box">
             <touch-btn v-for="(item, index) in relativeData" :key="item.id" @click.native="start(item.keyAll)">
@@ -65,6 +67,9 @@ export default {
         this.relativeData = rd
     },
     methods: {
+        setPhoto() {
+            this.$store.dispatch('GET_RESET_STATUS', 'http://loadingmore.com/vuenotes/static/img/logo.fb7e6cd.png')
+        },
         render() {
             const options = {text:this.initData,sex:1};
             const last = relationship(options);
@@ -129,6 +134,11 @@ export default {
             this.isActive = false
             this.isActive2 = false
             this.isActive3 = true
+        }
+    },
+    computed:{
+        getphoto() {
+            return this.$store.getters.avatar
         }
     }
 }
