@@ -1,18 +1,26 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import app from './modules/app.js'
-import getters from './getters.js'
-
+// import app from './modules/app.js'
+// import getters from './getters.js'
+import api from './modules/dsapi'
+import system from './modules/system'
 Vue.use(Vuex)
-
-
 
 const store = new Vuex.Store({
         modules:{
-            app
+            api: api,
+            system: system
         },
-        getters
+        state: {
+
+        },
+        mutation: {
+
+        },
+        actions: {
+
+        }
 })
 
 export default store

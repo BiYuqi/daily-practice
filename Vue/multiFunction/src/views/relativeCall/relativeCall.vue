@@ -12,6 +12,7 @@
             </div>
             <button type="button" name="button" @click="setPhoto">测试</button>
             <img :src="getphoto" alt="" style="width:50px;height:50px;">
+            <input v-model="GETvalue" type="text" name="" value="">
         </div>
         <div class="relative-box">
             <touch-btn v-for="(item, index) in relativeData" :key="item.id" @click.native="start(item.keyAll)">
@@ -37,6 +38,7 @@ import EqualBtn from '@/components/Equal/Equal'
 import dd from '@/views/relativeCall/data.json'
 import rd from '@/views/relativeCall/relative.json'
 var relationship = require("relationship.js");
+import { mapGetters, mapActions } from 'vuex'
 export default {
     components:{
         GoBack,
@@ -59,16 +61,32 @@ export default {
             isActive2: false,
             isActive3: false,
             isOver: false,  // 点击等号
-            isAction: true  // 判定是否可以继续输入
+            isAction: true,  // 判定是否可以继续输入,
+            GETvalue:''
         }
     },
     mounted() {
         this.relative = dd
         this.relativeData = rd
     },
+    watch: {
+        GETvalue: function() {
+          if(/[^0-9a-zA-Z]/.test(this.GETvalue)){
+            this.GETvalue = this.GETvalue.replace(/[^0-9a-zA-Z]/,'')
+            return
+          }
+        }
+    },
     methods: {
+        ...mapActions('system', [
+          'sysLogin'
+        ]),
         setPhoto() {
-            this.$store.dispatch('GET_RESET_STATUS', 'http://loadingmore.com/vuenotes/static/img/logo.fb7e6cd.png')
+          this.sysLogin({data:{},callback:this.callback(res)})
+          console.log(this.result)
+        },
+        callback(res) {
+          console.log(res,'测试')
         },
         render() {
             const options = {text:this.initData,sex:1};
@@ -137,9 +155,12 @@ export default {
         }
     },
     computed:{
-        getphoto() {
-            return this.$store.getters.avatar
-        }
+      ...mapGetters('system', [
+        'result'
+      ]),
+      getphoto() {
+          return this.$store.getters.avatar
+      }
     }
 }
 </script>
