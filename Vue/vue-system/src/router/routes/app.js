@@ -3,23 +3,20 @@ export default {
   path: '/',
   name: 'main_index',
   component: Main,
-  redirect: '/alarm',
+  redirect: '/dashboard',
   children: [
     {
-      path: 'alarm',
+      path: 'dashboard',
+      name: 'dashboard_index',
       meta: {
-        title: '案由代码维护'
+        title: '首页'
       },
-      name: 'alarm_index',
-      component: () => import('@/views/article/alarm.vue')
+      component: () => import('@/views/dashboard/dashboard.vue')
     },
     {
-      path: 'foo/:user_id',
-      meta: {
-        title: '动态路由测试'
-      },
-      name: 'foo_index',
-      component: () => import('@/views/article/foo.vue')
+      path: 'alarm',
+      name: 'alarm_index',
+      component: () => import('@/components/HelloWorld.vue')
     }
   ]
 }

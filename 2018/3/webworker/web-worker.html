@@ -16,10 +16,9 @@
         document.querySelector('button').setAttribute('disabled', true)
       }
       work.onmessage = (ev) => {
-        console.log(ev)
         document.querySelector('.dot').innerHTML = ev.data
         if (ev.data <= 0) {
-          console.log('111')
+          console.log('end')
           document.querySelector('button').removeAttribute('disabled')
         }
       }

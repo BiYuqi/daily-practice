@@ -1,5 +1,6 @@
 <template>
   <div class="header-wrap">
+    <button type="button" name="button" @click="changeTab">切换</button>
     我是header
     <button @click="goBack">后退</button>
     <button @click="loginOut">退出登录</button>
@@ -24,6 +25,9 @@ export default {
           name: 'login'
         })
       }, 0)
+    },
+    changeTab () {
+      this.$store.commit('setSidebar')
     }
   }
 }

@@ -1,6 +1,5 @@
 @import "./mixin.scss";
 @import "./layout/header.scss";
-@import "./layout/sidebar.scss";
 
 body{
   font-size: 14px;
@@ -17,8 +16,4 @@ body, html{
 }
 .main-wrap{
   height: 100%;
-}
-.main-con{
-  height: 100%;
-  margin-left: 160px;
 }

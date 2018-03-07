@@ -1,21 +1,21 @@
 /**
 * 全局基础配置文件
 */
+import store from '../store'
 let util = {}
 util.title = (title) => {
   title = title || ''
   window.document.title = title
 }
-
 util.opendPage = (vm, name, arg = '', query = '') => {
-  let pageOpenedList = vm.$store.state.pageOpenedList
+  let pageOpenedList = store.state.pageOpenedList
   let opendLen = pageOpenedList.length
   let i = 0
   let tagHasOpened = false
   if (opendLen > 0) {
     for (; i < opendLen; i++) {
       if (name === pageOpenedList[i].name) {
-        vm.$store.commit('pageOpenedList', {
+        store.commit('pageOpenedList', {
           index: i,
           arg: arg,
           query: query
@@ -35,7 +35,7 @@ util.opendPage = (vm, name, arg = '', query = '') => {
     if (query) {
       tag.query = query
     }
-    vm.$store.commit('increateTag', tag)
+    store.commit('increateTag', tag)
   }
 }
 export default util

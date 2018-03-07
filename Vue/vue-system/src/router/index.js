@@ -4,7 +4,6 @@ import Cookie from 'js-cookie'
 import Util from '@/utils/baseSetting'
 import routes from './baseConfig'
 Vue.use(Router)
-console.log(routes)
 export const router = new Router({
   // mode: 'history',
   routes: routes
@@ -20,7 +19,7 @@ router.beforeEach((to, from, next) => {
     })
   } else if (Cookie.get('user') && to.name === 'login') {
     next({
-      name: 'alarm_index'
+      name: 'main_index'
     })
   } else {
     next()

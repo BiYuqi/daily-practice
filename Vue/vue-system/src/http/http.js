@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookie from 'js-cookie'
 /**
 * 封装基于axios的ajax请求
 *
@@ -17,7 +18,7 @@ export const AjaxRequest = function (url, param, payload) {
       url: this.url,
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': localStorage.getItem('token') || ''
+        'Authorization': localStorage.getItem('token') || Cookie.get('token')
       },
       param: this.param
     }).then(res => {
@@ -32,7 +33,7 @@ export const AjaxRequest = function (url, param, payload) {
       url: this.url,
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': localStorage.getItem('token') || ''
+        'Authorization': localStorage.getItem('token') || Cookie.get('token')
       },
       data: this.param
     }).then(res => {
@@ -47,7 +48,7 @@ export const AjaxRequest = function (url, param, payload) {
       url: this.url,
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': localStorage.getItem('token') || ''
+        'Authorization': localStorage.getItem('token') || Cookie.get('token')
       },
       data: this.param
     }).then(res => {
@@ -62,7 +63,7 @@ export const AjaxRequest = function (url, param, payload) {
       url: url,
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': localStorage.getItem('token') || ''
+        'Authorization': localStorage.getItem('token') || Cookie.get('token')
       },
       params: this.param
     }).then(res => {

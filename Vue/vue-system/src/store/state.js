@@ -1,3 +1,4 @@
 export const state = {
-  pageOpenedList: []
+  pageOpenedList: [],
+  sidebarStatus: localStorage.getItem('sidebarStatus') || '0' // 展开
 }

@@ -8,3 +8,4 @@ self.onmessage = (ev) => {
     }
   }, 1000)
 }
+console.log(self)

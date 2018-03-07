@@ -32,6 +32,9 @@ export default {
     ]),
     addVersion () {
       this.getVersionAction()
+      this.$router.push({
+        name: 'dashboard_index'
+      })
     },
     request () {
       this.testAjaxAction()
