@@ -1,0 +1,48 @@
+.sidebar-wrap{
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 180px;
+  background-color: rgb(48, 65, 86);
+  height: 100%;
+  transition: width .28s;
+  .el-menu{
+    width: 180px;
+    transition: width .28s;
+    border-right: none;
+  }
+  &.hideSidebar{
+    width: 64px !important;
+    .el-menu{
+      width: 64px !important;
+    }
+  }
+  .el-submenu .el-menu-item{
+    min-width: 180px;
+    background-color: #1f2d3d!important;
+    &:hover{
+      background-color: #001528!important;
+    }
+    &.is-active{
+      color: rgb(64, 158, 255) !important;
+    }
+  }
+  .el-menu-item:hover{
+    color: rgb(191, 203, 217);
+    background-color: rgb(48, 65, 86);
+  }
+  #app .el-submenu .el-menu-item,
+  #app .nest-menu .el-submenu>.el-submenu__title{
+    background-color: #1f2d3d!important;
+  }
+  .el-menu-item.is-active{
+    color: rgb(64, 158, 255);
+    background-color: rgb(48, 65, 86);
+  }
+  .el-submenu__title:hover{
+    background-color: rgb(38, 52, 69)!important;
+  }
+  .menuitem .el-menu-item{
+    background-color: rgb(48, 65, 86) !important;
+  }
+}

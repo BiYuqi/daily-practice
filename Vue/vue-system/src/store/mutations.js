@@ -21,15 +21,20 @@ export const mutations = {
     state.pageOpenedList = localStorage.pageOpenedList ? JSON.parse(localStorage.pageOpenedList) : []
   },
   setSidebar (state) {
-    if (!localStorage.getItem('sidebarStatus')) {
-      localStorage.setItem('sidebarStatus', '0')
-    }
-    if (localStorage.getItem('sidebarStatus') === '0') { // 0
-      state.sidebarStatus = '1'
-      localStorage.setItem('sidebarStatus', '1')
+    // if (!localStorage.getItem('sidebarStatus')) {
+    //   localStorage.setItem('sidebarStatus', '0')
+    // }
+    // if (localStorage.getItem('sidebarStatus') === '0') { // 0
+    //   state.sidebarStatus = '1'
+    //   localStorage.setItem('sidebarStatus', '1')
+    // } else {
+    //   state.sidebarStatus = '0'
+    //   localStorage.setItem('sidebarStatus', '0')
+    // }
+    if (state.sidebarStatus === 1) {
+      state.sidebarStatus = 0
     } else {
-      state.sidebarStatus = '0'
-      localStorage.setItem('sidebarStatus', '0')
+      state.sidebarStatus = 1
     }
   }
 }

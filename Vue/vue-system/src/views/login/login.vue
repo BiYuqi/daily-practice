@@ -35,8 +35,8 @@ export default {
     }
     return {
       formItem: {
-        account: '',
-        pass: ''
+        account: '1803999999',
+        pass: '11111000kkk'
       },
       rules2: {
         account: [
@@ -72,5 +72,5 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import '../../assets/styles/login/login.scss';
+  @import '../../styles/login/login.scss';
 </style>

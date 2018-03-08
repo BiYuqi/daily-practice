@@ -1,5 +1,5 @@
 <template>
-  <div class="app-main" :class="{active: sidebar === '1' ? true: false}">
+  <div class="app-main" :class="{hideSidebar: isCollapse}">
     <header-on></header-on>
     <router-view :key="key"/>
   </div>
@@ -15,7 +15,7 @@ export default {
     key () {
       return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
     },
-    sidebar () {
+    isCollapse () {
       return this.$store.state.sidebarStatus
     }
   }
@@ -23,5 +23,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/styles/layout/appmain.scss';
+@import '../../styles/layout/appmain.scss';
 </style>
