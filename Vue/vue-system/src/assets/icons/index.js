@@ -1,8 +1,8 @@
-const svgs = require.context('./svg', true, /\.svg$/)
+const files = require.context('./svg', true, /\.svg$/)
 
-const module = {}
+const modules = {}
 
-svgs.keys().forEach((item) => {
-  module[item.replace(/(\.\/|\.svg)/g, '')] = svgs(item)
+files.keys().forEach((key) => {
+  modules[key.replace(/(\.\/|\.svg)/g, '')] = files(key)
 })
-export default module
+export default modules

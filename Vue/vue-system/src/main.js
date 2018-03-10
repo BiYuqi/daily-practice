@@ -6,6 +6,9 @@ import {router} from './router'
 import store from './store'
 import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import SvgIcon from '@/components/SvgIcon'
+
+Vue.component('svg-icon', SvgIcon)
 Vue.config.productionTip = false
 
 Vue.use(ElementUi)

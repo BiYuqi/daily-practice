@@ -1,6 +1,6 @@
 <template>
   <svg class="icon" :class="iconClass">
-    <use :xlink:href="Icons[name]"></use>
+    <use :xlink:href="'#'+Icons[name].default.id"></use>
   </svg>
 </template>
 
@@ -10,8 +10,8 @@ export default {
   props: {
     name: {
       type: String,
-      default: '',
-      required: true
+      required: true,
+      default: ''
     }
   },
   data () {
@@ -22,7 +22,12 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
+<style media="screen">
+  .icon{
+    width: 1em;
+    height: 1em;
+    vertical-align: sub;
+    fill: currentColor;
+    overflow: hidden;
+  }
 </style>

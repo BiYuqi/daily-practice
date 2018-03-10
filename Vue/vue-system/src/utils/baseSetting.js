@@ -7,7 +7,7 @@ util.title = (title) => {
   title = title || ''
   window.document.title = title
 }
-util.opendPage = (vm, name, arg = '', query = '') => {
+util.opendPage = (vm, name, arg = '', query = '', meta = '', path = '') => {
   let pageOpenedList = store.state.pageOpenedList
   let opendLen = pageOpenedList.length
   let i = 0
@@ -34,6 +34,12 @@ util.opendPage = (vm, name, arg = '', query = '') => {
     }
     if (query) {
       tag.query = query
+    }
+    if (meta) {
+      tag.meta = meta
+    }
+    if (path) {
+      tag.path = path
     }
     store.commit('increateTag', tag)
   }

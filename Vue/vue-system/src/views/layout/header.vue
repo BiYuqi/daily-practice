@@ -1,11 +1,13 @@
 <template>
   <div class="header-wrap">
-    <button type="button" name="button" @click="changeTab">切换</button>
-    我是header
-    <button @click="goBack">后退</button>
+    <svg-ic class="header-icon"
+            name="switch"
+            :class="{collapse: collapse}"
+            @click.native="changeTab">
+    </svg-ic>
     <el-dropdown trigger="click" size="small" class="user-info" @command="handleCommand">
       <span class="el-dropdown-link">
-        <img src="../../assets/img/avatar.png" class="avatar" alt="">
+        <svg-icon name="biyuqi" class="avatar"></svg-icon>
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
@@ -17,6 +19,7 @@
 
 <script>
 import Cookie from 'js-cookie'
+import SvgIc from '@/components/SvgIcon'
 export default {
   methods: {
     goBack () {
@@ -42,6 +45,14 @@ export default {
         default:
       }
     }
+  },
+  computed: {
+    collapse () {
+      return this.$store.state.sidebarStatus
+    }
+  },
+  components: {
+    SvgIc
   }
 }
 </script>

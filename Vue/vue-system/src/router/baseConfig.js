@@ -1,4 +1,4 @@
-const files = require.context('.', true, /\.js$/)
+const files = require.context('./routes', false, /\.js$/)
 
 const modules = []
 /**
@@ -12,5 +12,4 @@ files.keys().forEach((item) => {
       item === './baseConfig.js') return
   modules.push(files(item).default)
 })
-
 export default modules
