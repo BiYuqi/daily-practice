@@ -88,6 +88,14 @@ export const baseRoute = [
           title: '编辑表单'
         },
         component: () => import('@/views/components-demo/editForm.vue')
+      },
+      {
+        path: 'form-update',
+        name: 'form_update',
+        meta: {
+          title: '表单监听'
+        },
+        component: () => import('@/views/components-demo/formUpdate.vue')
       }
     ]
   },

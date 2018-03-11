@@ -1,6 +1,6 @@
 <template>
   <div class="home-wrap">
-    <button type="button" name="button" @click="jump">水电费</button>
+    <button type="button" name="button" @click="jump">首页</button>
     <el-row :gutter="10" class="hone-main">
       <el-col class="grid-content" :xs="8" :sm="8" :md="8" :lg="8" :xl="8">
         <div class="head">
