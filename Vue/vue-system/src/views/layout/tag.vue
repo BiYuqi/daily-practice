@@ -12,6 +12,9 @@
 </template>
 
 <script>
+import { baseRoute } from '@/router/sidebar'
+import filterName from '@/utils/includes'
+import EventBus from '@/utils/eventBus'
 export default {
   data () {
     return {
@@ -20,6 +23,11 @@ export default {
   },
   methods: {
     tagClick (name) {
+      // tagvisited 触发左侧边栏展开
+      const flag = filterName(baseRoute, name)
+      if (flag) {
+        EventBus.$emit('openSidebar', flag)
+      }
       this.$router.push({
         name: name
       })

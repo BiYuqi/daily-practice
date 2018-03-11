@@ -61,7 +61,7 @@ export default {
         if (valid) {
           Cookie.set('user', this.formItem.account)
           this.$router.push({
-            name: 'dashboard_index'
+            name: 'home_index'
           })
         } else {
           return false

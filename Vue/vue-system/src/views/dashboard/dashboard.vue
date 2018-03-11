@@ -1,6 +1,5 @@
 <template>
   <div class="dashboard">
-    <button type="button" name="button" @click="jump">点击跳进hello word</button>
   </div>
 </template>
 <script>
@@ -16,4 +15,9 @@ export default {
 </script>
 
 <style lang="scss">
+  .dashboard{
+    height: 100%;
+    background: url('../../assets/img/bg2.jpg') 100% 100%;
+    background-size: cover;
+  }
 </style>

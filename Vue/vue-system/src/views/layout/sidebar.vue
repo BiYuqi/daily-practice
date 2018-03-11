@@ -1,6 +1,7 @@
 <template>
   <div class="sidebar-wrap" :class="{hideSidebar: isCollapse}">
     <el-menu
+      ref="sidebar"
       default-active="$route.path"
       @open="handleOpen"
       @close="handleClose"
@@ -8,6 +9,7 @@
       mode="vertical"
       background-color="#304156"
       text-color="#bfcbd9"
+      unique-opened
       active-text-color="#409EFF"
       :collapse="isCollapse">
       <template v-for="item in routes">
@@ -25,7 +27,7 @@
         <template v-else-if="item.children && item.children.length === 1">
           <el-menu-item :index="items.name||items.path" v-for="items in item.children" :key="items.path">
             <svg-icon :name="item.icon"></svg-icon>
-            <span>{{ items.meta.title }}</span>
+            <span slot="title">{{ items.meta.title }}</span>
           </el-menu-item>
         </template>
         <template v-else>
@@ -41,6 +43,7 @@
 
 <script>
 import { baseRoute } from '@/router/sidebar'
+import EventBus from '@/utils/eventBus'
 export default {
   data () {
     return {
@@ -57,7 +60,7 @@ export default {
   },
   methods: {
     handleOpen (key, keyPath) {
-      // console.log(key)
+      console.log(key)
     },
     handleClose (key, keyPath) {},
     handleSelect (key, keyPath) {
@@ -68,7 +71,12 @@ export default {
     }
   },
   mounted () {
-    console.log(this.routes)
+    // tagvisited 触发左侧边栏展开
+    EventBus.$on('openSidebar', (name) => {
+      this.$nextTick(() => {
+        this.$refs.sidebar.open(name)
+      })
+    })
   }
 }
 </script>

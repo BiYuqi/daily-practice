@@ -20,19 +20,17 @@ router.beforeEach((to, from, next) => {
       replace: true,
       name: 'login'
     })
-    NProgress.done()
   } else if (Cookie.get('user') && to.name === 'login') {
     next({
-      name: 'dashboard_index'
+      name: 'home_index'
     })
-    NProgress.done()
   } else {
     next()
-    NProgress.done()
   }
 })
 
 router.afterEach((to) => {
   Util.opendPage(router.app, to.name, to.params, to.query, to.meta, to.path)
+  NProgress.done()
   window.scrollTo(0, 0)
 })

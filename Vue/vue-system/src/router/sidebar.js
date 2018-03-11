@@ -1,9 +1,8 @@
 import Main from '@/views/Main'
 export const baseRoute = [
   {
-    path: '/',
+    path: '/dashboard',
     component: Main,
-    redirect: '/dashboard',
     title: '首页',
     icon: 'dashboard',
     children: [
@@ -58,8 +57,8 @@ export const baseRoute = [
     component: Main,
     children: [
       {
-        path: 'home',
-        name: 'home_index',
+        path: 'icon',
+        name: 'icon_index',
         meta: {
           title: '图标'
         },
