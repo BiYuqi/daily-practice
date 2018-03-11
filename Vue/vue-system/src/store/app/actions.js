@@ -8,10 +8,11 @@ export const getVersionAction = ({dispatch, state, commit, getters, rootGetters}
 export const testAjaxAction = ({state, commit, dispatch, getters, rootGetters}, data) => {
   const payload = rootGetters['api/payload']
   payload.param = data
-  // 接口回调 => 触发mutation
-  payload.callback = res => {
-    commit(types.TEST_AJAX, res)
-  }
-  // 调用接口 => testAjax
-  dispatch('api/testAjax', payload, {root: true})
+  return new Promise((resolve, reject) => {
+    payload.callback = res => {
+      commit(types.TEST_AJAX, res)
+      resolve(res)
+    }
+    dispatch('api/testAjax', payload, {root: true})
+  })
 }

@@ -81,7 +81,9 @@ export default {
     EventBus.$on('openSidebar', (name) => {
       this.$nextTick(() => {
         setTimeout(() => {
-          this.$refs.sidebar.open(name)
+          if (!this.isCollapse) { // 侧边栏展开时生效
+            this.$refs.sidebar.open(name)
+          }
         })
       })
     })

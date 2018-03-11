@@ -4,7 +4,7 @@ export default {
   title: '报警系统',
   meta: {
     title: '报警系统',
-    isLocal: true
+    isLocal: true // 是否被注入opendList
   },
   component: () => import('@/views/home/home.vue')
 }

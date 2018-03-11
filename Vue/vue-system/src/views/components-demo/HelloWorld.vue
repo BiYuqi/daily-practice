@@ -12,7 +12,6 @@
       </div>
     </div>
     <button type="button" @click="request">请求数据</button>
-    <button type="button" @click="addVersion">测试版本</button>
   </div>
 </template>
 
@@ -30,14 +29,10 @@ export default {
       'getVersionAction', // 简单vuex命名空间测试
       'testAjaxAction' // 对接接口测试
     ]),
-    addVersion () {
-      this.getVersionAction()
-      this.$router.push({
-        name: 'dashboard_index'
-      })
-    },
     request () {
-      this.testAjaxAction()
+      this.testAjaxAction().then((res) => {
+        console.log(res)
+      })
     }
   },
   computed: {

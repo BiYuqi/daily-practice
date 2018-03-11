@@ -107,5 +107,22 @@ export const baseRoute = [
         component: () => import('@/views/components-demo/setting.vue')
       }
     ]
+  },
+  {
+    path: '/test',
+    title: '测试',
+    name: 'test',
+    icon: 'qq',
+    component: Main,
+    children: [
+      {
+        path: 'test',
+        name: 'test_index',
+        meta: {
+          title: '测试'
+        },
+        component: () => import('@/views/components-demo/HelloWorld.vue')
+      }
+    ]
   }
 ]
