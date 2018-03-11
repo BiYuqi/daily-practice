@@ -1,5 +1,8 @@
 export const mutations = {
   increateTag (state, tagObj) {
+    if (tagObj && tagObj.meta && tagObj.meta.isLocal) { // 过滤不需要加入tagview的组件
+      return
+    }
     state.pageOpenedList.push(tagObj)
   },
   pageOpenedList (state, params) {
@@ -11,16 +14,19 @@ export const mutations = {
       opendPage.query = params.query
     }
     state.pageOpenedList.splice(params.index, 1, opendPage)
-    localStorage.pageOpenedList = JSON.stringify(state.pageOpenedList)
+    localStorage.setItem('pageOpenedList', JSON.stringify(state.pageOpenedList))
   },
   clearAllTags (state) {
     state.pageOpenedList = []
-    localStorage.pageOpenedList = JSON.stringify(state.pageOpenedList)
+    localStorage.setItem('pageOpenedList', JSON.stringify(state.pageOpenedList))
   },
   setOpenedList (state) {
-    state.pageOpenedList = localStorage.pageOpenedList ? JSON.parse(localStorage.pageOpenedList) : []
+    const local = localStorage.pageOpenedList && JSON.parse(localStorage.pageOpenedList).length > 0
+    if (local) {
+      state.pageOpenedList = JSON.parse(localStorage.pageOpenedList)
+    }
   },
-  setSidebar (state) {
+  setSidebar (state) { // 侧边栏开关
     // if (!localStorage.getItem('sidebarStatus')) {
     //   localStorage.setItem('sidebarStatus', '0')
     // }
@@ -36,5 +42,8 @@ export const mutations = {
     } else {
       state.sidebarStatus = 1
     }
+  },
+  setHeadVisetedShow (state) {
+    state.headVisetedShow = !state.headVisetedShow
   }
 }

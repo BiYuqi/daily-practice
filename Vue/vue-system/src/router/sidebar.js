@@ -90,5 +90,22 @@ export const baseRoute = [
         component: () => import('@/views/components-demo/editForm.vue')
       }
     ]
+  },
+  {
+    path: '/setting',
+    title: '配置',
+    name: 'set',
+    icon: 'qq',
+    component: Main,
+    children: [
+      {
+        path: 'setting',
+        name: 'setting_index',
+        meta: {
+          title: '配置'
+        },
+        component: () => import('@/views/components-demo/setting.vue')
+      }
+    ]
   }
 ]

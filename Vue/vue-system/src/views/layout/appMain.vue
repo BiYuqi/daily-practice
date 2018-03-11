@@ -1,7 +1,7 @@
 <template>
   <div class="app-main" :class="{hideSidebar: isCollapse}">
     <header-on></header-on>
-    <!-- <tag-view></tag-view> -->
+    <tag-view></tag-view>
     <router-view :key="key"/>
   </div>
 </template>

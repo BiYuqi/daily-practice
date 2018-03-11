@@ -19,22 +19,28 @@
               <svg-icon :name="item.icon"></svg-icon>
               <span>{{ item.title }}</span>
             </template>
-            <el-menu-item :index="items.name||items.path" v-for="items in item.children" :key="items.path">
-              <span>{{ items.meta.title }}</span>
-            </el-menu-item>
+            <router-link :to="item.path+'/'+items.path" :key="items.path" class="route-link" v-for="items in item.children">
+              <el-menu-item :index="items.name||items.path">
+                <span>{{ items.meta.title }}</span>
+              </el-menu-item>
+            </router-link>
           </el-submenu>
         </template>
         <template v-else-if="item.children && item.children.length === 1">
-          <el-menu-item :index="items.name||items.path" v-for="items in item.children" :key="items.path">
-            <svg-icon :name="item.icon"></svg-icon>
-            <span slot="title">{{ items.meta.title }}</span>
-          </el-menu-item>
+          <router-link :to="item.path+'/'+items.path" :key="items.path" class="route-link" v-for="items in item.children">
+            <el-menu-item :index="items.name||items.path">
+              <svg-icon :name="item.icon"></svg-icon>
+              <span slot="title">{{ items.meta.title }}</span>
+            </el-menu-item>
+          </router-link>
         </template>
         <template v-else>
-            <el-menu-item :index="item.name||item.path" :key="item.path">
+          <router-link :to="item.path" :key="item.path" class="route-link">
+            <el-menu-item :index="item.name||item.path">
                 <svg-icon :name="item.icon"></svg-icon>
                 <span slot="title">{{ item.title }}</span>
             </el-menu-item>
+          </router-link>
         </template>
       </template>
     </el-menu>
@@ -70,11 +76,13 @@ export default {
       })
     }
   },
-  mounted () {
+  created () {
     // tagvisited 触发左侧边栏展开
     EventBus.$on('openSidebar', (name) => {
       this.$nextTick(() => {
-        this.$refs.sidebar.open(name)
+        setTimeout(() => {
+          this.$refs.sidebar.open(name)
+        })
       })
     })
   }
@@ -86,5 +94,8 @@ export default {
 .svg-icon{
   width: 36px;
   height: 36px;
+}
+.route-link{
+  text-decoration: none;
 }
 </style>

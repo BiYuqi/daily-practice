@@ -8,14 +8,14 @@ util.title = (title) => {
   window.document.title = title
 }
 util.opendPage = (vm, name, arg = '', query = '', meta = '', path = '') => {
-  let pageOpenedList = store.state.pageOpenedList
+  let pageOpenedList = vm.$store.state.pageOpenedList
   let opendLen = pageOpenedList.length
   let i = 0
   let tagHasOpened = false
   if (opendLen > 0) {
     for (; i < opendLen; i++) {
       if (name === pageOpenedList[i].name) {
-        store.commit('pageOpenedList', {
+        vm.$store.commit('pageOpenedList', {
           index: i,
           arg: arg,
           query: query
