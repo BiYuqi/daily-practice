@@ -118,9 +118,9 @@ export const baseRoute = [
   },
   {
     path: '/test',
-    title: '测试',
+    title: '小工具',
     name: 'test',
-    icon: 'qq',
+    icon: 'tab',
     component: Main,
     children: [
       {
@@ -130,6 +130,14 @@ export const baseRoute = [
           title: '测试'
         },
         component: () => import('@/views/components-demo/HelloWorld.vue')
+      },
+      {
+        path: 'css',
+        name: 'css_index',
+        meta: {
+          title: 'CSS三角制作'
+        },
+        component: () => import('@/views/components-demo/cssSet.vue')
       }
     ]
   }

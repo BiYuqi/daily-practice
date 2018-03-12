@@ -21,6 +21,17 @@ export default {
     switchStatus () {
       this.$store.commit('setHeadVisetedShow')
     }
+  },
+  mounted () {
+    async function getStarCount (owner, repo) {
+      let res = await fetch(`https://api.github.com/repos/${owner}/${repo}`)
+      let data = await res.json()
+      return data.stargazers_count
+    }
+
+    getStarCount('facebook', 'react').then(stargazersCount => {
+      console.log(stargazersCount)
+    })
   }
 }
 </script>
