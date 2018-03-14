@@ -4,7 +4,8 @@ import * as actions from './actions'
 
 const state = {
   version: '1.0',
-  testAjax: {}
+  testAjax: {},
+  role: []
 }
 
 export default {

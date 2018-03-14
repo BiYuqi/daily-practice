@@ -25,7 +25,7 @@ util.opendPage = (vm, name, arg = '', query = '', meta = '', path = '') => {
       }
     }
   }
-  if (!tagHasOpened) {
+  if (!tagHasOpened && name) {
     let tag = {
       name: name
     }

@@ -32,3 +32,15 @@ export const ajaxMethod = ({state, dispatch}, data) => {
 export const testAjax = ({state, dispatch}, payload) => {
   dispatch('api/ajaxMethod', {param: ['GET', state.server.server1 + '/5a84566ae92b195f8f13faff/example/test', payload.param, payload]}, {root: true})
 }
+/**
+* userInfo admin
+*https://easy-mock.com/mock/5aa881eb99ed355f274d0e93/system/userInfo#!method=get
+*https://easy-mock.com/mock/5aa881eb99ed355f274d0e93/system/userInfonormal#!method=get
+*/
+export const getUserInfo = ({state, dispatch}, payload) => {
+  dispatch('api/ajaxMethod', {param: ['GET', state.server.server1 + '/5aa881eb99ed355f274d0e93/system/userInfo#!method=get', payload.param, payload]}, {root: true})
+}
+// 普通用户
+export const getUserInfoNormal = ({state, dispatch}, payload) => {
+  dispatch('api/ajaxMethod', {param: ['GET', state.server.server1 + '/5aa881eb99ed355f274d0e93/system/userInfonormal#!method=get', payload.param, payload]}, {root: true})
+}

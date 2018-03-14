@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Cookie from 'js-cookie'
 import Util from '@/utils/baseSetting'
 import routes from './baseConfig'
-import {baseRoute} from './sidebar'
+// import {baseRoute} from './sidebar'
 import NProgress from 'nprogress'
 import store from '@/store'
 Vue.use(Router)
@@ -16,12 +16,6 @@ router.beforeEach((to, from, next) => {
   NProgress.start()
   const title = to.meta.title
   Util.title(title)
-  if (!Cookie.get('once')) {
-    store.dispatch('permiss/setFilterRoutes', localStorage.getItem('role')).then((res) => {
-      router.addRoutes(res)
-      Cookie.set('once', '1')
-    })
-  }
   if (!Cookie.get('user') && to.name !== 'login') {
     next({
       replace: true,
@@ -32,6 +26,28 @@ router.beforeEach((to, from, next) => {
       name: 'home_index'
     })
   } else {
+    if ((Cookie.get('user')) && store.getters['app/role'].length === 0) {
+      console.log('执行')
+      if (Cookie.get('role') === 'admin') {
+        store.dispatch('app/getUserInfoAction').then((role) => {
+          store.commit('app/USER_INFO', role)
+          store.dispatch('permiss/setFilterRoutes', role.data.data[0]).then((res) => {
+            store.dispatch('permiss/setRoutes', res)
+            router.addRoutes(res)
+            next()
+          })
+        })
+      } else { // user
+        store.dispatch('app/getUserInfoNormalAction').then((role) => {
+          store.commit('app/USER_INFO', role)
+          store.dispatch('permiss/setFilterRoutes', role.data.data[0]).then((res) => {
+            store.dispatch('permiss/setRoutes', res)
+            router.addRoutes(res)
+            next()
+          })
+        })
+      }
+    }
     next()
   }
 })

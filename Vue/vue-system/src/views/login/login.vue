@@ -8,6 +8,14 @@
       <el-form-item prop="pass">
         <el-input type="password" class="el-input-mine" placeholder="password" v-model="formItem.pass"></el-input>
       </el-form-item>
+      <el-select v-model="userRole" placeholder="请选择" class="role-class" @change="getRoleChange">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
       <el-button type="primary" style="width:100%;" @click="loginIn('ruleForm')">登录</el-button>
     </el-form>
   </div>
@@ -52,7 +60,18 @@ export default {
           }
         ]
       },
-      cliboard: ''
+      cliboard: '',
+      options: [
+        {
+          label: '管理员',
+          value: 'admin'
+        },
+        {
+          label: '普通用户',
+          value: 'user'
+        }
+      ],
+      userRole: 'admin'
     }
   },
   methods: {
@@ -60,7 +79,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           Cookie.set('user', this.formItem.account)
-          localStorage.setItem('role', 'admin')
+          Cookie.set('role', this.userRole) // 用于拉去用户可支配的路由权限
           this.$router.push({
             name: 'home_index'
           })
@@ -68,10 +87,22 @@ export default {
           return false
         }
       })
+    },
+    getRoleChange (val) {
+      this.userRole = val
     }
   }
 }
 </script>
 <style lang="scss">
   @import '../../styles/login/login.scss';
+  .role-class{
+    width: 100%;
+    margin-bottom: 30px;
+    .el-input__inner{
+      background-color: #2d3a4b;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, .6);
+    }
+  }
 </style>

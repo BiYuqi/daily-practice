@@ -12,7 +12,7 @@
       unique-opened
       active-text-color="#409EFF"
       :collapse="isCollapse">
-      <template v-for="item in routes">
+      <template v-for="item in routers">
         <template v-if="item.children && item.children.length > 1">
           <el-submenu :index="item.name" :key="item.name">
             <template slot="title">
@@ -48,15 +48,16 @@
 </template>
 
 <script>
-import { baseRoute } from '@/router/sidebar'
 import EventBus from '@/utils/eventBus'
+import { mapGetters } from 'vuex'
 export default {
   data () {
-    return {
-      routes: baseRoute
-    }
+    return {}
   },
   computed: {
+    ...mapGetters('permiss', [
+      'routers'
+    ]),
     getOpendPage () {
       return this.$store.state.pageOpenedList
     },

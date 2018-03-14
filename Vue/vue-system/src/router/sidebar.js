@@ -113,7 +113,8 @@ export const baseRoute = [
         path: 'setting',
         name: 'setting_index',
         meta: {
-          title: '配置'
+          title: '配置',
+          access: ['admin']
         },
         component: () => import('@/views/components-demo/setting.vue')
       }

@@ -34,8 +34,11 @@ export default {
       switch (item) {
         case 'loginout':
           Cookie.remove('user')
+          Cookie.remove('role')
           localStorage.removeItem('pageOpenedList')
           this.$store.commit('clearAllTags')
+          this.$store.commit('app/resetRole')
+          this.$store.commit('permiss/RM_ROLE')
           setTimeout(() => {
             this.$router.push({
               name: 'login'

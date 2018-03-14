@@ -4,3 +4,6 @@ export const version = state => {
 export const testAjax = state => {
   return state.testAjax
 }
+export const role = state => {
+  return state.role
+}
