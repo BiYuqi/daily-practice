@@ -5,16 +5,23 @@ import Util from '@/utils/baseSetting'
 import routes from './baseConfig'
 import {baseRoute} from './sidebar'
 import NProgress from 'nprogress'
+import store from '@/store'
 Vue.use(Router)
 export const router = new Router({
   // mode: 'history',
-  routes: routes.concat(baseRoute)
+  routes: routes
 })
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
   const title = to.meta.title
   Util.title(title)
+  if (!Cookie.get('once')) {
+    store.dispatch('permiss/setFilterRoutes', localStorage.getItem('role')).then((res) => {
+      router.addRoutes(res)
+      Cookie.set('once', '1')
+    })
+  }
   if (!Cookie.get('user') && to.name !== 'login') {
     next({
       replace: true,

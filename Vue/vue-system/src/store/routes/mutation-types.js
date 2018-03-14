@@ -1,0 +1,1 @@
+export const SET_FILTER_ROUTES = 'SET_FILTER_ROUTES'

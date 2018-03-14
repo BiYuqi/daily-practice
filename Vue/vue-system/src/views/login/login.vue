@@ -60,6 +60,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           Cookie.set('user', this.formItem.account)
+          localStorage.setItem('role', 'admin')
           this.$router.push({
             name: 'home_index'
           })

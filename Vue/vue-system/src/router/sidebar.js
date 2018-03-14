@@ -27,7 +27,8 @@ export const baseRoute = [
         path: 'markdown',
         name: 'markdown',
         meta: {
-          title: 'Markdown'
+          title: 'Markdown',
+          access: ['admin']
         },
         component: () => import('@/views/components-demo/markdown.vue')
       },
@@ -35,7 +36,8 @@ export const baseRoute = [
         path: 'json-editor',
         name: 'json_editor',
         meta: {
-          title: 'JSON编辑器'
+          title: 'JSON编辑器',
+          access: ['admin']
         },
         component: () => import('@/views/components-demo/jsonEditor.vue')
       },
@@ -43,7 +45,8 @@ export const baseRoute = [
         path: 'back-to-top',
         name: 'back_to_top',
         meta: {
-          title: 'BackTop'
+          title: 'BackTop',
+          access: ['admin']
         },
         component: () => import('@/views/components-demo/backToTop.vue')
       }
