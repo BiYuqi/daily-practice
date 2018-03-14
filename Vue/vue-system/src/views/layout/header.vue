@@ -11,6 +11,7 @@
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item command="loginout_test">测试</el-dropdown-item>
         <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>

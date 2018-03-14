@@ -1,4 +1,5 @@
 import Main from '@/views/Main'
+// 侧边栏路由一般都放在这里 需要权限校验
 export const baseRoute = [
   {
     path: '/dashboard',
