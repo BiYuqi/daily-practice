@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .set{
+        background: green;
+        height: 20px;
+        border-radius: 4px;
+        width: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="set"></div>
+    <script>
+      window.myRequestAnimationFrame = (function () {
+        return window.requestAnimationFrame ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame ||
+              window.oRequestAnimationFrame ||
+              window.msRequestAnimationFrame ||
+              function (callback) {
+                window.setTimeout(callback, 1000 / 16)
+              }
+      })()
+      const $wrap = document.querySelector('.set')
+      function step(timestamp) {
+        $wrap.style.width = $wrap.getBoundingClientRect().width + 5 + 'px'
+        if ($wrap.getBoundingClientRect().width < 600) {
+          window.myRequestAnimationFrame(step);
+        }
+      }
+      myRequestAnimationFrame(step)
+    </script>
+  </body>
+</html>
