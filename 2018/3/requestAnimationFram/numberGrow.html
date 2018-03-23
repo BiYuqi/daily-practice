@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <button class="tar"></button>
+    <script>
+      const $ = (el) => document.querySelector(el)
+      const opt = {
+        target: $('.tar'),
+        startVal: 0,
+        endVal: 5000,
+        duration: 2000
+      }
+      let startTime = null
+      let startLoop = null
+      const numberGrow = (timestamp) => {
+        if (!startTime) {
+          startTime = timestamp
+        }
+        const progress = timestamp - startTime
+        opt.target.innerHTML = Math.min(~~easingFn(progress, opt.startVal, opt.endVal - opt.startVal, opt.duration), opt.endVal)
+        if (opt.startVal < opt.endVal) {
+          startLoop = requestAnimationFrame(numberGrow)
+        } else {
+          cancelAnimationFrame(startLoop)
+        }
+      }
+      numberGrow()
+      function easingFn(t, b, c, d) {
+        return c * (-Math.pow(2, -10 * t / d) + 1) * 1024 / 1023 + b;
+      }
+    </script>
+  </body>
+</html>
