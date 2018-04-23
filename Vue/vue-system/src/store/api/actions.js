@@ -25,22 +25,10 @@ export const ajaxMethod = ({state, dispatch}, data) => {
   }
 }
 /**
-* 使用方法
-* 这里只是把请求接口写出来，真实的调用分布在各个模块里面的actions
-* 本文件只是集中存放接口请求
-*/
-export const testAjax = ({state, dispatch}, payload) => {
-  dispatch('api/ajaxMethod', {param: ['GET', state.server.server1 + '/5a84566ae92b195f8f13faff/example/test', payload.param, payload]}, {root: true})
-}
-/**
 * userInfo admin
 *https://easy-mock.com/mock/5aa881eb99ed355f274d0e93/system/userInfo#!method=get
 *https://easy-mock.com/mock/5aa881eb99ed355f274d0e93/system/userInfonormal#!method=get
 */
 export const getUserInfo = ({state, dispatch}, payload) => {
-  dispatch('api/ajaxMethod', {param: ['GET', state.server.server1 + '/5aa881eb99ed355f274d0e93/system/userInfo#!method=get', payload.param, payload]}, {root: true})
-}
-// 普通用户
-export const getUserInfoNormal = ({state, dispatch}, payload) => {
-  dispatch('api/ajaxMethod', {param: ['GET', state.server.server1 + '/5aa881eb99ed355f274d0e93/system/userInfonormal#!method=get', payload.param, payload]}, {root: true})
+  dispatch('api/ajaxMethod', {param: ['GET', state.server.server1 + '/system/userInfo?role=' + payload.param.role, payload.param, payload]}, {root: true})
 }

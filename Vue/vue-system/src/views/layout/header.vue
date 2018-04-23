@@ -7,11 +7,10 @@
     </svg-ic>
     <el-dropdown trigger="click" size="small" class="user-info" @command="handleCommand">
       <span class="el-dropdown-link">
-        <svg-icon name="biyuqi" class="avatar"></svg-icon>
+        <svg-icon name="boy" class="avatar"></svg-icon>
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="loginout_test">测试</el-dropdown-item>
         <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -38,12 +37,12 @@ export default {
           Cookie.remove('role')
           localStorage.removeItem('pageOpenedList')
           this.$store.commit('clearAllTags')
-          this.$store.commit('app/resetRole')
-          this.$store.commit('permiss/RM_ROLE')
+          this.$store.commit('user/RESET_ROLE') // 清除角色
+          this.$store.commit('permiss/RM_ROUTES') // 清空routes for sidebar
           setTimeout(() => {
-            this.$router.push({
-              name: 'login'
-            })
+            // 为了修复直接通过vue-router 无刷新退出 导致 Duplicate named routes definition bug
+            // 刷新是为了清空 路由源保留的路由状态
+            location.reload()
           }, 0)
           break
         default:

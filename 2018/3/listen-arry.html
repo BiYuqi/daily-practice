@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      class NewArray extends Array {
+        constructor(...args) {
+          // 调用父类Array的constructor()
+          console.log(args)
+          super(...args)
+        }
+        push (...args) {
+          console.log('监听到数组的变化啦！');
+
+          // 调用父类原型push方法
+          console.log(this)
+          return super.push(...args)
+        }
+        // ...
+      }
+      const arr = [1,2,3,4,5]
+      const newarr = new NewArray(...arr)
+      newarr.push(8)
+      function findDomTree(node, cb){
+        if (node === null) return
+        cb(node)
+        node = node.firstElementChild
+        while (node) {
+          findDomTree(node, cb)
+          node = node.nextElementSibling
+        }
+        return null
+      }
+      findDomTree(document, (node) => console.count())
+    </script>
+  </body>
+</html>

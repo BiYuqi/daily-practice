@@ -5,6 +5,7 @@
         :key="items.name"
         @click.native="tagClick(items.name)"
         closable
+        @close.prevent="close(items.name)"
         :type="items.type" class="tag">
         {{items.meta.title}}
       </el-tag>
@@ -30,6 +31,13 @@ export default {
       this.$router.push({
         name: name
       })
+    },
+    close (name) {
+      const obj = {
+        vm: this,
+        name: name
+      }
+      this.$store.commit('closeTagFromOpendList', obj)
     }
   },
   computed: {

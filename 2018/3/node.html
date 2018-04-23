@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div id="content">
+        <ul id="shift">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function getId(node, id) {
+        if (!node) return null
+        if (node.id === id) return node
+        const children = node.childNodes
+        console.log(children)
+        // console.log(children)
+        for (let i = 0; i < children.length; i++) {
+          const ff = getId(children[i], id)
+          if (ff) {
+            return ff
+          }
+        }
+        return null
+      }
+      console.log(getId(document, 'shift'))
+      function getID2 (node, id) {
+        while (node) {
+          if (node.id === id) return node
+          node = nextElement(node)
+        }
+        return null
+      }
+      function nextElement (node) {
+        // console.log(node)
+        if (node.children.length) {
+          return node.children[0]
+        }
+        if (node.nextElementSibling) {
+          return node.nextElementSibling
+        }
+        while (node.parentNode) {
+          if (node.parentNode.nextElementSibling) {
+            return node.parentNode.nextElementSibling
+          }
+          node = node.parentNode
+        }
+        return null
+      }
+      console.log(getID2(document, 'shift'))
+    </script>
+  </body>
+</html>

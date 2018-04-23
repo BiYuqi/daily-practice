@@ -5,7 +5,7 @@ export const mutations = {
     }
     state.pageOpenedList.push(tagObj)
   },
-  pageOpenedList (state, params) {
+  pageOpenedList (state, params) { // 打开的历史记录
     let opendPage = state.pageOpenedList[params.index]
     if (params.arg) {
       opendPage.arg = params.arg
@@ -17,7 +17,7 @@ export const mutations = {
     localStorage.setItem('pageOpenedList', JSON.stringify(state.pageOpenedList))
   },
   clearAllTags (state) {
-    state.pageOpenedList = []
+    state.pageOpenedList.splice(1)
     localStorage.setItem('pageOpenedList', JSON.stringify(state.pageOpenedList))
   },
   setOpenedList (state) {
@@ -43,7 +43,24 @@ export const mutations = {
       state.sidebarStatus = 1
     }
   },
-  setHeadVisetedShow (state) {
+  setHeadVisetedShow (state) { // opendList 显示开关
     state.headVisetedShow = !state.headVisetedShow
+  },
+  closeTagFromOpendList (state, obj) {
+    // 临时解决方案 后续再完善
+    const lists = state.pageOpenedList
+    if (obj.name === 'dashboard_index') {
+      return
+    }
+    for (let i = 0; i < lists.length; i++) {
+      if (lists[i].name === obj.name) {
+        const lastName = state.pageOpenedList[i - 1].name
+        state.pageOpenedList.splice(i, 1)
+        localStorage.setItem('pageOpenedList', JSON.stringify(state.pageOpenedList))
+        obj.vm.$router.push({
+          name: lastName
+        })
+      }
+    }
   }
 }

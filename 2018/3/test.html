@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function one() {
+        this.name = 1
+        return function () {
+          name = 2
+          return function () {
+            var name = 3
+            console.log(this.name)
+          }
+        }
+      }
+      one()()()
+    </script>
+  </body>
+</html>
