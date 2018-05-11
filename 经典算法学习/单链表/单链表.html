@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="index.js"></script>
+    <script>
+      const p = new LinkList()
+      p.addFirst(8)
+      p.addFirst(9)
+      p.addFirst(10)
+      console.log(p)
+      console.log(p.findPrevious(10))
+      function gets(node, fn) {
+        if (node == null) return
+        fn(node)
+        node = node.firstElementChild
+        while (node) {
+          gets(node, fn)
+          node = node.nextElementSibling
+        }
+      }
+      gets(document, (res) => {
+        console.log(res)
+      })
+    </script>
+  </body>
+</html>

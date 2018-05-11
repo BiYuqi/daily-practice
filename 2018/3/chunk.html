@@ -8,10 +8,11 @@
     <script>
       function chunck (arr, num) {
         let result = [],
-            start = 0,
             size = Math.ceil(arr.length / num)
         for ( let i = 0; i < size; i++) {
-          result.push(arr.slice(start, start + num))
+          let start = i * num
+          let end = start + num
+          result.push(arr.slice(start, end))
         }
         console.log(result)
       }
