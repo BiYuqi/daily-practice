@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .drag-item{
+        height: 30px;
+        line-height: 30px;
+        width: 200px;
+        margin: 10px 0;
+        background-color: rgb(30, 86, 107);
+        color: #fff;
+      }
+      .clear-data{
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        background-color: rgb(83, 92, 143);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="drag">
+      <ul>
+        <li class="drag-item" draggable="true">拖拽测试1</li>
+        <li class="drag-item" draggable="true">拖拽测试2</li>
+        <li class="drag-item" draggable="true">拖拽测试3</li>
+        <li class="drag-item" draggable="true">拖拽测试4</li>
+        <li class="drag-item" draggable="true">拖拽测试5</li>
+      </ul>
+    </div>
+    <div class="clear-data">垃圾箱</div>
+    <script>
+      // document.querySelector('#drag').addEventListener('drag', (e) => {
+      //   console.log(e, 'drag')
+      // })
+      // document.querySelector('#drag').addEventListener('dragend', (e) => {
+      //   console.log(e, 'dragend')
+      // })
+      const $All = (tag) => document.querySelectorAll(tag)
+      const $ = (tag) => document.querySelector(tag)
+      const drags = Array.from($All('.drag-item'))
+      let currentDrager
+      for (let i = 0; i < drags.length; i++) {
+        drags[i].ondragstart = function(ev) {
+          ev.dataTransfer.effectAllowed = 'move'
+          ev.dataTransfer.setData('text', ev.target.innerHTML)
+          ev.dataTransfer.setDragImage(ev.target, 0, 0)
+          currentDrager = ev.target
+          console.log(ev)
+        }
+        drags[i].ondragend = function(ev) {
+      		ev.dataTransfer.clearData("text")
+      		return false
+      	}
+      }
+      $('.clear-data').addEventListener('dragover', (ev) => {
+        ev.preventDefault()
+      })
+      $('.clear-data').addEventListener('dragenter', function(ev) {
+        this.style.color = 'rgb(139, 46, 148)'
+      })
+      $('.clear-data').addEventListener('drop', function(ev) {
+        if (currentDrager) {
+          console.log(ev)
+          currentDrager.parentNode.removeChild(currentDrager)
+          this.style.color = '#fff'
+        }
+      })
+    </script>
+  </body>
+</html>

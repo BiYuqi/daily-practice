@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="file" multiple>
+    <img src="" alt="">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/qiniu-js@2.2.2/dist/qiniu.min.js"></script>
+    <script>
+      console.log(qiniu)
+      const TOKEN = '1oKcowaorYofh972PlpNwFxc8rHkGSICA5lKDKZG:dt22p0b7cAxgUPF79idQfWT1BEU=:eyJzY29wZSI6ImxvYWRpbmdtb3JlIiwiZGVhZGxpbmUiOjE1NDI5MDQ4OTN9'
+      $('input').on('change', (e) => {
+        const files = e.target.files[0]
+        const key = files.name
+        const type = files.type
+        const putExtra = {
+          fname: "",
+          params: {},
+          mimeType: null
+        }
+        console.log(files, key, TOKEN, putExtra, {})
+        const observable = qiniu.upload(files, key, TOKEN, putExtra, {})
+        var observer = {
+          next(res){
+            // http://oq4hkch8e.bkt.clouddn.com/屏幕快照 2017-07-16 19.42.19.png
+            // http://oq4hkch8e.bkt.clouddn.com/屏幕快照 2017-07-16 19.42.19.png
+            // http://oq4hkch8e.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-16%2019.42.19.png
+            // console.log(res)
+          },
+          error(err){
+            // ...
+          },
+          complete(res){
+            console.log(res)
+            $('img').attr('src', 'http://oq4hkch8e.bkt.clouddn.com/' + res.key)
+            // ...
+          }
+        }
+        observable.subscribe(observer)
+      })
+      const buffer = new Int8Array(3);
+      buffer[0] = 77;
+      buffer[1] = 97;
+      buffer[2] = 110;
+      console.log(buffer)
+    </script>
+  </body>
+</html>
