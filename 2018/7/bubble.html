@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function bubble (list, def = 1) {
+      const len = list.length
+      for (let i = 0 ; i < len; i++) {
+        for (let j = 0; j < len - i; j++) {
+          if (list[j] * def < list[j - 1] * def) {
+            if (!def || def >= 1) {
+              const max = list[j - 1]
+              list[j - 1] = list[j]
+              list[j] = max
+            } else {
+              const max = list[j]
+              list[j] = list[j - 1]
+              list[j - 1] = max
+            }
+          }
+        }
+      }
+      return list
+    }
+    const list = [2, 1, 5, 3, 9, 10, 345, 56, 21, 12]
+    console.log(bubble(list))
+    let arr = [
+      {id: 0},
+      {id: 1, pid: 0},
+      {id: 2, pid: 0},
+      {id: 3, pid: 1},
+      {id: 4, pid: 1}
+    ]
+    function find (res, arr) {
+      if (arr.length <= 0) return arr
+      arr.forEach(el => {
+        if (el.pid === res.id) {
+          res.children = res.children || []
+          res.children.push(el)
+          find(el, arr)
+        }
+      })
+    }
+    function arrToTree (arr) {
+      let res = {
+        id: 0
+      }
+      find(res, arr)
+      return res
+    }
+    console.log(arrToTree(arr))
+  </script>
+</body>
+</html>

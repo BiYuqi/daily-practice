@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      const tem = `大鸟是{{ sb }},
+        大鸟长得真{{ info.type}},
+        大鸟是个{{ info.disc}},
+        大鸟是个大傻帽{{ info.aiai.iss}}`
+      const list = {
+        sb: '坑货1',
+        info: {
+          type: '坑货2',
+          disc: '坑货3',
+          aiai: {
+            is: '坑货4'
+          }
+        }
+      }
+      function render(str, data) {
+        return str.replace(/{{\s?([\w.]+)\s?}}/gm, match => {
+          const keys = match.replace(/{{\s*/, '').replace(/\s*}}/, '').split('.')
+          return keys.reduce((prev, curr) => {
+            return prev && prev[curr]
+          }, data) || ''
+        })
+      }
+      console.log(render(tem, list))
+      // function renderHTML (tem, list) {
+      //   const reg = /{{\s?([\w.]+)/gm
+      //   const regAll = /({{\s?(?:[\w.]+)\s?}})/gm
+      //   const res = []
+      //   let m
+      //   while (m = reg.exec(tem)) {
+      //     res.push(m[1])
+      //   }
+      //   for (let i = 0; i < res.length; i++) {
+      //     const ab = res[i].split('.')
+      //     const tp = ab.shift()
+      //     const repReg = new RegExp(`{{\\s?${res[i]}\\s?}}`)
+      //     const a = ab.reduce((prev, curr) => {
+      //       return prev && prev[curr]
+      //     }, list)
+      //     tem = tem.replace(repReg, a)
+      //   }
+      //   return tem
+      // }
+      // console.log(renderHTML(tem, list))
+    </script>
+  </body>
+</html>
