@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Stack {
+      constructor () {
+        this.top = 0
+        this.dataSource = []
+      }
+      push (elem) {
+        this.dataSource[this.top++] = elem
+      }
+      pop () {
+        return this.dataSource[--this.top]
+      }
+      length () {
+        return this.top
+      }
+    }
+    const stack = new Stack()
+    stack.push(1)
+    console.log(stack.pop())
+    function backToTxt (word) {
+      const s = new Stack()
+      let rword = ''
+      for (let i = 0; i < word.length; i++) {
+        s.push(word[i])
+      }
+      while (s.length() > 0) {
+        rword += s.pop()
+      }
+      if (word === rword) {
+        return true
+      }
+      return false
+    }
+    console.log(backToTxt('text'))
+  </script>
+</body>
+</html>

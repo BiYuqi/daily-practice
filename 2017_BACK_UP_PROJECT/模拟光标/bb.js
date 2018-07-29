@@ -133,7 +133,7 @@ class Mock {
                 }else{
                     cursor.className = 'cursor hidden'
                 }
-            },700)
+            }, 500)
         }
     }
 

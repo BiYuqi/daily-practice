@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * TODO
+    */
+    class Node {
+      constructor (element) {
+        this.element = element
+        this.next = null
+      }
+    }
+    class SingleList {
+      constructor () {
+        this.head = new Node('head')
+      }
+      find (elem) {
+        let currentNode = this.head
+        while (currentNode.element !== elem) {
+          currentNode = currentNode.next
+        }
+        return currentNode
+      }
+      insert (newElem, elem) {
+        let newNode = new Node(newElem)
+        let currentNode = this.find(elem)
+        newNode.next = currentNode.next
+        currentNode.next = newNode
+      }
+      display () {
+        let currentNode = this.head
+        while (currentNode.next !== null) {
+          console.log(currentNode.next.element)
+          currentNode = currentNode.next
+        }
+      }
+      findPrevious (elem) {
+        let currentNode = this.head
+        while (currentNode.next !== null && currentNode.next.element !== elem) {
+          console.log('计数')
+          currentNode = currentNode.next
+        }
+        return currentNode
+      }
+      remove (elem) {
+        const prev = this.findPrevious(elem)
+        if (prev.next !== null) {
+          console.log(this.find(elem))
+          prev.next = prev.next.next
+        }
+      }
+    }
+    const s = new SingleList()
+    s.insert('biyuqi', 'head')
+    s.insert('caicai', 'biyuqi')
+    s.insert('毕宇旗', 'caicai')
+    s.display()
+    s.findPrevious('caicai')
+    s.remove('biyuqi')
+    s.remove('caicai')
+    console.log(s)
+  </script>
+</body>
+</html>

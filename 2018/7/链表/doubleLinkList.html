@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Node {
+      constructor (elem) {
+        this.element = elem
+        this.next = null
+        this.previous = null
+      }
+    }
+    class DoubleLinlList {
+      constructor () {
+        this.head = new Node('head') 
+      }
+      find (elem) {
+        let cNode = this.head
+        while (cNode.element !== elem) {
+          cNode = cNode.next
+        }
+        return cNode
+      }
+      insert (newElem, elem) {
+        let newNode = new Node(newElem)
+        let cNode = this.find(elem)
+        newNode.next = cNode.next
+        newNode.previous = cNode
+        cNode.next = newNode
+      }
+      remove (elem) {
+        let cNode = this.find(elem)
+        if (cNode.next !== null) {
+          cNode.previous.next = cNode.next
+          cNode.next.previous = cNode.previous
+          cNode.next = null
+          cNode.previous = null
+        }
+      }
+      display () {
+        let cNode = this.head
+        while (cNode.next !== null) {
+          console.log(cNode.next.element)
+          cNode = cNode.next
+        }
+      }
+      findLast () {
+        let cNode = this.head
+        while (cNode.next !== null) {
+          cNode = cNode.next
+        }
+        return cNode
+      }
+      disReverse () {
+        let lastNode = this.findLast()
+        while (lastNode.previous !== null) {
+          console.log(lastNode.element)
+          lastNode = lastNode.previous
+        }
+      }
+      advance (elem, n) {
+        let cNode = this.find(elem)
+        let buffer = cNode
+        while (buffer.element !== 'head' && n > 0) {
+          buffer = buffer.previous
+          n--
+        }
+        cNode.next.previous = cNode.previous
+        cNode.previous.next = cNode.next
+        cNode.previous = buffer.previous
+        buffer.previous.next = cNode
+        cNode.next = buffer
+      }
+      back (elem, n) {
+        let cNode = this.find(elem)
+        let buffer = cNode
+        while (buffer.next !== null && n > 0) {
+          buffer = buffer.next
+          n--
+        }
+        cNode.previous.next = cNode.next
+        cNode.next.previous = cNode.previous
+        cNode.next = buffer.next
+        buffer.next = cNode
+        // fixed then last node
+        if (buffer.next) {
+          buffer.next.previous = cNode
+          cNode.previous = buffer.next.previous
+        }
+      }
+    }
+    const s = new DoubleLinlList()
+    s.insert('biyuqi', 'head')
+    s.insert('caicai', 'biyuqi')
+    s.insert('loadingMore', 'caicai')
+    s.insert('zhangsan', 'loadingMore')
+    s.insert('lisi', 'zhangsan')
+    s.display()
+    // s.disReverse()
+    console.log('-----advance-----')
+    console.log('----back------')
+    s.advance('loadingMore', 2)
+    s.back('loadingMore', 2)
+    console.log('----------')
+    console.log(s)
+    s.display()
+  </script>
+</body>
+</html>

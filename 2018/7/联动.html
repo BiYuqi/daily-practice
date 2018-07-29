@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .dash-wrap{
+      width: 200px;
+      display: inline-block;
+    }
+    .dash-item{
+      position: relative;
+      width: 200px;
+    }
+    .dash-item .dash-wrap{
+      position: absolute;
+      left: 200px;
+      display: none;
+    }
+    .dash-item:hover > .dash-wrap{
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    var data = [{
+      "value": "浙江",
+      "children": [{
+        "value": "杭州",
+        "children": [{
+          "value": "西湖"
+        }]
+      }]
+    }, {
+      "value": "四川",
+      "children": [{
+        "value": "成都",
+        "children": [{
+          "value": "锦里"
+        }, {
+          "value": "方所"
+        }]
+      }, {
+        "value": "阿坝",
+        "children": [{
+          "value": "九寨沟"
+        }]
+      }]
+    }]
+    let str = ''
+    let index = 0
+    function render(data) {
+      str += `<ul class="dash-wrap">`
+      for (let i = 0; i < data.length; i++) {
+        str += `<li class="dash-item dash-children-${index}">${data[i].value}`
+        if (data[i].children) {
+          render(data[i].children)
+          index++
+        }
+        str += '</li>'
+      }
+      str += `</ul>`
+      return str
+    }
+    render(data)
+
+    document.querySelector('#app').innerHTML = str
+    // document.querySelector('.dash-').addEventListener('click', (e) => {
+    //   console.log(e.target)
+    // })
+  </script>
+</body>
+
+</html>

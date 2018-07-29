@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <textarea name="" id="" cols="30" rows="10"></textarea>
+  <script>
+    function $ (el) {
+      return document.querySelector(el)
+    }
+    function getSelect (target) {
+      if (typeof target.selectionStart === 'number') {
+        console.log(target.selectionStart, target.selectionEnd)
+        console.log('selection--1', target.value.substring(target.selectionStart, target.selectionEnd))
+      } else if (document.selection) {
+        console.log('selection--2', document.selection.createRange().text)
+      }
+    }
+    $('input').onfocus = function () {
+      this.select()
+      // getSelect(this)
+    }
+  </script>
+</body>
+</html>
