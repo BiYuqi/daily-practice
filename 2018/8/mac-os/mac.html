@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .wrap{
+      position: absolute;
+      bottom: 0;
+    }
+    span {
+			display: inline-block;
+			width: 64px;
+			height: 64px;
+			background-size: 100%;
+      user-select: none;
+      cursor: pointer;
+      transition: all .1s;
+    }
+    span:nth-child(1){
+      background-image: url('img/1.png')
+    }
+    span:nth-child(2){
+      background-image: url('img/2.png')
+    }
+    span:nth-child(3){
+      background-image: url('img/3.png')
+    }
+    span:nth-child(4){
+      background-image: url('img/4.png')
+    }
+    span:nth-child(5){
+      background-image: url('img/5.png')
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <script>
+    const spans = Array.from(document.querySelectorAll('span'))
+    const wrap = document.querySelector('.wrap')
+    wrap.addEventListener('mousemove', (e) => {
+      const mx = e.clientX
+      const my = e.clientY
+      for (let i = 0; i < spans.length; i++) {
+        const x = spans[i].offsetLeft + spans[i].offsetWidth / 2
+        const y = spans[i].offsetTop + spans[i].offsetHeight / 2
+        const a = mx - x
+        const b = my - y
+        const c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
+        let vv = 1 - Math.floor(c) / 500
+        if (vv < 0.5 || vv <= 0) {
+          vv = 0.5
+        }
+        spans[i].style.width = (128 * vv) + 'px'
+				spans[i].style.height = (128 * vv) + 'px'
+      }
+    })
+    wrap.addEventListener('mouseleave', () => {
+      for (let i = 0; i < spans.length; i++) {
+        spans[i].style.width = 64 + 'px'
+				spans[i].style.height = 64 + 'px'
+      }
+    })
+  </script>
+</body>
+</html>
