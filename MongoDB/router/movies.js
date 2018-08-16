@@ -4,8 +4,8 @@ const Movie = require('../models/movies')
 
 // 查询电影
 
-router.get('/movie',(req,res) => {
-    Movie.find({})
+router.get('/movie',(req, res) => {
+    Movie.find(req.query)
        .sort({ update_at : -1})
        .then(movies => {
            res.json(movies)
@@ -28,7 +28,7 @@ router.get('/movie/:id',(req,res) => {
 
 // 添加异一部电影
 router.post('/movie',(req,res) => {
-    Movie.create(req.body,(err,movie) => {
+    Movie.create(req.body, (err,movie) => {
         if(err){
             res.json(err)
         }else{
