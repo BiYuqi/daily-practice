@@ -1,0 +1,21 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.list li{
+  list-style: none;
+  margin:  4px 0;
+}
+button{
+  padding: 4px 10px;
+}
+input{
+  margin: 15px 0;
+  width: 240px;
+  padding: 10px;
+}
+.mille{
+  width: 800px;
+  margin: 50px auto;
+}

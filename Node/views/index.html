@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/index.css">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/ajax.js"></script>
+</head>
+<body>
+  <div class="mille">
+    <div>
+      <h4>这是首页</h4>
+      <div><input type="text" class="u-name" placeholder="请输入用户名"></div>
+      <div><input type="text" class="u-pass" placeholder="请输入密码"></div>
+      <button class="register">注册</button>
+    </div>
+    <div class="list">
+      <h3>查看数据并删除</h3>
+      <button class="search">点击查询</button>
+      <ul></ul>
+    </div>
+  </div>
+  <script>
+    $('.register').on('click', () => {
+      const userName = $('.u-name').val()
+      const userPass = $('.u-pass').val()
+      if (!userName || !userPass) {
+        return
+      }
+      $.ajax({
+        type: 'POST',
+        url: 'http://localhost:3001/register',
+        data: {
+          name: userName,
+          password: userPass
+        },
+        success: function (ss) {
+          console.log(ss)
+        },
+        error: function (err) {
+          console.log(err)
+        }
+      })
+    })
+    function renderList () {
+      ajax({
+        type: 'GET',
+        url: 'http://localhost:3001/search'
+      }).then((res) => {
+        if (res.length > 0) {
+          let tpl = ''
+          for (let i =0; i < res.length; i++) {
+            tpl += `
+              <li>
+                <span>${res[i].name || res[i]._id}</span>
+                <button class="del" data-id="${res[i]._id}">删除</button>
+              </li>`
+          }
+          $('ul').html(tpl)
+        } 
+      })
+    }
+    $('.search').on('click', () => {
+      renderList()
+    })
+    $('body').on('click', '.del', function () {
+      const id = $(this).attr('data-id')
+      ajax({
+        type: 'POST',
+        url: 'http://localhost:3001/remove',
+        data: {
+          id: id
+        }
+      }).then((res) => {
+        renderList()
+      })
+    })
+  </script>
+</body>
+</html>

@@ -9,10 +9,10 @@ mongoose.connect('mongodb://localhost:27017/movieList')
 
 mongoose.Promise = global.Promise
 
+// app.use(express.static('static'))
+app.use('/static', express.static('static'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use('/',index)
-app.use('/api',movie)
 
 app.all('*', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
@@ -25,7 +25,12 @@ app.all('*', (req, res, next) => {
         next()
     }
 })
+app.use('/',index)
+app.use('/api',movie)
 
+app.use((req, res) => {
+    res.status(404).send('该接口不存在')
+})
 const port = process.env.PORT || 3000
 
 app.listen(port,() => {
