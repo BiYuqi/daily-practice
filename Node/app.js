@@ -1,5 +1,4 @@
 const path = require('path')
-const mongoose = require('mongoose')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -11,11 +10,7 @@ const ejs = require('ejs')
 const router = require('./router/index')
 const app = express()
 // BASE CONFIG
-const SQ_PATH = 'mongodb://127.0.0.1:27017/userInfo'
 const HOST = process.env.port || '3001'
-
-mongoose.connect(SQ_PATH)
-mongoose.promise = global.promise
 // 设置模板引擎
 app.set('views', path.join(__dirname, 'views'))
 app.engine('html', ejs.__express)

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const userRegister = require('../models/userList')
+const User = require('../models/users')
 // 返回首页
 router.get('/', (req, res) => {
   res.render('index', {
@@ -10,13 +10,13 @@ router.get('/', (req, res) => {
 })
 // 查询
 router.get('/search', (req, res) => {
-  userRegister.find(req.query).then((list) => {
+  User.find(req.query).then((list) => {
     res.json(list)
   })
 })
 // 注册用户信息
 router.post('/register',(req,res) => {
-  userRegister.create(req.body, (err, user) => {
+  User.create(req.body, (err, user) => {
     if(err){
       res.json(err)
     }else{
@@ -26,7 +26,7 @@ router.post('/register',(req,res) => {
 })
 // 删除用户信息
 router.post('/remove', (req, res) => {
-  userRegister.findOneAndRemove({
+  User.findOneAndRemove({
     _id: req.body.id
   }).then((ss) => {
     res.json(ss)
